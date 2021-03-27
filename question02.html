@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>TerraceTechフロントエンドエンジニア養成所</title>
+  </head>
+  <body>
+    <div>
+      <ul></ul>
+    </div>
+  </body>
+  <script>
+        const ul =  document.querySelector('ul');
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = "1.html";
+        a.innerHTML= "これです";
+        const src = "bookmark.png";
+        const img = document.createElement('img');
+        img.src = "bookmark.png";
+        img.alt = "ブックマーク";
+
+        ul.appendChild(li).appendChild(a).appendChild(img);
+  </script>
+</html>
