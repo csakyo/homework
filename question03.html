@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>TerraceTechフロントエンドエンジニア養成所</title>
+  </head>
+  <body>
+    <div>
+      <ul></ul>
+    </div>
+  </body>
+  <script>
+      const ul = document.querySelector('ul');
+      for (let i = 0; i < 2; i++){
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = "/img/bookmark.png";
+          const num = i + 1;
+          const txt = `a${num}`;
+          const href =`${txt}.html`; 
+          const a = document.createElement('a');
+          a.href = href;
+          a.innerHTML = txt;
+          ul.appendChild(li).appendChild(a).appendChild(img);
+        }
+
+  </script>
+</html>
