@@ -15,24 +15,24 @@
   <script>
       const array = [
       {to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"}, 
-      {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"},
+      {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
       ]
       const length = array.length;
+      const ul = document.getElementById('target');
+      const fragment = document.createDocumentFragment();
+
       for (let i = 0; i < length; i++){
-        const to = array[i].to;
-        const img_src = array[i].img;
-        const alt = array[i].alt;
-        const txt = array[i].text;
-        const ul = document.getElementById('target');
+        const {to, img, alt, text} = array[i];
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = to;
-        a.innerHTML = txt;
-        const img = document.createElement('img');
-        img.src = img_src;
-        img.alt = alt;
-        ul.appendChild(li).appendChild(a).appendChild(img);
+        a.innerHTML = text;
+        const img_tag = document.createElement('img');
+        img_tag.src = img;
+        img_tag.alt = alt;
+        fragment.appendChild(li).appendChild(a).appendChild(img_tag);
       }
+        ul.appendChild(fragment);
 
   </script>
 </html>
