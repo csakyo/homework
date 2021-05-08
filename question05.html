@@ -25,8 +25,8 @@
 
             for (let i = 0; i < length; i++){
             const {to, img, alt, text} = array[i];
-            const li = document.createElement('li');
-            const a = document.createElement('a');
+            const li_tag = document.createElement('li');
+            const a_tag = document.createElement('a');
             a.href = to;
             a.innerHTML = text;
             const img_tag = document.createElement('img');
