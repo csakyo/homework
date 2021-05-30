@@ -9,13 +9,13 @@ const promise = new Promise((resolve) => {
     }, 3000)
 })
 
-promise.then((array) => {
-    const length = array.length;
+promise.then((contentsList) => {
+    const length = contentsList.length;
     const ul = document.getElementById('target');
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < length; i++){
-    const {to, img, alt, text} = array[i];
+    const {to, img, alt, text} = contentsList[i];
     const li_tag = document.createElement('li');
     const a_tag = document.createElement('a');
     a_tag.href = to;
