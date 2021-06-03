@@ -14,8 +14,18 @@
   </body>
   <script>
       const ul = document.querySelector('ul');
-      const li = document.createElement('li');
-      li.innerHTML = 'これです';
-      ul.appendChild(li);
+      for (let i = 0; i < 2; i++){
+          const li = document.createElement('li');
+          const img = document.createElement('img');
+          img.src = "/img/bookmark.png";
+          const num = i + 1;
+          const txt = `a${num}`;
+          const href =`${txt}.html`; 
+          const a = document.createElement('a');
+          a.href = href;
+          a.innerHTML = txt;
+          ul.appendChild(li).appendChild(a).appendChild(img);
+        }
+
   </script>
 </html>

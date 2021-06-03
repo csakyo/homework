@@ -13,9 +13,15 @@
     </div>
   </body>
   <script>
-      const ul = document.querySelector('ul');
-      const li = document.createElement('li');
-      li.innerHTML = 'これです';
-      ul.appendChild(li);
+        const ul =  document.querySelector('ul');
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = "1.html";
+        a.innerHTML= "これです";
+        const img = document.createElement('img');
+        img.src = "bookmark.png";
+        img.alt = "ブックマーク";
+
+        ul.appendChild(li).appendChild(a).appendChild(img);
   </script>
 </html>
