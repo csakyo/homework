@@ -14,7 +14,7 @@ promise.then((contentsList) => {
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < length; i++){
-    const {to, img, alt, text} = array[i];
+    const {to, img, alt, text} = contentsList[i];
     const liTag = document.createElement('li');
     const aTag = document.createElement('a');
     aTag.href = to;
