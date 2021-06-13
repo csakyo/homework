@@ -1,10 +1,10 @@
 'use strict';
 
 // loading img 
-const loadImgContent = document.getElementById('loadImg');
+const divTag = document.getElementsByTagName('div')[0];
 const loadImg = document.createElement('img');
-loadImgContent.appendChild(loadImg);
 loadImg.src = "loading-circle.gif";
+divTag.appendChild(loadImg);
 
 
 const contentsList = [{to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"}, 
@@ -32,5 +32,5 @@ promise.then((contentsList) => {
     fragment.appendChild(liTag).appendChild(aTag).appendChild(imgTag);
     }
     ul.appendChild(fragment);
-    document.getElementById("loadImg").style.display = "none" ;
+    loadImg.style.display = "none" ;
 }) 
