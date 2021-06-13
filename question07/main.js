@@ -32,5 +32,5 @@ promise.then((contentsList) => {
     fragment.appendChild(liTag).appendChild(aTag).appendChild(imgTag);
     }
     ul.appendChild(fragment);
-    loadImg.style.display = "none" ;
+    loadImg.remove();
 }) 
