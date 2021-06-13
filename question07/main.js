@@ -1,10 +1,10 @@
 'use strict';
 
 // loading img 
-const divTag = document.getElementsByTagName('div')[0];
+const wrapper = document.getElementById('wrapper');
 const loadImg = document.createElement('img');
 loadImg.src = "loading-circle.gif";
-divTag.appendChild(loadImg);
+wrapper.appendChild(loadImg);
 
 
 const contentsList = [{to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"}, 
