@@ -3,9 +3,10 @@
 // loading img 
 const wrapper = document.getElementById('wrapper');
 const loadImg = document.createElement('img');
-loadImg.src = "loading-circle.gif";
-wrapper.appendChild(loadImg);
-
+const showLoadImg = () => {
+    loadImg.src = "loading-circle.gif";
+    wrapper.appendChild(loadImg);
+} 
 
 const contentsList = [{to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"}, 
                       {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}]
@@ -18,6 +19,7 @@ const promise = new Promise((resolve) => {
 })
 
 async function asyncFunc() {
+    showLoadImg();
     const result = await promise;
     createList(result);
     loadImg.remove();
