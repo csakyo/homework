@@ -21,17 +21,19 @@ const promise = new Promise((resolve) => {
 async function asyncFunc() {
     showLoadImg();
     try {
-        const result = await promise;
-        createList(result);
+      return await promise;
     }
     catch(error) {
+        wrapper.textContent = "データが取得できませんでした";
         console.error(error);
     }
     finally{
         loadImg.remove()
     }
 }
-asyncFunc();
+asyncFunc().then((result) => {
+    createList(result);
+})
 
 function createList(listElement){
     const length = listElement.length;
