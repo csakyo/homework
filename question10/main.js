@@ -31,9 +31,11 @@ async function asyncFunc() {
         loadImg.remove()
     }
 }
-asyncFunc().then((result) => {
+async function finalResult(){
+    const result = await asyncFunc();
     createList(result);
-})
+}
+finalResult();
 
 function createList(listElement){
     const length = listElement.length;
