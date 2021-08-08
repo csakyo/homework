@@ -31,11 +31,11 @@ async function asyncFunc() {
         loadImg.remove()
     }
 }
-async function finalResult(){
+async function init(){
     const result = await asyncFunc();
     createList(result);
 }
-finalResult();
+init();
 
 function createList(listElement){
     const length = listElement.length;
