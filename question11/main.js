@@ -18,7 +18,6 @@ async function callApi() {
     catch(error) {
         wrapper.textContent = "データが取得できませんでした";
         console.error(error);
-        return null;
     }
     finally{
         loadImg.remove()
@@ -26,7 +25,7 @@ async function callApi() {
 
     async function init(){
         const result = await callApi();
-        if (result !== null){
+        if (result){
             createList(result);
         }
     }
