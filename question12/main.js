@@ -1,5 +1,5 @@
 'use strict';
-
+const wrapper = document.getElementById('wrapper');
 const btn = document.getElementById('js-btn');
 
 async function callApi() {
@@ -20,6 +20,9 @@ async function init(){
     const result = await callApi();
     if (result){
         createList(result);
+    } else {
+        wrapper.textContent = "データの表示に失敗しました";
+        console.error('データの表示に失敗しました'); 
     }
 }
 
@@ -33,15 +36,15 @@ function createList(data){
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < length; i++){
-    const {to, img, alt, text} = data[i];
-    const liTag = document.createElement('li');
-    const aTag = document.createElement('a');
-    aTag.href = to;
-    aTag.innerHTML = text;
-    const imgTag = document.createElement('img');
-    imgTag.src = img;
-    imgTag.alt = alt;
-    fragment.appendChild(liTag).appendChild(aTag).appendChild(imgTag);
+        const {to, img, alt, text} = data[i];
+        const liTag = document.createElement('li');
+        const aTag = document.createElement('a');
+        aTag.href = to;
+        aTag.innerHTML = text;
+        const imgTag = document.createElement('img');
+        imgTag.src = img;
+        imgTag.alt = alt;
+        fragment.appendChild(liTag).appendChild(aTag).appendChild(imgTag);
     }
     ul.appendChild(fragment);
 }
