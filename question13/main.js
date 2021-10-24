@@ -1,6 +1,6 @@
 'use strict';
 
-const wrapper = document.getElementById('wrapper');
+const wrapper = document.getElementById('js-wrapper');
 const btn = document.getElementById('js-btn');
 const modalOpen = document.getElementById('js-open');
 const mask = document.getElementById('js-mask');
