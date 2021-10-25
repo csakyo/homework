@@ -1,8 +1,8 @@
 'use strict';
 
 const wrapper = document.getElementById('js-wrapper');
-const btn = document.getElementById('js-btn');
-const modalOpen = document.getElementById('js-open');
+const btn = document.getElementById('js-request-btn');
+const modalOpen = document.getElementById('js-modal-btn');
 const mask = document.getElementById('js-mask');
 const modal = document.getElementById('js-modal');
 const modalClose = document.getElementById('js-close');
@@ -54,7 +54,7 @@ btn.onclick = function(){
 
 function createList(data){
     const length = data.length;
-    const ul = document.getElementById('target');
+    const ul = document.getElementById('js-target');
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < length; i++){
