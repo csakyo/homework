@@ -1,0 +1,72 @@
+#js-modal-btn {
+    cursor:pointer;
+    width:200px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    text-align: center;
+    padding:12px 0;
+    margin:16px auto 0;
+}
+
+#js-close {
+    margin-left: auto;
+    font-size: 28px;
+    border-radius: 5px;
+    color: #000;
+    font-weight: bold;
+    position: absolute;
+    right: 16px;
+    top: -3px;
+    cursor: pointer;
+}
+
+#js-mask {
+    background:rgba(0,0,0,0.4);
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:1;
+}
+
+#js-modal {
+    background: #fff;
+    width: 300px;
+    padding: 35px 20px 20px;
+    border-radius: 4px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transition: transform 0.4s;
+    z-index: 2;
+}
+
+#js-modal > p {
+    margin:0 0 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#js-modal input {
+    width: 300px;
+    padding: 15px;
+    font-size: 20px;
+}
+
+#js-mask.hidden {
+    display:none;
+}
+
+#js-modal.hidden {
+    transform:translate(0,-500px);
+}
+
+img{
+    height: 30px;
+    width: auto;
+    vertical-align: middle;
+    padding-left: 20px;
+}
