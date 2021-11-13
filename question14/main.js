@@ -49,15 +49,15 @@ async function init(){
     }
 }
 
-requestBtn.onclick = function(){
-    if (requestNumber.value === '' || requestNumber.value === null){
+requestBtn.addEventListener('click',()=>{
+    if (requestNumber.value === false){
         alert('値を入力してください');
     } else {
-        init();
-        modalClose.click();
         console.log(inputNumber.value);
+        modalClose.click();
+        init();
     }
-}
+});
 
 function createList(data){
     const length = data.length;
