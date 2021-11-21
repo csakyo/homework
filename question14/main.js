@@ -50,7 +50,7 @@ async function init(){
 }
 
 requestBtn.addEventListener('click',()=>{
-    if (requestNumber.value === false){
+    if (! requestNumber.value === true){
         alert('値を入力してください');
     } else {
         console.log(inputNumber.value);
