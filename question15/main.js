@@ -24,27 +24,11 @@ mask.addEventListener('click',()=>{
     modalClose.click();
 });
 
-const data = { "data": [
-    {
-      "a": "bookmark",
-      "img": "img/1.png",
-      "alt": "画像１",
-      "text": "ブックマーク"
-    },
-    {
-      "a": "message",
-      "img": "img/2.png",
-      "alt": "画像２",
-      "text": "メッセージ"
-    }
-  ]}
-
 async function callApi() {
     try {
-        // const res = await fetch('https://jsondata.okiba.me/v1/json/dFQLo210903231659');
-        const res = await data;
-        // const json = await res.json();
-        return res.data;
+        const res = await fetch('https://myjson.dit.upm.es/api/bins/e8fj');
+        const json = await res.json();
+        return json.data;
     }
     catch(error) {
         wrapper.textContent = "データが取得できませんでした";
