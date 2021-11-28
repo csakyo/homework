@@ -49,8 +49,9 @@ async function init(){
     }
 }
 
-requestBtn.addEventListener('click',()=>{
-    if (! requestNumber.value === true || ! requestText.value === true){
+requestBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    if (!requestNumber.value === true || !requestText.value || !requestText.value.match(/\S/g)){
         alert('未入力箇所があります');
     } else {
         console.log(requestNumber.value);

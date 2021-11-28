@@ -44,23 +44,18 @@
     z-index: 2;
 }
 
-#js-modal .inputAreaContainer {
-    margin: 20px 0;
+#js-modal .inputArea {
+    margin-bottom: 20px;
 }
 
-#js-modal .inputAreaContainer .inputArea{
-    display: -webkit-flex;
-    display: flex;
-    margin-bottom: 15px;
-}
-
-#js-modal .inputArea > p{
-    width: 15%;
-    margin: 0;
+#js-modal .inputArea > label{
+    display: block;
+    float: left;
+    width: 13%;
 }
 
 #js-modal .inputArea > input{
-    width: 85%;
+    width: 84%;
     height: 20px;
 }
 
