@@ -9,15 +9,14 @@
 }
 
 #js-close {
-    margin-left: auto;
-    font-size: 28px;
-    border-radius: 5px;
-    color: #000;
     font-weight: bold;
     position: absolute;
     right: 16px;
-    top: -3px;
+    top: 7px;
     cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 28px;
 }
 
 #js-mask {

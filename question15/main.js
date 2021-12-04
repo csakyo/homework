@@ -51,11 +51,12 @@ async function init(){
 
 requestBtn.addEventListener('click',(e)=>{
     e.preventDefault();
-    if (!requestNumber.value === true || !requestText.value || !requestText.value.match(/\S/g)){
+    const trimText = requestText.value.trim(); 
+    if (!requestNumber.value === true || !trimText) {
         alert('未入力箇所があります');
     } else {
         console.log(requestNumber.value);
-        console.log(requestText.value);
+        console.log(trimText);
         modalClose.click();
         init();
     }
