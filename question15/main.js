@@ -42,7 +42,7 @@ async function callApi() {
 async function init(){
     const result = await callApi();
     if (result){
-        createList(result);
+        renderElement(result);
     } else {
         wrapper.textContent = "データの表示に失敗しました";
         console.error('データの表示に失敗しました'); 
@@ -52,7 +52,7 @@ async function init(){
 requestBtn.addEventListener('click',(e)=>{
     e.preventDefault();
     const trimText = requestText.value.trim(); 
-    if (!requestNumber.value === true || !trimText) {
+    if (!requestNumber.value || !trimText) {
         alert('未入力箇所があります');
     } else {
         console.log(requestNumber.value);
@@ -62,7 +62,7 @@ requestBtn.addEventListener('click',(e)=>{
     }
 });
 
-function createList(data){
+function renderElement(data){
     const length = data.length;
     const ul = document.getElementById('js-target');
     const fragment = document.createDocumentFragment();
