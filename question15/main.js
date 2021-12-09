@@ -49,18 +49,18 @@ async function init(){
     }
 }
 
-requestBtn.addEventListener('click',(e)=>{
+requestBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    const trimText = requestText.value.trim(); 
-    if (!requestNumber.value || !trimText) {
-        alert('未入力箇所があります');
+    const trimText = requestText.value.trim();
+    if (requestNumber.value && trimText) {
+      console.log(requestNumber.value);
+      console.log(trimText); 
+      modalClose.click();
+      init();
     } else {
-        console.log(requestNumber.value);
-        console.log(trimText);
-        modalClose.click();
-        init();
+      alert("未入力箇所があります");
     }
-});
+  });
 
 function renderElement(data){
     const length = data.length;
