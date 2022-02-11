@@ -73,7 +73,7 @@ const createContents = (data) => {
       const titleList = document.createElement('li');
       const articleLink = document.createElement('a');
       articleLink.href = "#";
-      articleLink.innerHTML = articleTitle;
+      articleLink.textContent = articleTitle;
       fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(titleList).appendChild(articleLink);
     }
     tabContents.appendChild(createImgElements(data[i]));
