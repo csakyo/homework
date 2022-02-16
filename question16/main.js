@@ -52,7 +52,7 @@ const createTabs = (data) => {
   for (let i = 0; i < data.length; i++) {
     const tabList = createElementWithClassName("li", "tabList");
     tabList.textContent = data[i].category;
-    i === 0 && tabList.classList.add("is-active");
+    i === 0 && tabList.classList.add("is-active-tab");
     fragmentTablists.appendChild(tabList);
   }
   return fragmentTablists;
@@ -62,24 +62,31 @@ const createTabs = (data) => {
 const createContents = (data) => {
   const fragmentContents = document.createDocumentFragment();
   for (let i = 0; i < data.length; i++) {
-    const {articles} = data[i];
+    // const {articles} = data[i];
     const contentsContainer = createElementWithClassName("div", "contentsContainer");
     const tabContents = createElementWithClassName("div", "tabContents");
     const tabContentsUl = createElementWithClassName("ul", "tabContentsUl");
-    i === 0 && contentsContainer.classList.add("is-show");
+    i === 0 && contentsContainer.classList.add("is-active-content");
 
-    for (let j = 0; j < articles.length; j++){
-      const articleTitle = data[i].articles[j].title;
-      const titleList = document.createElement('li');
-      const articleLink = document.createElement('a');
-      articleLink.href = "#";
-      articleLink.textContent = articleTitle;
-      fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(titleList).appendChild(articleLink);
-    }
+    fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(data[i]));
     tabContents.appendChild(createImgElements(data[i]));
   }
   contentsWrapper.appendChild(fragmentContents);
   return contentsWrapper;
+}
+
+//get titles data
+const createTitles = ({ articles }) => {
+  const fragmentTitles = document.createDocumentFragment();
+  for (let i = 0; i < articles.length; i++) {
+    const articleTitle = articles[i].title;
+    const titleList = document.createElement('li');
+    const articleLink = document.createElement('a');
+    articleLink.href = "#";
+    articleLink.textContent = articleTitle; 
+    fragmentTitles.appendChild(titleList).appendChild(articleLink);
+  }
+  return fragmentTitles;
 }
 
 //get img data 
@@ -93,14 +100,14 @@ const createImgElements = (data) => {
 
 //Tab switching function
 tabsGroup.addEventListener("click", (e) => {
-  const activeElement = document.getElementsByClassName("is-active")[0];
-  const showElement = document.getElementsByClassName('is-show')[0];
+  const activeTab = document.getElementsByClassName("is-active-tab")[0];
+  const activeContent = document.getElementsByClassName('is-active-content')[0];
 
-  activeElement.classList.remove("is-active");
-  e.target.classList.add("is-active");
+  activeTab.classList.remove("is-active-tab");
+  e.target.classList.add("is-active-tab");
   const tabList = document.getElementsByClassName('tabList');
   const index = Array.prototype.indexOf.call(tabList,e.target);
-  showElement.classList.remove('is-show'); 
+  activeContent.classList.remove('is-active-content'); 
   const contents = document.getElementsByClassName('contentsContainer');
-  contents[index].classList.add('is-show'); 
+  contents[index].classList.add('is-active-content'); 
 });

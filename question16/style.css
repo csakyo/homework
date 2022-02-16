@@ -60,12 +60,12 @@ td {
 .contentsContainer {
     display: none;
 }
-.news_tabs li.is-active{
+.news_tabs li.is-active-tab{
     background:#00bcd4;
     color:#FFF;
     transition: all 0.2s ease-out;
 }
-.contentsContainer.is-show{
+.contentsContainer.is-active-content{
     display:block;
 }
 .tabContents ul {
