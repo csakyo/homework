@@ -15,7 +15,7 @@ contentsWrapper.id = "js-contentsWrapper";
 //Get json data
 async function callApi() {
   try {
-    const res = await fetch('https://myjson.dit.upm.es/api/bins/an1r');
+    const res = await fetch('https://myjson.dit.upm.es/api/bins/e4iz');
     if (!res.ok) {
       throw new Error(`サーバーリクエストに失敗しました: ${res.status}`);
     }
@@ -41,17 +41,17 @@ async function init() {
 }
 init();
 
-function renderNewsUiElement(data) {
-  tabsGroup.appendChild(createTabs(data));
-  newsWrapper.appendChild(createContents(data));
+function renderNewsUiElement(newsData) {
+  tabsGroup.appendChild(renderTabElement(newsData));
+  newsWrapper.appendChild(renderContents(newsData));
 }
 
 //Render Tab Element
-const createTabs = (data) => {
+const renderTabElement = (newsData) => {
   const fragmentTablists = document.createDocumentFragment();
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < newsData.length; i++) {
     const tabList = createElementWithClassName("li", "tabList");
-    tabList.textContent = data[i].category;
+    tabList.textContent = newsData[i].category;
     i === 0 && tabList.classList.add("is-active-tab");
     fragmentTablists.appendChild(tabList);
   }
@@ -59,17 +59,16 @@ const createTabs = (data) => {
 };
 
 //Render Content Element
-const createContents = (data) => {
+const renderContents = (newsData) => {
   const fragmentContents = document.createDocumentFragment();
-  for (let i = 0; i < data.length; i++) {
-    // const {articles} = data[i];
+  for (let i = 0; i < newsData.length; i++) {
     const contentsContainer = createElementWithClassName("div", "contentsContainer");
     const tabContents = createElementWithClassName("div", "tabContents");
     const tabContentsUl = createElementWithClassName("ul", "tabContentsUl");
     i === 0 && contentsContainer.classList.add("is-active-content");
 
-    fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(data[i]));
-    tabContents.appendChild(createImgElements(data[i]));
+    fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(newsData[i]));
+    tabContents.appendChild(createImgElements(newsData[i]));
   }
   contentsWrapper.appendChild(fragmentContents);
   return contentsWrapper;
@@ -83,19 +82,55 @@ const createTitles = ({ articles }) => {
     const titleList = document.createElement('li');
     const articleLink = document.createElement('a');
     articleLink.href = "#";
-    articleLink.textContent = articleTitle; 
+    articleLink.textContent = articleTitle;
+
+    // Display new icon
+    const elapsedTime = getElapsedDays(articles[i]);
+    if (elapsedTime <= 3) {
+      const newIcon = createElementWithClassName("span", "new_icon"); 
+      newIcon.textContent = 'new';
+      articleLink.appendChild(newIcon);      
+    }
+
+    //add comment icon and number
+    const commentsLength = articles[i].comments.length; 
+    if (commentsLength > 0) {
+      articleLink.appendChild(createCommentIcon(articles[i]));
+    }
+    
     fragmentTitles.appendChild(titleList).appendChild(articleLink);
   }
   return fragmentTitles;
 }
 
-//get img data 
-const createImgElements = (data) => {
+//Get img data 
+const createImgElements = (newsData) => {
   const imgWrapper = createElementWithClassName("div", "imgWrapper");
   const imgTag = document.createElement('img');
-  imgTag.src = data.img;
+  imgTag.src = newsData.img;
   imgWrapper.appendChild(imgTag);
   return imgWrapper;
+}
+
+// Display comment icons and numbers
+const createCommentIcon = (articlesData) => {
+  const commentLength = articlesData.comments.length;
+  const commentIconSpan = createElementWithClassName("span", "comment_icon");
+  const commentNum = createElementWithClassName("span", "comment_icon_num");
+  const commentIcon = createElementWithClassName("img", "comment_icon_img");
+  commentNum.textContent = commentLength;
+  commentIcon.src = './img/comment_icon.png';
+  commentIconSpan.appendChild(commentIcon);
+  commentIconSpan.appendChild(commentNum);
+  return commentIconSpan; 
+}
+
+// Get the number of days elapsed
+const getElapsedDays = (articlesData) => {
+const postedDate = new Date(articlesData.date);
+const today = new Date();
+const daysElapsed = (today - postedDate) / 86400000;
+return daysElapsed;
 }
 
 //Tab switching function
