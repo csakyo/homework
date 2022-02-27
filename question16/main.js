@@ -85,7 +85,7 @@ const createTitles = ({ articles }) => {
     articleLink.textContent = articleTitle;
 
     // Display new icon
-    const elapsedTime = getElapsedDays(articles[i]);
+    const elapsedTime = getElapsedDays(articles[i].date);
     const newArrivalPeriod = 3;
     if (elapsedTime <= newArrivalPeriod) {
       const newIcon = createElementWithClassName("span", "new_icon"); 
@@ -128,7 +128,7 @@ const createCommentIcon = (articlesData) => {
 
 // Get the number of days elapsed
 const getElapsedDays = (articlesData) => {
-const postedDate = new Date(articlesData.date);
+const postedDate = new Date(articlesData);
 const today = new Date();
 const elapsedDays = (today - postedDate) / 86400000;
 return Math.floor(elapsedDays);
