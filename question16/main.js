@@ -130,7 +130,8 @@ const createCommentIcon = (articlesData) => {
 const getElapsedDays = (articlesData) => {
 const postedDate = new Date(articlesData.date);
 const today = new Date();
-return (today - postedDate) / 86400000;
+const elapsedDays = (today - postedDate) / 86400000;
+return Math.floor(elapsedDays);
 }
 
 //Tab switching function
