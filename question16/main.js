@@ -15,7 +15,7 @@ contentsWrapper.id = "js-contentsWrapper";
 //Get json data
 async function callApi() {
   try {
-    const res = await fetch('https://myjson.dit.upm.es/api/bins/e4iz');
+    const res = await fetch('http://myjson.dit.upm.es/api/bins/7i6f');
     if (!res.ok) {
       throw new Error(`サーバーリクエストに失敗しました: ${res.status}`);
     }
@@ -42,17 +42,17 @@ async function init() {
 init();
 
 function renderNewsUiElement(newsData) {
-  tabsGroup.appendChild(renderTabElement(newsData));
+  tabsGroup.appendChild(getTabListsFragment(newsData));
   newsWrapper.appendChild(renderContents(newsData));
 }
 
-//Render Tab Element
-const renderTabElement = (newsData) => {
+//get Tab Elements 
+const getTabListsFragment = (newsData) => {
   const fragmentTablists = document.createDocumentFragment();
   for (let i = 0; i < newsData.length; i++) {
     const tabList = createElementWithClassName("li", "tabList");
     tabList.textContent = newsData[i].category;
-    i === 0 && tabList.classList.add("is-active-tab");
+    newsData[i].initialDisplay === true && tabList.classList.add("is-active-tab");
     fragmentTablists.appendChild(tabList);
   }
   return fragmentTablists;
@@ -65,7 +65,7 @@ const renderContents = (newsData) => {
     const contentsContainer = createElementWithClassName("div", "contentsContainer");
     const tabContents = createElementWithClassName("div", "tabContents");
     const tabContentsUl = createElementWithClassName("ul", "tabContentsUl");
-    i === 0 && contentsContainer.classList.add("is-active-content");
+    newsData[i].initialDisplay === true && contentsContainer.classList.add("is-active-content");
 
     fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(newsData[i]));
     tabContents.appendChild(createImgElements(newsData[i]));
@@ -86,7 +86,8 @@ const createTitles = ({ articles }) => {
 
     // Display new icon
     const elapsedTime = getElapsedDays(articles[i]);
-    if (elapsedTime <= 3) {
+    const newArrivalPeriod = 3;
+    if (elapsedTime <= newArrivalPeriod) {
       const newIcon = createElementWithClassName("span", "new_icon"); 
       newIcon.textContent = 'new';
       articleLink.appendChild(newIcon);      
@@ -115,22 +116,21 @@ const createImgElements = (newsData) => {
 // Display comment icons and numbers
 const createCommentIcon = (articlesData) => {
   const commentLength = articlesData.comments.length;
-  const commentIconSpan = createElementWithClassName("span", "comment_icon");
+  const commentIcon = createElementWithClassName("span", "comment_icon");
   const commentNum = createElementWithClassName("span", "comment_icon_num");
-  const commentIcon = createElementWithClassName("img", "comment_icon_img");
+  const commentIconImg = createElementWithClassName("img", "comment_icon_img");
   commentNum.textContent = commentLength;
-  commentIcon.src = './img/comment_icon.png';
-  commentIconSpan.appendChild(commentIcon);
-  commentIconSpan.appendChild(commentNum);
-  return commentIconSpan; 
+  commentIconImg.src = './img/comment_icon.png';
+  commentIcon.appendChild(commentIconImg);
+  commentIcon.appendChild(commentNum);
+  return commentIcon; 
 }
 
 // Get the number of days elapsed
 const getElapsedDays = (articlesData) => {
 const postedDate = new Date(articlesData.date);
 const today = new Date();
-const daysElapsed = (today - postedDate) / 86400000;
-return daysElapsed;
+return (today - postedDate) / 86400000;
 }
 
 //Tab switching function
