@@ -130,8 +130,8 @@ const createCommentIcon = (articlesData) => {
 const getElapsedDays = (postDateData) => {
 const postedDate = new Date(postDateData);
 const today = new Date();
-const millisecondForDate = 24*60*60*1000;
-const elapsedDays = (today - postedDate) / millisecondForDate;
+const millisecondsPerDay = 24*60*60*1000;
+const elapsedDays = (today - postedDate) / millisecondsPerDay;
 return Math.floor(elapsedDays);
 }
 
