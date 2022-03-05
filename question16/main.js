@@ -15,7 +15,7 @@ contentsWrapper.id = "js-contentsWrapper";
 //Get json data
 async function callApi() {
   try {
-    const res = await fetch('http://myjson.dit.upm.es/api/bins/7i6f');
+    const res = await fetch('https://myjson.dit.upm.es/api/bins/5oo3');
     if (!res.ok) {
       throw new Error(`サーバーリクエストに失敗しました: ${res.status}`);
     }
@@ -52,7 +52,7 @@ const getTabListsFragment = (newsData) => {
   for (let i = 0; i < newsData.length; i++) {
     const tabList = createElementWithClassName("li", "tabList");
     tabList.textContent = newsData[i].category;
-    newsData[i].initialDisplay === true && tabList.classList.add("is-active-tab");
+    newsData[i].initialDisplay && tabList.classList.add("is-active-tab");
     fragmentTablists.appendChild(tabList);
   }
   return fragmentTablists;
@@ -65,7 +65,7 @@ const renderContents = (newsData) => {
     const contentsContainer = createElementWithClassName("div", "contentsContainer");
     const tabContents = createElementWithClassName("div", "tabContents");
     const tabContentsUl = createElementWithClassName("ul", "tabContentsUl");
-    newsData[i].initialDisplay === true && contentsContainer.classList.add("is-active-content");
+    newsData[i].initialDisplay && contentsContainer.classList.add("is-active-content");
 
     fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(newsData[i]));
     tabContents.appendChild(createImgElements(newsData[i]));
@@ -127,10 +127,11 @@ const createCommentIcon = (articlesData) => {
 }
 
 // Get the number of days elapsed
-const getElapsedDays = (articlesData) => {
-const postedDate = new Date(articlesData);
+const getElapsedDays = (postDateData) => {
+const postedDate = new Date(postDateData);
 const today = new Date();
-const elapsedDays = (today - postedDate) / 86400000;
+const millisecondForDate = 24*60*60*1000;
+const elapsedDays = (today - postedDate) / millisecondForDate;
 return Math.floor(elapsedDays);
 }
 
