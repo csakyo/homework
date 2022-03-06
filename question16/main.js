@@ -52,6 +52,7 @@ const getTabListsFragment = (newsData) => {
   for (let i = 0; i < newsData.length; i++) {
     const tabList = createElementWithClassName("li", "tabList");
     tabList.textContent = newsData[i].category;
+    tabList.id = i;
     newsData[i].initialDisplay && tabList.classList.add("is-active-tab");
     fragmentTablists.appendChild(tabList);
   }
@@ -142,9 +143,7 @@ tabsGroup.addEventListener("click", (e) => {
 
   activeTab.classList.remove("is-active-tab");
   e.target.classList.add("is-active-tab");
-  const tabList = document.getElementsByClassName('tabList');
-  const index = Array.prototype.indexOf.call(tabList,e.target);
   activeContent.classList.remove('is-active-content'); 
   const contents = document.getElementsByClassName('contentsContainer');
-  contents[index].classList.add('is-active-content'); 
+  contents[e.target.id].classList.add('is-active-content'); 
 });
