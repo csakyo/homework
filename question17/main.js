@@ -86,7 +86,7 @@ const getImgListsFragment = (imgData) => {
 };
 
 let imgNum = 0;
-const isShowElement = document.getElementsByClassName("is-show");
+const isShowElement = document.querySelector(".is-show");
 const imgList = document.getElementsByClassName("imgList");
 
 
@@ -102,7 +102,7 @@ const renderPrevBtn = (imgData) => {
     if (imgNum < 0) {
       imgNum = 0;
     }
-    isShowElement[0].classList.remove('is-show'); 
+    document.querySelector(".is-show").classList.remove('is-show'); 
     imgList[imgNum].classList.add('is-show');
     switchDisableForBtn(imgNum,imgData); 
     setNumberOfPage(imgNum,imgData); 
@@ -120,7 +120,7 @@ const renderNextBtn = (imgData) => {
     if (imgNum >= imgData.length) {
       imgNum = imgData.length - 1;
     }
-    isShowElement[0].classList.remove('is-show'); 
+    document.querySelector(".is-show").classList.remove('is-show'); 
     imgList[imgNum].classList.add('is-show');
     switchDisableForBtn(imgNum,imgData);
     setNumberOfPage(imgNum,imgData); 
