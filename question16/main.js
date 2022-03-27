@@ -15,7 +15,7 @@ contentsWrapper.id = "js-contentsWrapper";
 //Get json data
 async function callApi() {
   try {
-    const res = await fetch('https://myjson.dit.upm.es/api/bins/an1r');
+    const res = await fetch('https://myjson.dit.upm.es/api/bins/5oo3');
     if (!res.ok) {
       throw new Error(`サーバーリクエストに失敗しました: ${res.status}`);
     }
@@ -41,35 +41,35 @@ async function init() {
 }
 init();
 
-function renderNewsUiElement(data) {
-  tabsGroup.appendChild(createTabs(data));
-  newsWrapper.appendChild(createContents(data));
+function renderNewsUiElement(newsData) {
+  tabsGroup.appendChild(getTabListsFragment(newsData));
+  newsWrapper.appendChild(renderContents(newsData));
 }
 
-//Render Tab Element
-const createTabs = (data) => {
+//get Tab Elements 
+const getTabListsFragment = (newsData) => {
   const fragmentTablists = document.createDocumentFragment();
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < newsData.length; i++) {
     const tabList = createElementWithClassName("li", "tabList");
-    tabList.textContent = data[i].category;
-    i === 0 && tabList.classList.add("is-active-tab");
+    tabList.textContent = newsData[i].category;
+    tabList.dataset.index = i;
+    newsData[i].initialDisplay && tabList.classList.add("is-active-tab");
     fragmentTablists.appendChild(tabList);
   }
   return fragmentTablists;
 };
 
 //Render Content Element
-const createContents = (data) => {
+const renderContents = (newsData) => {
   const fragmentContents = document.createDocumentFragment();
-  for (let i = 0; i < data.length; i++) {
-    // const {articles} = data[i];
+  for (let i = 0; i < newsData.length; i++) {
     const contentsContainer = createElementWithClassName("div", "contentsContainer");
     const tabContents = createElementWithClassName("div", "tabContents");
     const tabContentsUl = createElementWithClassName("ul", "tabContentsUl");
-    i === 0 && contentsContainer.classList.add("is-active-content");
+    newsData[i].initialDisplay && contentsContainer.classList.add("is-active-content");
 
-    fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(data[i]));
-    tabContents.appendChild(createImgElements(data[i]));
+    fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(newsData[i]));
+    tabContents.appendChild(createImgElements(newsData[i]));
   }
   contentsWrapper.appendChild(fragmentContents);
   return contentsWrapper;
@@ -83,19 +83,57 @@ const createTitles = ({ articles }) => {
     const titleList = document.createElement('li');
     const articleLink = document.createElement('a');
     articleLink.href = "#";
-    articleLink.textContent = articleTitle; 
+    articleLink.textContent = articleTitle;
+
+    // Display new icon
+    const elapsedTime = getElapsedDays(articles[i].date);
+    const newArrivalPeriod = 3;
+    if (elapsedTime <= newArrivalPeriod) {
+      const newIcon = createElementWithClassName("span", "new_icon"); 
+      newIcon.textContent = 'new';
+      articleLink.appendChild(newIcon);      
+    }
+
+    //add comment icon and number
+    const commentsLength = articles[i].comments.length; 
+    if (commentsLength > 0) {
+      articleLink.appendChild(createCommentIcon(articles[i]));
+    }
+    
     fragmentTitles.appendChild(titleList).appendChild(articleLink);
   }
   return fragmentTitles;
 }
 
-//get img data 
-const createImgElements = (data) => {
+//Get img data 
+const createImgElements = (newsData) => {
   const imgWrapper = createElementWithClassName("div", "imgWrapper");
   const imgTag = document.createElement('img');
-  imgTag.src = data.img;
+  imgTag.src = newsData.img;
   imgWrapper.appendChild(imgTag);
   return imgWrapper;
+}
+
+// Display comment icons and numbers
+const createCommentIcon = (articlesData) => {
+  const commentLength = articlesData.comments.length;
+  const commentIcon = createElementWithClassName("span", "comment_icon");
+  const commentNum = createElementWithClassName("span", "comment_icon_num");
+  const commentIconImg = createElementWithClassName("img", "comment_icon_img");
+  commentNum.textContent = commentLength;
+  commentIconImg.src = './img/comment_icon.png';
+  commentIcon.appendChild(commentIconImg);
+  commentIcon.appendChild(commentNum);
+  return commentIcon; 
+}
+
+// Get the number of days elapsed
+const getElapsedDays = (postDateData) => {
+const postedDate = new Date(postDateData);
+const today = new Date();
+const millisecondsPerDay = 24*60*60*1000;
+const elapsedDays = (today - postedDate) / millisecondsPerDay;
+return Math.floor(elapsedDays);
 }
 
 //Tab switching function
@@ -105,9 +143,7 @@ tabsGroup.addEventListener("click", (e) => {
 
   activeTab.classList.remove("is-active-tab");
   e.target.classList.add("is-active-tab");
-  const tabList = document.getElementsByClassName('tabList');
-  const index = Array.prototype.indexOf.call(tabList,e.target);
   activeContent.classList.remove('is-active-content'); 
   const contents = document.getElementsByClassName('contentsContainer');
-  contents[index].classList.add('is-active-content'); 
+  contents[e.target.dataset.index].classList.add('is-active-content'); 
 });
