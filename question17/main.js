@@ -99,9 +99,6 @@ const renderPrevBtn = (imgData) => {
 
   prevBtn.addEventListener("click", function() {
     imgNum -= 1;
-    if (imgNum < 0) {
-      imgNum = 0;
-    }
     document.querySelector(".is-show").classList.remove('is-show'); 
     imgList[imgNum].classList.add('is-show');
     switchDisableForBtn(imgData); 
@@ -117,9 +114,6 @@ const renderNextBtn = (imgData) => {
 
   nxtBtn.addEventListener("click", function() {
     imgNum += 1;
-    if (imgNum >= imgData.length) {
-      imgNum = imgData.length - 1;
-    }
     document.querySelector(".is-show").classList.remove('is-show'); 
     imgList[imgNum].classList.add('is-show');
     switchDisableForBtn(imgData);
