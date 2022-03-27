@@ -104,8 +104,8 @@ const renderPrevBtn = (imgData) => {
     }
     document.querySelector(".is-show").classList.remove('is-show'); 
     imgList[imgNum].classList.add('is-show');
-    switchDisableForBtn(imgNum,imgData); 
-    setNumberOfPage(imgNum,imgData); 
+    switchDisableForBtn(imgData); 
+    setNumberOfPage(imgData); 
   });
 }
 
@@ -122,28 +122,28 @@ const renderNextBtn = (imgData) => {
     }
     document.querySelector(".is-show").classList.remove('is-show'); 
     imgList[imgNum].classList.add('is-show');
-    switchDisableForBtn(imgNum,imgData);
-    setNumberOfPage(imgNum,imgData); 
+    switchDisableForBtn(imgData);
+    setNumberOfPage(imgData); 
   });
 }
 
 
-const setNumberOfPage = (num, imgData) => {
-  document.getElementById("js-number").textContent = `${num + 1} / ${imgData.length}`;
+const setNumberOfPage = (imgData) => {
+  document.getElementById("js-number").textContent = `${imgNum + 1} / ${imgData.length}`;
 }
 
-const switchDisableForBtn = (num, imgData) => {
+const switchDisableForBtn = (imgData) => {
   const prevBtnElement = document.getElementById("js-prevbtn");
   const nxtBtnElement = document.getElementById("js-nextbtn");
   const lengthImg = imgData.length;
 
-  if (num !== 0) {
+  if (imgNum !== 0) {
     prevBtnElement.disabled = false;
   } else {
     prevBtnElement.disabled = true;
   }
 
-  if (num !== lengthImg - 1) {
+  if (imgNum !== lengthImg - 1) {
     nxtBtnElement.disabled = false;
   } else {
     nxtBtnElement.disabled = true;
