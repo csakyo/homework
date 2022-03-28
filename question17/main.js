@@ -28,7 +28,7 @@ const getData = new Promise((resolve) => {
 })
 
 //Get json data
-async function callApi() {
+const callApi = async() => {
   try {
     const res = await getData;
     if (!res.ok) {
@@ -45,7 +45,7 @@ async function callApi() {
   }
 }
 
-async function init() {
+const init = async() => {
   const imgData = await callApi();
   if (imgData){
     renderImgUiElement(imgData);
@@ -57,7 +57,7 @@ async function init() {
 init();
 
 
-function renderImgUiElement(imgData) {
+const renderImgUiElement = (imgData) => {
   renderNextBtn(imgData);
   renderPrevBtn(imgData);
   renderPageNumElement(imgData);
