@@ -86,9 +86,7 @@ const getImgListsFragment = (imgData) => {
 };
 
 let imgNum = 0;
-const isShowElement = document.querySelector(".is-show");
 const imgList = document.getElementsByClassName("imgList");
-
 
 const renderPrevBtn = (imgData) => {
   const prevBtn = createElementWithClassName("button", "prev");
