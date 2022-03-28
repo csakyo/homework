@@ -131,15 +131,6 @@ const switchDisableForBtn = (imgData) => {
   const nxtBtnElement = document.getElementById("js-nextbtn");
   const lengthImg = imgData.length;
 
-  if (imgNum !== 0) {
-    prevBtnElement.disabled = false;
-  } else {
-    prevBtnElement.disabled = true;
-  }
-
-  if (imgNum !== lengthImg - 1) {
-    nxtBtnElement.disabled = false;
-  } else {
-    nxtBtnElement.disabled = true;
-  }
+  prevBtnElement.disabled = imgNum === 0;
+  nxtBtnElement.disabled = imgNum === lengthImg - 1;
 };
