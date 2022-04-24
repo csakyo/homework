@@ -29,11 +29,11 @@ const getData = new Promise((resolve) => {
 //Get json data
 const callApi = async() => {
   try {
-    const res = await getData;
-    if (!res.ok) {
+    const response = await getData;
+    if (!response.ok) {
       console.error(`${response.status}:${response.statusText}`);
     }
-    const json = await res.json();
+    const json = await response.json();
     return json.data;
   }
   catch(error) {
