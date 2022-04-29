@@ -149,7 +149,6 @@ const resetAutoPlay = (imgData) => {
 
 const renderPagenation = (imgData) => {
   const pagenation = createElementWithClassName("ul", "pagenation");
-  pagenation.id = 'pagenation';
   const pagenationsFragment = document.createDocumentFragment();
   for (let i = 0; i < imgData.length; i++){
     const pagenations = createElementWithClassName("li", "pagenations");
