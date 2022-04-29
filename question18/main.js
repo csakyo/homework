@@ -62,7 +62,7 @@ const renderImgUiElement = (imgData) => {
   renderPagenation(imgData);
   clickedPagenation(imgData);
   autoImgSwitch(imgData);
-  imgLists.appendChild(getImgListsFragment(imgData));
+  imgLists.appendChild(getFragmentImglists(imgData));
 }
 
 const renderPageNumElement = (imgData) => {
@@ -73,7 +73,7 @@ const renderPageNumElement = (imgData) => {
 }
 
 
-const getImgListsFragment = (imgData) => {
+const getFragmentImglists = (imgData) => {
   const fragmentImglists = document.createDocumentFragment();
   for (let i = 0; i < imgData.length; i++) {
     const imgList = createElementWithClassName("li", "imgList");
