@@ -106,6 +106,7 @@ const renderPrevBtn = (imgData) => {
     switchPagenation(imgNum);
     switchDisableForBtn(imgData); 
     setNumberOfPage(imgData);
+    resetAutoPlay(imgData);
   });
 }
 
@@ -122,6 +123,7 @@ const renderNextBtn = (imgData) => {
     switchPagenation(imgNum);
     switchDisableForBtn(imgData);
     setNumberOfPage(imgData);
+    resetAutoPlay(imgData);
   });
 }
 
@@ -138,19 +140,24 @@ const switchDisableForBtn = (imgData) => {
   nxtBtnElement.disabled = imgNum === lengthImg - 1;
 };
 
-
-const autoImgSwitch = (imgData) => setInterval(() => {
-  imgNum++;
-  if (imgNum === imgData.length) {
-    imgNum = 0;
-  }
-  document.querySelector(".is-show").classList.remove('is-show'); 
-  imgList[imgNum].classList.add('is-show');
-  switchPagenation(imgNum);
-  switchDisableForBtn(imgData);
-  setNumberOfPage(imgData); 
-}, 3000)
-
+let autoPlay;
+const autoImgSwitch = (imgData) => {
+  autoPlay = setInterval(() => {
+    imgNum++;
+    if (imgNum === imgData.length) {
+      imgNum = 0;
+    }
+    document.querySelector(".is-show").classList.remove('is-show'); 
+    imgList[imgNum].classList.add('is-show');
+    switchPagenation(imgNum);
+    switchDisableForBtn(imgData);
+    setNumberOfPage(imgData); 
+  }, 3000)
+}
+const resetAutoPlay = (imgData) => {
+  clearInterval(autoPlay);
+  autoImgSwitch(imgData);
+};
 
 const renderPagenation = (imgData) => {
   const pagenation = createElementWithClassName("ul", "pagenation");
@@ -186,6 +193,7 @@ const clickedPagenation = (imgData) => {
       imgList[imgNum].classList.add('is-show');
       switchDisableForBtn(imgData);
       setNumberOfPage(imgData);
+      resetAutoPlay(imgData);
     })
   } 
 }
