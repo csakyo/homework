@@ -88,7 +88,8 @@ const getImgListsFragment = (imgData) => {
 };
 
 
-let imgNum = 0;
+// let imgNum = 0;
+const imgNum = { count : 0 };
 const imgList = document.getElementsByClassName("imgList");
 
 const createBtnElements = (imgData) => {
@@ -103,10 +104,10 @@ const createBtnElements = (imgData) => {
     btn.disabled = btnDirections === "prev";
 
     btn.addEventListener("click", function () {
-      btnDirections === "prev" ? (imgNum -= 1) : (imgNum += 1);
+      btnDirections === "prev" ? (imgNum.count -= 1) : (imgNum.count += 1);
       document.querySelector(".is-show").classList.remove("is-show");
-      imgList[imgNum].classList.add("is-show");
-      switchPagenation(imgNum);
+      imgList[imgNum.count].classList.add("is-show");
+      switchPagenation(imgNum.count);
       switchDisableForBtn(imgData);
       setNumberOfPage(imgData);
       resetAutoPlay(imgData);
@@ -115,7 +116,7 @@ const createBtnElements = (imgData) => {
 };
 
 const setNumberOfPage = (imgData) => {
-  document.getElementById("js-number").textContent = `${imgNum + 1} / ${imgData.length}`;
+  document.getElementById("js-number").textContent = `${imgNum.count + 1} / ${imgData.length}`;
 }
 
 const switchDisableForBtn = (imgData) => {
@@ -123,20 +124,20 @@ const switchDisableForBtn = (imgData) => {
   const nxtBtnElement = document.getElementById("js-nextbtn");
   const lengthImg = imgData.length;
 
-  prevBtnElement.disabled = imgNum === 0;
-  nxtBtnElement.disabled = imgNum === lengthImg - 1;
+  prevBtnElement.disabled = imgNum.count === 0;
+  nxtBtnElement.disabled = imgNum.count === lengthImg - 1;
 };
 
 let autoPlay;
 const autoImgSwitch = (imgData) => {
   autoPlay = setInterval(() => {
-    imgNum++;
-    if (imgNum === imgData.length) {
-      imgNum = 0;
+    imgNum.count++;
+    if (imgNum.count === imgData.length) {
+      imgNum.count = 0;
     }
     document.querySelector(".is-show").classList.remove('is-show'); 
-    imgList[imgNum].classList.add('is-show');
-    switchPagenation(imgNum);
+    imgList[imgNum.count].classList.add('is-show');
+    switchPagenation(imgNum.count);
     switchDisableForBtn(imgData);
     setNumberOfPage(imgData); 
   }, 3000)
@@ -170,14 +171,13 @@ const clickedPagenation = (imgData) => {
   for (const pagenationItem of pagenationItems) {
     pagenationItem.addEventListener("click", function () {
       const arrayPagenationItems = Array.from(pagenationItems);
-      imgNum = arrayPagenationItems.indexOf(this);
-
+      imgNum.count = arrayPagenationItems.indexOf(this);
 
       document.querySelector('.is-active').classList.remove('is-active');
-      arrayPagenationItems[imgNum].classList.add('is-active');
+      arrayPagenationItems[imgNum.count].classList.add('is-active');
 
       document.querySelector(".is-show").classList.remove('is-show');
-      imgList[imgNum].classList.add('is-show');
+      imgList[imgNum.count].classList.add('is-show');
       switchDisableForBtn(imgData);
       setNumberOfPage(imgData);
       resetAutoPlay(imgData);
