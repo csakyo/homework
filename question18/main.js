@@ -88,7 +88,6 @@ const getFragmentImglists = (imgData) => {
 };
 
 
-// let imgNum = 0;
 const imgNum = { count : 0 };
 const imgList = document.getElementsByClassName("imgList");
 
