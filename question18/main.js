@@ -57,8 +57,7 @@ init();
 
 
 const renderImgUiElement = (imgData) => {
-  renderNextBtn(imgData);
-  renderPrevBtn(imgData);
+  createBtnElements(imgData);
   renderPageNumElement(imgData);
   renderPagenation(imgData);
   clickedPagenation(imgData);
@@ -92,40 +91,28 @@ const getImgListsFragment = (imgData) => {
 let imgNum = 0;
 const imgList = document.getElementsByClassName("imgList");
 
-const renderPrevBtn = (imgData) => {
-  const prevBtn = createElementWithClassName("button", "prev");
-  prevBtn.id = 'js-prevbtn';
-  prevBtn.textContent = '◀︎';
-  imgListsWrapper.appendChild(prevBtn);
-  prevBtn.disabled = true;
+const createBtnElements = (imgData) => {
+  const btnDirections = ["next", "prev"];
 
-  prevBtn.addEventListener("click", function() {
-    imgNum -= 1;
-    document.querySelector(".is-show").classList.remove('is-show'); 
-    imgList[imgNum].classList.add('is-show');
-    switchPagenation(imgNum);
-    switchDisableForBtn(imgData); 
-    setNumberOfPage(imgData);
-    resetAutoPlay(imgData);
+  btnDirections.forEach((btnDirections) => {
+    const btn = document.createElement("button");
+    btn.classList.add(`${btnDirections}`);
+    btn.id = btnDirections === "prev" ? "js-prevbtn" : "js-nextbtn";
+    btn.textContent = btnDirections === "prev" ? "◀︎" : "▶︎";
+    imgListsWrapper.appendChild(btn);
+    btn.disabled = btnDirections === "prev";
+
+    btn.addEventListener("click", function () {
+      btnDirections === "prev" ? (imgNum -= 1) : (imgNum += 1);
+      document.querySelector(".is-show").classList.remove("is-show");
+      imgList[imgNum].classList.add("is-show");
+      switchPagenation(imgNum);
+      switchDisableForBtn(imgData);
+      setNumberOfPage(imgData);
+      resetAutoPlay(imgData);
+    });
   });
-}
-
-const renderNextBtn = (imgData) => {
-  const nxtBtn = createElementWithClassName("button", "next");
-  nxtBtn.id = 'js-nextbtn';
-  nxtBtn.textContent = '▶︎';
-  imgListsWrapper.appendChild(nxtBtn);
-
-  nxtBtn.addEventListener("click", function() {
-    imgNum += 1;
-    document.querySelector(".is-show").classList.remove('is-show'); 
-    imgList[imgNum].classList.add('is-show');
-    switchPagenation(imgNum);
-    switchDisableForBtn(imgData);
-    setNumberOfPage(imgData);
-    resetAutoPlay(imgData);
-  });
-}
+};
 
 const setNumberOfPage = (imgData) => {
   document.getElementById("js-number").textContent = `${imgNum + 1} / ${imgData.length}`;
