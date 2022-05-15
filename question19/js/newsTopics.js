@@ -1,4 +1,3 @@
-'use strict';
 import { differenceInDays } from "date-fns";
 
 const createElementWithClassName = (element, name) => {
@@ -50,10 +49,11 @@ function renderNewsUiElement(newsData) {
 //get Tab Elements
 const getTabListsFragment = (newsData) => {
   const fragmentTablists = document.createDocumentFragment();
-  for (const topics of newsData) {
+  for (let i = 0; i < newsData.length; i++) {
     const tabList = createElementWithClassName("li", "tabList");
-    tabList.textContent = topics.category;
-    topics.initialDisplay && tabList.classList.add("is-active-tab");
+    tabList.textContent = newsData[i].category;
+    tabList.dataset.index = i;
+    newsData[i].initialDisplay && tabList.classList.add("is-active-tab");
     fragmentTablists.appendChild(tabList);
   }
   return fragmentTablists;
@@ -143,21 +143,16 @@ const getElapsedDays = (postDateData) => {
 
 //Tab switching function
 const clickedTabs = () => {
-  const tabLists = document.getElementsByClassName("tabList");
-  const contents = document.getElementsByClassName("contentsContainer");
-  for (const tabList of tabLists) {
-    tabList.addEventListener("click", function () {
-      const arrayTabsLists = Array.from(tabLists);
-      const index = arrayTabsLists.indexOf(this);
+  tabsGroup.addEventListener("click", (e) => {
+    const activeTab = document.getElementsByClassName("is-active-tab")[0];
+    const activeContent = document.getElementsByClassName(
+      "is-active-content"
+    )[0];
 
-      document
-        .querySelector(".is-active-tab")
-        .classList.remove("is-active-tab");
-      arrayTabsLists[index].classList.add("is-active-tab");
-      document
-        .querySelector(".is-active-content")
-        .classList.remove("is-active-content");
-      contents[index].classList.add("is-active-content");
-    });
-  }
+    activeTab.classList.remove("is-active-tab");
+    e.target.classList.add("is-active-tab");
+    activeContent.classList.remove("is-active-content");
+    const contents = document.getElementsByClassName("contentsContainer");
+    contents[e.target.dataset.index].classList.add("is-active-content");
+  });
 };
