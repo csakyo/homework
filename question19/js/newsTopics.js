@@ -1,3 +1,4 @@
+'use strict';
 import { differenceInDays } from "date-fns";
 
 const createElementWithClassName = (element, name) => {
