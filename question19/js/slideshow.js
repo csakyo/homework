@@ -1,4 +1,3 @@
-'use strict';
 const imgListsWrapper = document.getElementById("js-imgListsWrapper");
 const imgLists = document.getElementById("js-imgLists");
 
