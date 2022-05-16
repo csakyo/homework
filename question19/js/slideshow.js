@@ -153,7 +153,7 @@ const renderPagenation = (imgData) => {
     );
     pagenationItems.dataset.index = i;
     i === 0 && pagenationItems.classList.add("is-active");
-    pagenationsFragment.appendChild(pagenations).append(pagenationItems);
+    pagenationsFragment.appendChild(pagenations).appendChild(pagenationItems);
   }
   imgListsWrapper.appendChild(pagenation).appendChild(pagenationsFragment);
 };
