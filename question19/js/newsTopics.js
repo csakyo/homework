@@ -94,7 +94,7 @@ const createTitles = ({ articles }) => {
     articleLink.textContent = articleTitle;
 
     // Display new icon
-    const elapsedTime = getElapsedDays(topics.date);
+    const elapsedTime = getDifferenceDays(topics.date);
     const newArrivalPeriod = 3;
     if (elapsedTime <= newArrivalPeriod) {
       const newIcon = createElementWithClassName("span", "new_icon");
@@ -136,9 +136,9 @@ const createCommentIcon = (articlesData) => {
 };
 
 // Get the number of days elapsed
-const getElapsedDays = (postDateData) => {
-  const elapsedDays = differenceInDays(new Date(), new Date(postDateData));
-  return elapsedDays;
+const getDifferenceDays = (postDateData) => {
+  const differenceDays = differenceInDays(new Date(), new Date(postDateData));
+  return differenceDays;
 };
 
 //Tab switching function
