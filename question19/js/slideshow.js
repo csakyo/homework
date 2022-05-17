@@ -53,11 +53,12 @@ const init = async () => {
 init();
 
 const renderImgUiElement = (imgData) => {
-  createBtnElements(imgData);
+  createArrowBtnsElements();
   renderPageNumElement(imgData);
   renderPagenation(imgData);
   clickedPagenation(imgData);
   autoImgSwitch(imgData);
+  arrowBtnsClickEvent(imgData);
   imgLists.appendChild(getFragmentImglists(imgData));
 };
 
@@ -85,19 +86,24 @@ const getFragmentImglists = (imgData) => {
 const imgNum = { count: 0 };
 const imgList = document.getElementsByClassName("imgList");
 
-const createBtnElements = (imgData) => {
+const createArrowBtnsElements = () => {
   const btnDirections = ["next", "prev"];
-
   btnDirections.forEach((btnDirections) => {
     const btn = document.createElement("button");
-    btn.classList.add(`${btnDirections}`);
+    btn.classList.add(`${btnDirections}`, "arrowbotton");
     btn.id = btnDirections === "prev" ? "js-prevbtn" : "js-nextbtn";
     btn.textContent = btnDirections === "prev" ? "◀︎" : "▶︎";
+    btn.value = btnDirections;
     imgListsWrapper.appendChild(btn);
     btn.disabled = btnDirections === "prev";
+  });
+};
 
-    btn.addEventListener("click", function () {
-      btnDirections === "prev" ? (imgNum.count -= 1) : (imgNum.count += 1);
+const arrowBtnsClickEvent = (imgData) => {
+  const arrowButtons = document.querySelectorAll(".arrowbotton");
+  arrowButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.currentTarget.value === "prev" ? (imgNum.count -= 1) : (imgNum.count += 1);
       document.querySelector(".is-show").classList.remove("is-show");
       imgList[imgNum.count].classList.add("is-show");
       switchPagenation(imgNum.count);
@@ -109,9 +115,7 @@ const createBtnElements = (imgData) => {
 };
 
 const setNumberOfPage = (imgData) => {
-  document.getElementById("js-number").textContent = `${imgNum.count + 1} / ${
-    imgData.length
-  }`;
+  document.getElementById("js-number").textContent = `${imgNum.count + 1} / ${imgData.length}`;
 };
 
 const switchDisableForBtn = (imgData) => {
@@ -137,6 +141,7 @@ const autoImgSwitch = (imgData) => {
     setNumberOfPage(imgData);
   }, 3000);
 };
+
 const resetAutoPlay = (imgData) => {
   clearInterval(autoPlay);
   autoImgSwitch(imgData);
@@ -147,10 +152,7 @@ const renderPagenation = (imgData) => {
   const pagenationsFragment = document.createDocumentFragment();
   for (let i = 0; i < imgData.length; i++) {
     const pagenations = createElementWithClassName("li", "pagenations");
-    const pagenationItems = createElementWithClassName(
-      "span",
-      "pagenation-item"
-    );
+    const pagenationItems = createElementWithClassName("span","pagenation-item");
     pagenationItems.dataset.index = i;
     i === 0 && pagenationItems.classList.add("is-active");
     pagenationsFragment.appendChild(pagenations).appendChild(pagenationItems);
