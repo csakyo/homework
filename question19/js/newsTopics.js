@@ -24,8 +24,6 @@ async function callApi() {
     return json.data;
   } catch (error) {
     console.error(error);
-  } finally {
-    console.log("CONPLETE!");
   }
 }
 
