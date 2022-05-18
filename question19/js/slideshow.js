@@ -121,10 +121,10 @@ const setNumberOfPage = (imgData) => {
 const switchDisableForBtn = (imgData) => {
   const prevBtnElement = document.getElementById("js-prevbtn");
   const nxtBtnElement = document.getElementById("js-nextbtn");
-  const lengthImg = imgData.length;
-
-  prevBtnElement.disabled = imgNum.count === 0;
-  nxtBtnElement.disabled = imgNum.count === lengthImg - 1;
+  const firstNum = 0;
+  const lastNum = imgData.length - 1;
+  prevBtnElement.disabled = imgNum.count === firstNum;
+  nxtBtnElement.disabled = imgNum.count === lastNum;
 };
 
 let autoPlay;
