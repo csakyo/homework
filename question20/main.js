@@ -64,7 +64,6 @@ const userDataColumn = {
 const renderTabaleElement = (userData)  => {
   const table = createElementWithClassName("table", "table");
   const tbody = createElementWithClassName("tbody", "tbody");
-  const thead = createElementWithClassName("thead", "thead");
   const userDataKeys = Object.keys(userDataColumn);
   const tableHeadValue = Object.values(userDataColumn);
   wrapper.appendChild(table).appendChild(getTableHeadElement(tableHeadValue));
