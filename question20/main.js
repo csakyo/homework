@@ -54,7 +54,7 @@ const init = async() => {
 }
 init();
 
-const userDataItems = {
+const userDataColumn = {
   userId: "ID",
   name: "名前",
   gender: "性別",
@@ -65,8 +65,8 @@ const renderTabaleElement = (userData)  => {
   const table = createElementWithClassName("table", "table");
   const tbody = createElementWithClassName("tbody", "tbody");
   const thead = createElementWithClassName("thead", "thead");
-  const userDataKeys = Object.keys(userDataItems);
-  const tableHeadValue = Object.values(userDataItems);
+  const userDataKeys = Object.keys(userDataColumn);
+  const tableHeadValue = Object.values(userDataColumn);
   wrapper.appendChild(table).appendChild(thead).appendChild(getTableHeadElement(tableHeadValue));
   wrapper.appendChild(table).appendChild(tbody).appendChild(getTableDataElement(userData,userDataKeys));
 }
