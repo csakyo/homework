@@ -89,17 +89,17 @@ const getTableRowFragment = (userData, userDataKeys) => {
   const tableRowfragment = document.createDocumentFragment();
   for (let i = 0; i < userData.length; i++) {
     const tr = createElementWithClassName("tr", "tr"); 
-    tableRowfragment.appendChild(tr).appendChild(getTableTdElement(userData[i],userDataKeys));
+    tableRowfragment.appendChild(tr).appendChild(getTableDataFragment(userData[i],userDataKeys));
   }
   return tableRowfragment;
 }
 
-const getTableTdElement = (userData,userDataKeys) => {
-  const fragmentTdElement = document.createDocumentFragment(); 
+const getTableDataFragment = (userData,userDataKeys) => {
+  const tableDatafragment = document.createDocumentFragment(); 
   for (let i = 0; i < userDataKeys.length; i++) {
   const td = createElementWithClassName("td", "td");
   td.textContent = userData[userDataKeys[i]];
-  fragmentTdElement.appendChild(td);
+  tableDatafragment.appendChild(td);
 }
-  return fragmentTdElement; 
+  return tableDatafragment; 
 }
