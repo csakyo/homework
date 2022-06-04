@@ -93,12 +93,12 @@ const getTableRowFragment = (userData, userDataKeys) => {
   return tableRowfragment;
 }
 
-const getTableDataFragment = (userData,userDataKeys) => {
-  const tableDatafragment = document.createDocumentFragment(); 
-  for (let i = 0; i < userDataKeys.length; i++) {
-  const td = createElementWithClassName("td", "td");
-  td.textContent = userData[userDataKeys[i]];
-  tableDatafragment.appendChild(td);
-}
-  return tableDatafragment; 
-}
+const getTableDataFragment = (userData) => {
+  const tableDatafragment = document.createDocumentFragment();
+  Object.keys(userDataColumn).forEach((key) => {
+    const td = createElementWithClassName("td", "td");
+    td.textContent = userData[key];
+    tableDatafragment.appendChild(td);
+  });
+  return tableDatafragment;
+};
