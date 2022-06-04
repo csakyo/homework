@@ -10,12 +10,12 @@ const createElementWithClassName = (element, name) => {
 const showLoadImg = () => {
   const loadImg = createElementWithClassName("img", "loading");
   loadImg.src = "./img/loading-circle.gif";
-  loadImg.id = 'loading';
+  loadImg.id = 'js-loading';
   wrapper.appendChild(loadImg);
 } 
 
 const removeLoadImg = () => {
-  document.getElementById('loading').remove();
+  document.getElementById('js-loading').remove();
 } 
 
 const getData = new Promise((resolve) => {
