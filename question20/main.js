@@ -64,10 +64,9 @@ const userDataColumn = {
 const renderTabaleElement = (userData)  => {
   const table = createElementWithClassName("table", "table");
   const tbody = createElementWithClassName("tbody", "tbody");
-  const userDataKeys = Object.keys(userDataColumn);
   const tableHeadValue = Object.values(userDataColumn);
   wrapper.appendChild(table).appendChild(getTableHeadElement(tableHeadValue));
-  wrapper.appendChild(table).appendChild(tbody).appendChild(getTableRowFragment(userData,userDataKeys));
+  wrapper.appendChild(table).appendChild(tbody).appendChild(getTableRowFragment(userData));
 }
 
 const getTableHeadElement = (tableHeadValue) => {
@@ -84,11 +83,11 @@ const getTableHeadElement = (tableHeadValue) => {
   return thead;
 }
 
-const getTableRowFragment = (userData, userDataKeys) => {
+const getTableRowFragment = (userData) => {
   const tableRowfragment = document.createDocumentFragment();
   for (let i = 0; i < userData.length; i++) {
     const tr = createElementWithClassName("tr", "tr"); 
-    tableRowfragment.appendChild(tr).appendChild(getTableDataFragment(userData[i],userDataKeys));
+    tableRowfragment.appendChild(tr).appendChild(getTableDataFragment(userData[i]));
   }
   return tableRowfragment;
 }
