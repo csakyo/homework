@@ -46,8 +46,8 @@ const init = async() => {
   if (userData){
     renderTableElement(userData);
     } else {
-    wrapper.textContent = "データの表示に失敗しました";
-    console.error('データの表示に失敗しました'); 
+    wrapper.textContent = "Failed to display data.";
+    console.error('Failed to display data.'); 
   }
 }
 init();
