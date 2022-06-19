@@ -116,7 +116,7 @@ const sortButtonClickEvent = (userData) => {
   const tbody = document.querySelector('tbody');
   const sortButton = document.getElementById('js-sortbtn');
   sortButton.addEventListener('click', (e) => {
-    const nextStatus = getNextStatus(e.target);
+    const nextStatus = switchSortStatus(e.target);
     sortButton.dataset.status = nextStatus;
     const sortResultRows = sortFunc(e.target,userData);
     while (tbody.firstChild) {
@@ -128,7 +128,7 @@ const sortButtonClickEvent = (userData) => {
   });
 }
 
-const getNextStatus = (target) => {
+const switchSortStatus = (target) => {
   switch (target.dataset.status) {
     case 'default':
       return 'asc';
