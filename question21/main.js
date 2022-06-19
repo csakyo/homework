@@ -118,11 +118,11 @@ const sortButtonClickEvent = (userData) => {
   sortButton.addEventListener('click', (e) => {
     const nextStatus = switchSortStatus(e.target);
     sortButton.dataset.status = nextStatus;
-    const sortResultRows = sortFunc(e.target,userData);
+    const sortedRows = sortFunc(e.target,userData);
     while (tbody.firstChild) {
       tbody.removeChild(tbody.firstChild);
   }
-    sortResultRows.forEach((row) => {
+    sortedRows.forEach((row) => {
       tbody.appendChild(row);
     });
   });
