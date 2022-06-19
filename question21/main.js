@@ -14,9 +14,7 @@ const showLoadImg = () => {
   wrapper.appendChild(loadImg);
 } 
 
-const removeLoadImg = () => {
-  document.getElementById('js-loading').remove();
-} 
+const removeLoadImg = () => document.getElementById('js-loading').remove();
 
 const getData = new Promise((resolve) => {
   showLoadImg();
