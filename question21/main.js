@@ -116,9 +116,10 @@ const sortButtonClickEvent = (userData) => {
   const tbody = document.querySelector('tbody');
   const sortButton = document.getElementById('js-sortbtn');
   sortButton.addEventListener('click', (e) => {
+    const clickedCellIndex = e.target.parentElement.cellIndex;
     const nextStatus = switchSortStatus(e.target);
     sortButton.dataset.status = nextStatus;
-    const sortedRows = sortFunc(e.target,userData);
+    const sortedRows = sortFunc(e.target,userData,clickedCellIndex);
     while (tbody.firstChild) {
       tbody.removeChild(tbody.firstChild);
   }
@@ -141,7 +142,7 @@ const switchSortStatus = (target) => {
   }
 }
 
-const sortFunc = (target,userData) => {
+const sortFunc = (target,userData,clickedCellIndex) => {
   const trElement = [...document.querySelectorAll('tbody > tr')];
   const currentStatus = target.dataset.status;
   const initialTrArray = [];
@@ -150,10 +151,10 @@ const sortFunc = (target,userData) => {
       return initialTrArray;
   }
   if (currentStatus === "asc"){
-      return trElement.sort((a,b) => a.children[0].textContent - b.children[0].textContent);
+      return trElement.sort((a,b) => a.children[clickedCellIndex].textContent - b.children[clickedCellIndex].textContent);
   } 
   if (currentStatus === "desc"){
-      return trElement.sort((a,b) => b.children[0].textContent - a.children[0].textContent);
+      return trElement.sort((a,b) => b.children[clickedCellIndex].textContent - a.children[clickedCellIndex].textContent);
   } 
 }
 
