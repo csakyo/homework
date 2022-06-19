@@ -112,14 +112,15 @@ const createSortButton = () => {
   return sortButton;
 }
 
-const sortButtonClickEvent = (userData) => {
+const sortButtonClickEvent = () => {
   const tbody = document.querySelector('tbody');
   const sortButton = document.getElementById('js-sortbtn');
+  const trElement = [...document.querySelectorAll("tbody > tr")];
   sortButton.addEventListener('click', (e) => {
     const clickedCellIndex = e.target.parentElement.cellIndex;
     const nextStatus = switchSortStatus(e.target);
     sortButton.dataset.status = nextStatus;
-    const sortedRows = sortFunc(e.target,userData,clickedCellIndex);
+    const sortedRows = sortFunc(e.target,clickedCellIndex,trElement);
     while (tbody.firstChild) {
       tbody.removeChild(tbody.firstChild);
   }
@@ -142,19 +143,16 @@ const switchSortStatus = (target) => {
   }
 }
 
-const sortFunc = (target,userData,clickedCellIndex) => {
-  const trElement = [...document.querySelectorAll('tbody > tr')];
+const sortFunc = (target,clickedCellIndex,defaultRows) => {
+  const defaultTrElement = [...defaultRows];
   const currentStatus = target.dataset.status;
-  const initialTrArray = [];
-  initialTrArray.push(getTableRowFragment(userData)); 
   if (currentStatus === "default") {
-      return initialTrArray;
+      return defaultRows;
   }
   if (currentStatus === "asc"){
-      return trElement.sort((a,b) => a.children[clickedCellIndex].textContent - b.children[clickedCellIndex].textContent);
+      return defaultTrElement.sort((a,b) => a.children[clickedCellIndex].textContent - b.children[clickedCellIndex].textContent);
   } 
   if (currentStatus === "desc"){
-      return trElement.sort((a,b) => b.children[clickedCellIndex].textContent - a.children[clickedCellIndex].textContent);
+      return defaultTrElement.sort((a,b) => b.children[clickedCellIndex].textContent - a.children[clickedCellIndex].textContent);
   } 
 }
-
