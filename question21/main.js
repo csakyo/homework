@@ -132,16 +132,12 @@ const getNextStatus = (target) => {
   switch (target.dataset.status) {
     case 'default':
       return 'asc';
-      break;
     case 'asc':
       return 'desc';
-      break;
     case 'desc':
       return 'default'; 
-      break;
     default:
       return 'default';
-      break;
   }
 }
 
