@@ -46,7 +46,7 @@ const callApi = async() => {
 const init = async() => {
   const userData = await callApi();
   if (userData){
-    renderTabaleElement(userData);
+    renderTableElement(userData);
     } else {
     wrapper.textContent = "データの表示に失敗しました";
     console.error('データの表示に失敗しました'); 
@@ -61,7 +61,7 @@ const userDataColumn = {
   age: "年齢"
 }
 
-const renderTabaleElement = (userData)  => {
+const renderTableElement = (userData)  => {
   const table = createElementWithClassName("table", "table");
   const tbody = createElementWithClassName("tbody", "tbody");
   table.id = "js-table";
