@@ -128,29 +128,35 @@ const sortButtonClickEvent = () => {
   });
 }
 
+const Sort = {
+  Default: "default",
+  Asc: "asc",
+  Desc: "desc"
+};
+
 const switchSortStatus = (target) => {
   switch (target.dataset.status) {
-    case 'default':
-      return 'asc';
-    case 'asc':
-      return 'desc';
-    case 'desc':
-      return 'default'; 
+    case Sort.Default:
+      return Sort.Asc;
+    case Sort.Asc:
+      return Sort.Desc;
+    case Sort.Desc:
+      return Sort.Default; 
     default:
-      return 'default';
+      return Sort.defaul;
   }
 }
 
 const sortFunc = (target,clickedCellIndex,defaultRows) => {
   const defaultTrElement = [...defaultRows];
   const currentStatus = target.dataset.status;
-  if (currentStatus === "default") {
+  if (currentStatus === Sort.Default) {
       return defaultRows;
   }
-  if (currentStatus === "asc"){
+  if (currentStatus === Sort.Asc){
       return defaultTrElement.sort((a,b) => a.children[clickedCellIndex].textContent - b.children[clickedCellIndex].textContent);
   } 
-  if (currentStatus === "desc"){
+  if (currentStatus === Sort.Desc){
       return defaultTrElement.sort((a,b) => b.children[clickedCellIndex].textContent - a.children[clickedCellIndex].textContent);
   } 
 }
