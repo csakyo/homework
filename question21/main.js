@@ -143,7 +143,7 @@ const switchSortStatus = (target) => {
     case Sort.Desc:
       return Sort.Default; 
     default:
-      return Sort.defaul;
+      return Sort.Default;
   }
 }
 
