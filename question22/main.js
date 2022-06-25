@@ -146,13 +146,12 @@ const sortButtonClickEvent = () => {
   })
 }
 
-const resetSortbuttonStatus = (sortButtons, target) => {
-  sortButtons.forEach((button)=> {
-    if (button !== target) {
-      button.dataset.status = Sort.Default;
-    }
-  })
-}
+const resetSortbuttonStatus = (sortButtons, clickedButton) => {
+  sortButtons.forEach((sortButton) => {
+    if (sortButton === clickedButton) return;
+    sortButton.dataset.status = Sort.Default;
+  });
+};
 
 const Sort = {
   Default: "default",
