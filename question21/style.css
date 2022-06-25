@@ -1,0 +1,72 @@
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+li {
+    list-style: none;
+}
+img {
+    max-width: 100%;
+}
+.loading {
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 30px auto;
+}
+th {
+    background: #e91e635c;
+}
+th , td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px 20px;
+}
+.sortButton {
+    background-image: url(./img/both.svg);
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.sortButton[data-status="asc"] {
+    background-image: url(./img/asc.svg);
+}
+.sortButton[data-status="desc"] {
+    background-image: url(./img/desc.svg);
+}
