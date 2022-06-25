@@ -55,19 +55,19 @@ init();
 const userDataColumn = {
   userId: {
     value : "ID",
-    sort : true
+    hasSort : true
   },
   name: {
     value : "名前",
-    sort : false
+    hasSort : false
   },
   gender: {
     value : "性別",
-    sort : false
+    hasSort : false
   },
   age: {
     value : "年齢",
-    sort : true
+    hasSort : true
   }
 }
 
