@@ -91,7 +91,7 @@ const getTableHeadElement = () => {
     const th = createElementWithClassName("th", "th");
     const value = userDataColumn[key].value;
     th.textContent = value; 
-    userDataColumn[key].sort && th.appendChild(createSortButton());
+    userDataColumn[key].hasSort && th.appendChild(createSortButton());
     fragmentThElement.appendChild(tr).appendChild(th); 
   });
 
@@ -176,13 +176,12 @@ const switchSortStatus = (target) => {
 const sortFunc = (target,clickedCellIndex,defaultRows) => {
   const defaultTrElement = [...defaultRows];
   const currentStatus = target.dataset.status;
-  if (currentStatus === Sort.Default) {
+  switch (currentStatus) {
+    case Sort.Asc:
+      return defaultTrElement.sort((a, b) => a.children[clickedCellIndex].textContent - b.children[clickedCellIndex].textContent);
+    case Sort.Desc:
+      return defaultTrElement.sort((a, b) => b.children[clickedCellIndex].textContent - a.children[clickedCellIndex].textContent);
+    default:
       return defaultRows;
   }
-  if (currentStatus === Sort.Asc){
-      return defaultTrElement.sort((a,b) => a.children[clickedCellIndex].textContent - b.children[clickedCellIndex].textContent);
-  } 
-  if (currentStatus === Sort.Desc){
-      return defaultTrElement.sort((a,b) => b.children[clickedCellIndex].textContent - a.children[clickedCellIndex].textContent);
-  } 
 }
