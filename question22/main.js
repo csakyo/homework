@@ -161,14 +161,12 @@ const Sort = {
 
 const switchSortStatus = (target) => {
   switch (target.dataset.status) {
-    case Sort.Default:
-      return Sort.Asc;
     case Sort.Asc:
       return Sort.Desc;
     case Sort.Desc:
-      return Sort.Default; 
+      return Sort.Default;
     default:
-      return Sort.defaul;
+      return Sort.Asc;
   }
 }
 
