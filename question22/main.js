@@ -128,20 +128,22 @@ const createSortButton = () => {
 const addClickEventToSortButton = () => {
   const sortButtons = [...document.querySelectorAll(".sortButton")];
   const trElement = [...document.querySelectorAll("tbody > tr")];
-  sortButtons.forEach((sortButton)=> {
-    sortButton.addEventListener('click', (e) => {
-      clickSortButton(e.target, sortButtons, trElement);
+  sortButtons.forEach((sortButton) => {
+    sortButton.addEventListener("click", {
+      sortButtons,
+      trElement,
+      handleEvent: clickSortButton
     });
-  })
-}
+  });
+};
 
-const clickSortButton = (target,sortButtons,trElement) => {
-  const tbody = document.querySelector('tbody');
-  resetSortbuttonStatus(sortButtons, target);
-  const clickedCellIndex = target.parentElement.cellIndex;
-  const nextStatus = switchSortStatus(target);
-  target.dataset.status = nextStatus;
-  const sortedRows = sortFunc(target,clickedCellIndex,trElement);
+function clickSortButton(event) {
+  const tbody = document.querySelector("tbody");
+  resetSortbuttonStatus(this.sortButtons, event.target);
+  const clickedCellIndex = event.target.parentElement.cellIndex;
+  const nextStatus = switchSortStatus(event.target);
+  event.target.dataset.status = nextStatus;
+  const sortedRows = sortFunc(event.target, clickedCellIndex, this.trElement);
   while (tbody.firstChild) {
     tbody.removeChild(tbody.firstChild);
   }
