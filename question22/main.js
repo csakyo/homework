@@ -121,7 +121,6 @@ const getTableDataFragment = (userData) => {
 const createSortButton = () => {
   const sortButton = createElementWithClassName("button", "sortButton");
   sortButton.dataset.status = "default";
-  sortButton.id = "js-sortbtn";
   return sortButton;
 }
 
