@@ -1,10 +1,10 @@
 'use strict';
 const wrapper = document.getElementById('js-wrapper');
 
-const createElementWithClassName = (element, name) => {
-  const createdElement = document.createElement(element);
-  createdElement.classList.add(name);
-  return createdElement;
+const createElementWithClassName = (type, className) => {
+  const element = document.createElement(type);
+  element.className = className;
+  return element;
 };
 
 const showLoadImg = () => {
@@ -119,13 +119,13 @@ const getTableDataFragment = (userData) => {
 };
 
 const createSortButton = () => {
-  const sortButton = createElementWithClassName("button", "sortButton");
+  const sortButton = createElementWithClassName("button", "js-sortButton sortButton");
   sortButton.dataset.status = "default";
   return sortButton;
 }
 
 const addClickEventToSortButton = () => {
-  const sortButtons = [...document.querySelectorAll(".sortButton")];
+  const sortButtons = [...document.querySelectorAll(".js-sortButton")];
   const trElement = [...document.querySelectorAll("tbody > tr")];
   sortButtons.forEach((sortButton) => {
     sortButton.addEventListener("click", {
