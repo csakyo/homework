@@ -1,6 +1,5 @@
 'use strict';
 
-const wrapper = document.getElementById('js-wrapper');
 const agreementLinkBtn = document.getElementById('js-agreement-link');
 const modal = document.getElementById('js-modal');
 const modalClose = document.getElementById('js-close');
@@ -40,6 +39,6 @@ const observer = new IntersectionObserver(checkWhenIntersect, options);
 observer.observe(target);
 
 submitButton.addEventListener('click',function(e){
-  checkbox.checked ? location.href = './register-done.html' : e.preventDefault();
+  checkbox.checked ? window.location.href = './register-done.html' : e.preventDefault();
 })
 
