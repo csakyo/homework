@@ -90,6 +90,7 @@ li {
     height: 60px;
     color: #fff;
     border-radius: 30px;
+    cursor: pointer;
 }
 .submit_button:disabled {
     background: #ccc;
