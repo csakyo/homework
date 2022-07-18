@@ -6,7 +6,7 @@ const modalClose = document.getElementById('js-close');
 const mask = document.getElementById('js-mask');
 const checkbox = document.getElementById('js-checkbox');
 const submitButton = document.getElementById('js-submit-button');
-const modalContainer = document.getElementById("js-modal_container");
+const modalContainer = document.getElementById("js-modal-container");
 
 
 textLinkToTerms.addEventListener('click',()=>{
