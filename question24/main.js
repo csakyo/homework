@@ -26,13 +26,11 @@ const options = {
   threshold: 1
 };
 
-const checkWhenIntersect = (entries) => {
-  entries.forEach(entry => {
+const checkWhenIntersect = ([entry]) => {
     if (entry.isIntersecting) {
       checkbox.checked = true;
       checkbox.disabled = false;
     }
-  });
 }
 
 const observer = new IntersectionObserver(checkWhenIntersect, options);
