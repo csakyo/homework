@@ -1,6 +1,6 @@
 'use strict';
 
-const agreementLinkBtn = document.getElementById('js-agreement-link');
+const textLinkToTerms = document.getElementById('js-terms-textlink');
 const modal = document.getElementById('js-modal');
 const modalClose = document.getElementById('js-close');
 const mask = document.getElementById('js-mask');
@@ -9,7 +9,7 @@ const submitButton = document.getElementById('js-submit-button');
 const target = document.querySelector(".last_content");
 
 
-agreementLinkBtn.addEventListener('click',()=>{
+textLinkToTerms.addEventListener('click',()=>{
     modal.classList.remove('hidden');
     mask.classList.remove('hidden');
 });
