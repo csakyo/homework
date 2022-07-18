@@ -6,7 +6,7 @@ const modalClose = document.getElementById('js-close');
 const mask = document.getElementById('js-mask');
 const checkbox = document.getElementById('js-checkbox');
 const submitButton = document.getElementById('js-submit-button');
-const target = document.querySelector(".last_content");
+const modalContainer = document.getElementById("js-modal_container");
 
 
 textLinkToTerms.addEventListener('click',()=>{
@@ -34,7 +34,7 @@ const checkWhenIntersect = ([entry]) => {
 }
 
 const observer = new IntersectionObserver(checkWhenIntersect, options);
-observer.observe(target);
+observer.observe(modalContainer.lastElementChild);
 
 submitButton.addEventListener('click',function(e){
   checkbox.checked ? window.location.href = './register-done.html' : e.preventDefault();
