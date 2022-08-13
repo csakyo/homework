@@ -33,7 +33,7 @@ const checkWhenIntersect = ([entry]) => {
     if (entry.isIntersecting) {
       checkbox.checked = true;
       checkbox.disabled = false;
-      switchsubmitButton(); 
+      switchSubmitButton(); 
     }
 }
 
@@ -60,40 +60,45 @@ const validationInfo = {
 }
 
 const checkValidation = (result, targetForm) => {
-  if (result) {
-    targetForm.classList.add('valid');
-    targetForm.classList.remove('invalid');
-    targetForm.nextElementSibling.textContent = ''; 
-    validationInfo[targetForm.id].status = true;
-  } else {
+  if (!result) {
     targetForm.classList.add('invalid');
     targetForm.classList.remove('valid');
     targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
     validationInfo[targetForm.id].status = false; 
+  } else {
+    targetForm.classList.add('valid');
+    targetForm.classList.remove('invalid');
+    targetForm.nextElementSibling.textContent = ''; 
+    validationInfo[targetForm.id].status = true;
   }
 }
 
 const checkNameLength = (e) => {
-  const result = name.value.length > validationInfo.name.minNameLength && name.value.length < validationInfo.name.maxNameLength ;
+  const nameValue = name.value.trim(); 
+  const result = nameValue.length > validationInfo.name.minNameLength && nameValue.length < validationInfo.name.maxNameLength ;
   checkValidation(result,e.target);
-  switchsubmitButton();
+  switchSubmitButton();
+  CheckEmptyCharacter(e.target); 
 }
 
 const checkEmail = (e) => {
+  const mailValue = mail.value.trim();
   const check = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const result = check.test(mail.value);
+  const result = check.test(mailValue);
   checkValidation(result,e.target);
-  switchsubmitButton();
+  switchSubmitButton();
+  CheckEmptyCharacter(e.target); 
 }
 
 const checkPassword = (e) => {
   const checkPasswordCondition = /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/;
   const result = checkPasswordCondition.test(password.value);
   checkValidation(result,e.target);
-  switchsubmitButton();
+  switchSubmitButton();
+  CheckEmptyCharacter(e.target); 
 }
 
-const switchsubmitButton = () => {
+const switchSubmitButton = () => {
   if(validationInfo.name.status === true && validationInfo.mail.status === true && validationInfo.password.status === true && checkbox.checked) {
     submitButton.disabled = false; 
   } else {
@@ -101,10 +106,17 @@ const switchsubmitButton = () => {
   }
 } 
 
+const CheckEmptyCharacter = (targetForm) => {
+  if( !targetForm.value || !targetForm.value.match(/\S/g) ) {
+    targetForm.nextElementSibling.textContent = '入力してください';
+  }
+}
+
+
 name.addEventListener('blur', checkNameLength);
 mail.addEventListener('blur', checkEmail);
 password.addEventListener('blur', checkPassword);
-checkbox.addEventListener('input', switchsubmitButton);
+checkbox.addEventListener('input', switchSubmitButton);
 
 
 submitButton.addEventListener('click',() => {
