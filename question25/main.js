@@ -60,16 +60,16 @@ const validationInfo = {
 }
 
 const checkValidation = (result, targetForm) => {
-  if (!result) {
-    targetForm.classList.add('invalid');
-    targetForm.classList.remove('valid');
-    targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
-    validationInfo[targetForm.id].status = false; 
-  } else {
+  if (result) {
     targetForm.classList.add('valid');
     targetForm.classList.remove('invalid');
     targetForm.nextElementSibling.textContent = ''; 
     validationInfo[targetForm.id].status = true;
+  } else {
+    targetForm.classList.add('invalid');
+    targetForm.classList.remove('valid');
+    targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
+    validationInfo[targetForm.id].status = false; 
   }
 }
 
