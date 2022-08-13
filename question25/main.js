@@ -51,11 +51,11 @@ const validationInfo = {
   },
   mail: {
     status: false,
-    errorMessage: 'メールアドレスの形式になっていません。' 
+    errorMessage: '※メールアドレスの形式になっていません。' 
   },
   password: {
     status: false,
-    errorMessage: '8文字以上の大小の英数字を交ぜたものにしてください。'  
+    errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。'  
   }
 }
 
@@ -108,7 +108,7 @@ const switchSubmitButton = () => {
 
 const CheckEmptyCharacter = (targetForm) => {
   if( !targetForm.value || !targetForm.value.match(/\S/g) ) {
-    targetForm.nextElementSibling.textContent = '入力してください';
+    targetForm.nextElementSibling.textContent = '※入力必須項目です';
   }
 }
 
