@@ -82,7 +82,7 @@ const checkInputValue = (e) => {
   const result = validationInfo[targetForm.id].validation(value);
   checkValidation(result,targetForm);
   switchSubmitButton();
-  CheckEmptyCharacter(targetForm);  
+  checkEmptyCharacter(targetForm);  
 } 
 
 
@@ -94,7 +94,7 @@ const switchSubmitButton = () => {
   }
 } 
 
-const CheckEmptyCharacter = (targetForm) => {
+const checkEmptyCharacter = (targetForm) => {
   if( !targetForm.value || !targetForm.value.match(/\S/g) ) {
     targetForm.nextElementSibling.textContent = '※入力必須項目です';
   }
