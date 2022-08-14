@@ -30,12 +30,10 @@ const options = {
 };
 
 const checkWhenIntersect = ([entry]) => {
-    if (entry.isIntersecting) {
-      checkbox.checked = true;
-      checkbox.disabled = false;
-      switchSubmitButton(); 
-    }
-}
+  checkbox.checked = entry.isIntersecting;
+  checkbox.disabled = !entry.isIntersecting;
+  entry.isIntersecting && switchSubmitButton();
+};
 
 const observer = new IntersectionObserver(checkWhenIntersect, options);
 observer.observe(modalContainer.lastElementChild);
