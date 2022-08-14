@@ -7,9 +7,9 @@ const mask = document.getElementById('js-mask');
 const checkbox = document.getElementById('js-checkbox');
 const submitButton = document.getElementById('js-submit-button');
 const modalContainer = document.getElementById("js-modal-container");
-const name = document.getElementById('name');
-const mail = document.getElementById('mail');
-const password = document.getElementById('password');
+const nameInputArea = document.getElementById('name');
+const mailInputArea = document.getElementById('mail');
+const passwordInputArea = document.getElementById('password');
 
 
 textLinkToTerms.addEventListener('click',()=>{
@@ -99,9 +99,9 @@ const checkEmptyCharacter = (targetForm) => {
 }
 
 
-name.addEventListener('blur', checkInputValue);
-mail.addEventListener('blur', checkInputValue);
-password.addEventListener('blur', checkInputValue);
+nameInputArea.addEventListener('blur', checkInputValue);
+mailInputArea.addEventListener('blur', checkInputValue);
+passwordInputArea.addEventListener('blur', checkInputValue);
 checkbox.addEventListener('input', switchSubmitButton);
 
 
