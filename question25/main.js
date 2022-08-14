@@ -47,14 +47,17 @@ const validationInfo = {
     status: false,
     maxNameLength: 16,
     minNameLength: 1,
+    validation: (value) => value.length > validationInfo.name.minNameLength && value.length < validationInfo.name.maxNameLength,
     errorMessage: '※ユーザー名は1文字以上15文字以下にしてください。',
   },
   mail: {
     status: false,
+    validation : (value) => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value),
     errorMessage: '※メールアドレスの形式になっていません。' 
   },
   password: {
     status: false,
+    validation : (value) => /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/.test(value),
     errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。'  
   }
 }
@@ -73,30 +76,15 @@ const checkValidation = (result, targetForm) => {
   }
 }
 
-const checkNameLength = (e) => {
-  const nameValue = name.value.trim(); 
-  const result = nameValue.length > validationInfo.name.minNameLength && nameValue.length < validationInfo.name.maxNameLength ;
-  checkValidation(result,e.target);
+const checkInputValue = (e) => {
+  const targetForm = e.target;
+  const value = targetForm.value.trim();
+  const result = validationInfo[targetForm.id].validation(value);
+  checkValidation(result,targetForm);
   switchSubmitButton();
-  CheckEmptyCharacter(e.target); 
-}
+  CheckEmptyCharacter(targetForm);  
+} 
 
-const checkEmail = (e) => {
-  const mailValue = mail.value.trim();
-  const check = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const result = check.test(mailValue);
-  checkValidation(result,e.target);
-  switchSubmitButton();
-  CheckEmptyCharacter(e.target); 
-}
-
-const checkPassword = (e) => {
-  const checkPasswordCondition = /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/;
-  const result = checkPasswordCondition.test(password.value);
-  checkValidation(result,e.target);
-  switchSubmitButton();
-  CheckEmptyCharacter(e.target); 
-}
 
 const switchSubmitButton = () => {
   if(validationInfo.name.status === true && validationInfo.mail.status === true && validationInfo.password.status === true && checkbox.checked) {
@@ -113,9 +101,9 @@ const CheckEmptyCharacter = (targetForm) => {
 }
 
 
-name.addEventListener('blur', checkNameLength);
-mail.addEventListener('blur', checkEmail);
-password.addEventListener('blur', checkPassword);
+name.addEventListener('blur', checkInputValue);
+mail.addEventListener('blur', checkInputValue);
+password.addEventListener('blur', checkInputValue);
 checkbox.addEventListener('input', switchSubmitButton);
 
 
