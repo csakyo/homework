@@ -94,6 +94,7 @@ li {
 }
 .submit_button:disabled {
     background: #ccc;
+    cursor: not-allowed;
 }
 .close_button {
     width: 50px;
