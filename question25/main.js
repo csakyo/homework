@@ -65,12 +65,12 @@ const checkValidation = (result, targetForm) => {
     targetForm.classList.add('valid');
     targetForm.classList.remove('invalid');
     targetForm.nextElementSibling.textContent = ''; 
-    validationInfo[targetForm.id].status = true;
+    validationInfo[targetForm.id].isValid = true;
   } else {
     targetForm.classList.add('invalid');
     targetForm.classList.remove('valid');
     targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
-    validationInfo[targetForm.id].status = false; 
+    validationInfo[targetForm.id].isValid = false; 
   }
 }
 
