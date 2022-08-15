@@ -60,8 +60,8 @@ const validationInfo = {
   }
 }
 
-const checkValidation = (result, targetForm) => {
-  if (result) {
+const checkValidation = (isValid, targetForm) => {
+  if (isValid) {
     targetForm.classList.add('valid');
     targetForm.classList.remove('invalid');
     targetForm.nextElementSibling.textContent = ''; 
