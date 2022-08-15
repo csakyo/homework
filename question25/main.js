@@ -93,7 +93,7 @@ const switchSubmitButton = () => {
 } 
 
 const checkEmptyCharacter = (targetForm) => {
-  if( !targetForm.value || !targetForm.value.match(/\S/g) ) {
+  if( targetForm.value.trim() === "" ) {
     targetForm.nextElementSibling.textContent = '※入力必須項目です';
   }
 }
