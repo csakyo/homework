@@ -32,7 +32,7 @@ const options = {
 const checkWhenIntersect = ([entry]) => {
   checkbox.checked = entry.isIntersecting;
   checkbox.disabled = !entry.isIntersecting;
-  entry.isIntersecting && switchSubmitButton();
+  entry.isIntersecting && checkAllValidity();
 };
 
 const observer = new IntersectionObserver(checkWhenIntersect, options);
@@ -40,37 +40,40 @@ observer.observe(modalContainer.lastElementChild);
 
 
 
+const isValidStatus = {
+  name: false,
+  mail: false,
+  password: false,
+}
+
 const validationInfo = {
   name: {
-    isValid: false,
     maxNameLength: 16,
     minNameLength: 1,
     validation: (value) => value.length > validationInfo.name.minNameLength && value.length < validationInfo.name.maxNameLength,
     errorMessage: '※ユーザー名は1文字以上15文字以下にしてください。',
   },
   mail: {
-    isValid: false,
     validation : (value) => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value),
     errorMessage: '※メールアドレスの形式になっていません。' 
   },
   password: {
-    isValid: false,
     validation : (value) => /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/.test(value),
     errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。'  
   }
 }
 
-const checkValidation = (isValid, targetForm) => {
+const checkFormValidation = (isValid, targetForm) => {
   if (isValid) {
     targetForm.classList.add('valid');
     targetForm.classList.remove('invalid');
     targetForm.nextElementSibling.textContent = ''; 
-    validationInfo[targetForm.id].isValid = true;
+    isValidStatus[targetForm.id] = true;
   } else {
     targetForm.classList.add('invalid');
     targetForm.classList.remove('valid');
     targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
-    validationInfo[targetForm.id].isValid = false; 
+    isValidStatus[targetForm.id] = false; 
   }
 }
 
@@ -78,18 +81,19 @@ const checkInputValue = (e) => {
   const targetForm = e.target;
   const value = targetForm.value.trim();
   const result = validationInfo[targetForm.id].validation(value);
-  checkValidation(result,targetForm);
-  switchSubmitButton();
+  checkFormValidation(result,targetForm);
   checkEmptyCharacter(targetForm);  
+  checkAllValidity();
 } 
 
+const checkAllValidity = () => {
+  const isValid = Object.values(isValidStatus);
+  const allValidStatus = isValid.every((result) => { return result });
+  switchSubmitButton(allValidStatus); 
+}
 
-const switchSubmitButton = () => {
-  if(validationInfo.name.isValid === true && validationInfo.mail.isValid === true && validationInfo.password.isValid === true && checkbox.checked) {
-    submitButton.disabled = false; 
-  } else {
-    submitButton.disabled = true;  
-  }
+const switchSubmitButton = (isValid) => {
+  (isValid && checkbox.checked) ? (submitButton.disabled = false) : (submitButton.disabled = true)
 } 
 
 const checkEmptyCharacter = (targetForm) => {
@@ -102,7 +106,7 @@ const checkEmptyCharacter = (targetForm) => {
 nameInputArea.addEventListener('blur', checkInputValue);
 mailInputArea.addEventListener('blur', checkInputValue);
 passwordInputArea.addEventListener('blur', checkInputValue);
-checkbox.addEventListener('input', switchSubmitButton);
+checkbox.addEventListener('input', checkAllValidity);
 
 
 submitButton.addEventListener('click',() => {
