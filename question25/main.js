@@ -94,7 +94,7 @@ const checkAllValidity = () => {
 }
 
 const switchSubmitButton = (isValid) => {
-  (isValid && checkbox.checked) ? (submitButton.disabled = false) : (submitButton.disabled = true)
+  submitButton.disabled = isValid && checkbox.checked ? false : true;
 } 
 
 const checkEmptyCharacter = (targetForm) => {
