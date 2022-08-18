@@ -64,7 +64,7 @@ const validationInfo = {
   }
 }
 
-const checkFormValidation = (isValid, targetForm) => {
+const handleFormWhenIsValid = (isValid, targetForm) => {
   if (isValid) {
     targetForm.classList.add('valid');
     targetForm.classList.remove('invalid');
@@ -78,11 +78,11 @@ const checkFormValidation = (isValid, targetForm) => {
   }
 }
 
-const checkInputValue = (e) => {
+const handleFormValidity = (e) => {
   const targetForm = e.target;
   const value = targetForm.value.trim();
   const result = validationInfo[targetForm.id].validation(value);
-  checkFormValidation(result,targetForm);
+  handleFormWhenIsValid(result,targetForm);
   checkEmptyCharacter(targetForm);  
   checkAllValidity();
 } 
@@ -104,9 +104,9 @@ const checkEmptyCharacter = (targetForm) => {
 }
 
 
-nameInputArea.addEventListener('blur', checkInputValue);
-mailInputArea.addEventListener('blur', checkInputValue);
-passwordInputArea.addEventListener('blur', checkInputValue);
+nameInputArea.addEventListener('blur', handleFormValidity);
+mailInputArea.addEventListener('blur', handleFormValidity);
+passwordInputArea.addEventListener('blur', handleFormValidity);
 checkbox.addEventListener('input', checkAllValidity);
 
 
