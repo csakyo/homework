@@ -30,9 +30,11 @@ const options = {
 };
 
 const checkWhenIntersect = ([entry]) => {
-  checkbox.checked = entry.isIntersecting;
-  checkbox.disabled = !entry.isIntersecting;
-  entry.isIntersecting && checkAllValidity();
+  if (entry.isIntersecting) {
+    checkbox.checked = true;
+    checkbox.disabled = false;
+    switchSubmitButton(checkAllValidity());
+  };
 };
 
 const observer = new IntersectionObserver(checkWhenIntersect, options);
@@ -83,30 +85,29 @@ const validateInputValue = (e) => {
   const value = targetForm.value.trim();
   const result = validationInfo[targetForm.id].validation(value);
   setValidationEvents(result,targetForm);
-  checkEmptyCharacter(targetForm);  
-  checkAllValidity();
+  renderRequiredFieldMessages(targetForm);  
+  switchSubmitButton(checkAllValidity());
 } 
 
 const checkAllValidity = () => {
-  const isAllValid = Object.values(isValidStatus).every((result) => result );
-  switchSubmitButton(isAllValid); 
+  return Object.values(isValidStatus).every((result) => result );
 }
 
 const switchSubmitButton = (isValid) => {
   submitButton.disabled = isValid && checkbox.checked ? false : true;
 } 
 
-const checkEmptyCharacter = (targetForm) => {
-  if( targetForm.value.trim() === "" ) {
-    targetForm.nextElementSibling.textContent = '※入力必須項目です';
-  }
-}
-
+const renderRequiredFieldMessages = (targetForm) => {
+  targetForm.nextElementSibling.textContent = targetForm.value.trim() === "" ? "※入力必須項目です" : "";
+};
 
 nameInputArea.addEventListener('blur', validateInputValue);
 mailInputArea.addEventListener('blur', validateInputValue);
 passwordInputArea.addEventListener('blur', validateInputValue);
-checkbox.addEventListener('input', checkAllValidity);
+checkbox.addEventListener("input", {
+  isValid: checkAllValidity,
+  handleEvent: switchSubmitButton
+});
 
 
 submitButton.addEventListener('click',() => {
