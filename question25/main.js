@@ -64,7 +64,7 @@ const validationInfo = {
   }
 }
 
-const handleFormWhenIsValid = (isValid, targetForm) => {
+const setValidationEvents = (isValid, targetForm) => {
   if (isValid) {
     targetForm.classList.add('valid');
     targetForm.classList.remove('invalid');
@@ -78,12 +78,12 @@ const handleFormWhenIsValid = (isValid, targetForm) => {
   }
 }
 
-const handleFormValidity = (e) => {
+const validateInputValue = (e) => {
   const targetForm = e.target;
   const value = targetForm.value.trim();
   const result = validationInfo[targetForm.id].validation(value);
-  handleFormWhenIsValid(result,targetForm);
-  checkEmptyCharacter(targetForm);  
+  setValidationEvents(result,targetForm);
+  handleInputEmptyCharacter(targetForm);  
   checkAllValidity();
 } 
 
@@ -97,16 +97,16 @@ const switchSubmitButton = (isValid) => {
   submitButton.disabled = isValid && checkbox.checked ? false : true;
 } 
 
-const checkEmptyCharacter = (targetForm) => {
+const handleInputEmptyCharacter = (targetForm) => {
   if( targetForm.value.trim() === "" ) {
     targetForm.nextElementSibling.textContent = '※入力必須項目です';
   }
 }
 
 
-nameInputArea.addEventListener('blur', handleFormValidity);
-mailInputArea.addEventListener('blur', handleFormValidity);
-passwordInputArea.addEventListener('blur', handleFormValidity);
+nameInputArea.addEventListener('blur', validateInputValue);
+mailInputArea.addEventListener('blur', validateInputValue);
+passwordInputArea.addEventListener('blur', validateInputValue);
 checkbox.addEventListener('input', checkAllValidity);
 
 
