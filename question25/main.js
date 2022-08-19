@@ -88,8 +88,7 @@ const validateInputValue = (e) => {
 } 
 
 const checkAllValidity = () => {
-  const isValid = Object.values(isValidStatus);
-  const isAllValid = isValid.every((result) => result );
+  const isAllValid = Object.values(isValidStatus).every((result) => result );
   switchSubmitButton(isAllValid); 
 }
 
