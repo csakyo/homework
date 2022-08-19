@@ -83,7 +83,7 @@ const validateInputValue = (e) => {
   const value = targetForm.value.trim();
   const result = validationInfo[targetForm.id].validation(value);
   setValidationEvents(result,targetForm);
-  handleInputEmptyCharacter(targetForm);  
+  checkEmptyCharacter(targetForm);  
   checkAllValidity();
 } 
 
@@ -97,7 +97,7 @@ const switchSubmitButton = (isValid) => {
   submitButton.disabled = isValid && checkbox.checked ? false : true;
 } 
 
-const handleInputEmptyCharacter = (targetForm) => {
+const checkEmptyCharacter = (targetForm) => {
   if( targetForm.value.trim() === "" ) {
     targetForm.nextElementSibling.textContent = '※入力必須項目です';
   }
