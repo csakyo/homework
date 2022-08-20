@@ -98,15 +98,16 @@ const switchSubmitButton = (isValid) => {
 } 
 
 const renderRequiredFieldMessages = (targetForm) => {
-  targetForm.nextElementSibling.textContent = targetForm.value.trim() === "" ? "※入力必須項目です" : "";
+  if (targetForm.value.trim() === "") {
+    targetForm.nextElementSibling.textContent = "※入力必須項目です";
+  }
 };
 
 nameInputArea.addEventListener('blur', validateInputValue);
 mailInputArea.addEventListener('blur', validateInputValue);
 passwordInputArea.addEventListener('blur', validateInputValue);
-checkbox.addEventListener("input", {
-  isValid: checkAllValidity,
-  handleEvent: switchSubmitButton
+checkbox.addEventListener("input", () => {
+  switchSubmitButton(checkAllValidity());
 });
 
 
