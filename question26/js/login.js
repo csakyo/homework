@@ -45,7 +45,6 @@ const validateInputValue = (e) => {
   setValidationEvents(result,targetForm);
   renderRequiredFieldMessages(targetForm);  
   switchSubmitButton(checkAllValidity());
-  console.log(isValidStatus);
 } 
 
 const checkAllValidity = () => {
