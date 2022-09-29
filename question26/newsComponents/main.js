@@ -151,5 +151,5 @@ tabsGroup.addEventListener("click", (e) => {
 const btn = document.getElementById('js-logout-btn');
 btn.addEventListener('click', () => {
   localStorage.removeItem('token');
-  window.location.href = '../login.html';
+  window.location.href = '../index.html';
 });

@@ -1,5 +1,8 @@
 'use strict';
 
+import { Chance } from "chance";
+const chance = new Chance();
+
 const submitButton = document.getElementById('js-submit-button');
 const userInfoInputArea = document.getElementById('name_mail');
 const passwordInputArea = document.getElementById('password');
@@ -80,7 +83,7 @@ const tokenVerification = () => {
   const userData = Object.fromEntries(userDataArr);
   return new Promise((resolve,reject) => {
     if (checkData(userData)){
-      resolve({ token: "fafae92rfjafa03", ok: true, code: 200 });
+      resolve({ token: chance.apple_token(), ok: true, code: 200 });
     } else {
       reject({ ok: false, code: 401 }); 
     }
