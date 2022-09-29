@@ -79,8 +79,7 @@ const checkData = (inputData) => {
 
 
 const tokenVerification = () => {
-  const userDataArr = [...new FormData(form).entries()];
-  const userData = Object.fromEntries(userDataArr);
+  const userData = Object.fromEntries([...new FormData(form).entries()]);
   return new Promise((resolve,reject) => {
     if (checkData(userData)){
       resolve({ token: chance.apple_token(), ok: true, code: 200 });
