@@ -102,7 +102,7 @@ const loginVerification = async() => {
 
 const init = async () => {
   const verificationResult = await loginVerification();
-  verificationResult ? window.location.href = './newsComponents/index.html' : window.location.href = './loginFailure.html'
+  window.location.href = verificationResult ? "./newsComponents/index.html" : "./loginFailure.html"
 }
 
 submitButton.addEventListener('click',init);
