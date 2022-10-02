@@ -148,8 +148,8 @@ tabsGroup.addEventListener("click", (e) => {
   contents[e.target.dataset.index].classList.add('is-active-content'); 
 });
 
-const btn = document.getElementById('js-logout-btn');
-btn.addEventListener('click', () => {
+const logoutBtn = document.getElementById('js-logout-btn');
+logoutBtn.addEventListener('click', () => {
   localStorage.removeItem('token');
   window.location.href = '../index.html';
 });
