@@ -91,7 +91,8 @@ const tokenVerification = () => {
 
 const loginVerification = async() => {
   try {
-    const token = await tokenVerification();
+    const serverResponseData = await tokenVerification();
+    const token = serverResponseData.token; 
     localStorage.setItem("token", JSON.stringify(token));
     return true;
   }
