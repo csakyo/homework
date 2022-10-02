@@ -47,14 +47,14 @@ const validateInputValue = (e) => {
   const result = validationInfo[targetForm.id].validation(value);
   setValidationEvents(result,targetForm);
   renderRequiredFieldMessages(targetForm);  
-  switchSubmitButton(checkAllValidity());
+  isDisabledSubmitButton(checkAllValidity());
 } 
 
 const checkAllValidity = () => {
   return Object.values(isValidStatus).every((result) => result );
 }
 
-const switchSubmitButton = (isValid) => {
+const isDisabledSubmitButton = (isValid) => {
   submitButton.disabled = isValid ? false : true;
 } 
 
@@ -68,13 +68,13 @@ userInfoInputArea.addEventListener('blur', validateInputValue);
 passwordInputArea.addEventListener('blur', validateInputValue);
 
 
-const checkData = (inputData) => {
+const checkData = ({ name_mail, user_password }) => {
   const userData = {
     name: "tanaka",
     email: "tanaka@gmail.com",
     pass: "N302aoe3"
   }; 
-  return ((inputData.name_mail === userData.name || inputData.name_mail === userData.email) && (inputData.user_password === userData.pass)) ? true : false;
+  return ((name_mail === userData.name || name_mail === userData.email) && (user_password === userData.pass)) ? true : false;
 }
 
 
