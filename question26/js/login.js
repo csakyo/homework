@@ -9,7 +9,7 @@ const passwordInputArea = document.getElementById('password');
 const form = document.getElementById('form');
 
 if(localStorage.hasOwnProperty('token')) {
-  window.location.href = './newsComponents/index.html'
+  window.location.href = "./news.html";
 }
 
 const isValidStatus = {
@@ -108,7 +108,7 @@ const loginVerification = async() => {
 
 const init = async () => {
   const verificationResult = await loginVerification();
-  window.location.href = verificationResult ? "./newsComponents/index.html" : "./loginFailure.html"
+  window.location.href = verificationResult ? "./news.html" : "./loginFailure.html"
 }
 
 submitButton.addEventListener('click',init);
