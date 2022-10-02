@@ -74,7 +74,7 @@ const checkData = ({ name_mail, user_password }) => {
     email: "tanaka@gmail.com",
     pass: "N302aoe3"
   }; 
-  return ((name_mail === userData.name || name_mail === userData.email) && (user_password === userData.pass)) ? true : false;
+  return ((name_mail === userData.name || name_mail === userData.email) && (user_password === userData.pass));
 }
 
 
