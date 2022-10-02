@@ -27,19 +27,24 @@ const validationInfo = {
   }
 }
 
-const setValidationEvents = (isValid, targetForm) => {
-  if (isValid) {
-    targetForm.classList.add('valid');
-    targetForm.classList.remove('invalid');
-    targetForm.nextElementSibling.textContent = ''; 
-    isValidStatus[targetForm.id] = true;
-  } else {
-    targetForm.classList.add('invalid');
-    targetForm.classList.remove('valid');
-    targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
-    isValidStatus[targetForm.id] = false; 
-  }
-}
+const setValidationEvents = (isValid, targetForm) =>
+  isValid ? validEvent(targetForm) : invalidEvent(targetForm);
+
+const validEvent = (targetForm) => {
+  targetForm.classList.add("valid");
+  targetForm.classList.remove("invalid");
+  targetForm.nextElementSibling.textContent = "";
+  isValidStatus[targetForm.id] = true;
+};
+
+const invalidEvent = (targetForm) => {
+  targetForm.classList.add("invalid");
+  targetForm.classList.remove("valid");
+  targetForm.nextElementSibling.textContent =
+    validationInfo[targetForm.id].errorMessage;
+  isValidStatus[targetForm.id] = false;
+};
+
 
 const validateInputValue = (e) => {
   const targetForm = e.target;
