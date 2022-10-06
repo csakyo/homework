@@ -52,14 +52,14 @@ const validateInputValue = (e) => {
   const result = validationInfo[targetForm.id].validation(value);
   setValidationEvents(result,targetForm);
   renderRequiredFieldMessages(targetForm);  
-  toggleButtonDisabed(checkAllValidity());
+  toggleSubmitbuttonActivation(checkAllValidity());
 } 
 
 const checkAllValidity = () => {
   return Object.values(isValidStatus).every((result) => result );
 }
 
-const toggleButtonDisabed = (isValid) => {
+const toggleSubmitbuttonActivation = (isValid) => {
   submitButton.disabled = isValid ? false : true;
 } 
 
