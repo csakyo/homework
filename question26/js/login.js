@@ -83,7 +83,7 @@ const checkData = ({ name_mail, user_password }) => {
 }
 
 
-const tokenVerification = () => {
+const userDataVerification = () => {
   const userData = Object.fromEntries([...new FormData(form).entries()]);
   return new Promise((resolve,reject) => {
     if (checkData(userData)){
@@ -96,7 +96,7 @@ const tokenVerification = () => {
 
 const loginVerification = async() => {
   try {
-    const serverResponseData = await tokenVerification();
+    const serverResponseData = await userDataVerification();
     const token = serverResponseData.token; 
     localStorage.setItem("token", JSON.stringify(token));
     return true;
