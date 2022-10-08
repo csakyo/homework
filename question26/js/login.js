@@ -8,7 +8,7 @@ const userInfoInputArea = document.getElementById('name_mail');
 const passwordInputArea = document.getElementById('password');
 const form = document.getElementById('form');
 
-if(localStorage.hasOwnProperty('token')) {
+if(localStorage.getItem('token')) {
   window.location.href = "./news.html";
 }
 
