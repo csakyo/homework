@@ -8,6 +8,7 @@ const createElementWithClassName = (element, name) => {
 
 const newsWrapper = document.getElementById('js-newsWrapper');
 const tabsGroup = document.getElementById('js-tabs');
+const logoutButtonArea = document.getElementById('js-logout-button-area');
 const contentsWrapper = createElementWithClassName("div", "contentsWrapper");
 contentsWrapper.id = "js-contentsWrapper";
 
@@ -47,6 +48,23 @@ init();
 function renderNewsUiElement(newsData) {
   tabsGroup.appendChild(getTabListsFragment(newsData));
   newsWrapper.appendChild(renderContents(newsData));
+  renderLogoutBtn();
+  logoutButtonEvent();
+}
+
+const renderLogoutBtn = () => {
+  const logoutButton = createElementWithClassName('button', 'logoutButton'); 
+  logoutButton.id = 'js-logout-btn';
+  logoutButton.textContent = 'Logout';
+  logoutButtonArea.appendChild(logoutButton);
+}
+
+const logoutButtonEvent = () => {
+  const logoutButton = document.getElementById('js-logout-btn');
+  logoutButton.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    window.location.href = './index.html';
+  });
 }
 
 //get Tab Elements 
@@ -149,10 +167,4 @@ tabsGroup.addEventListener("click", (e) => {
   activeContent.classList.remove('is-active-content'); 
   const contents = document.getElementsByClassName('contentsContainer');
   contents[e.target.dataset.index].classList.add('is-active-content'); 
-});
-
-const logoutBtn = document.getElementById('js-logout-btn');
-logoutBtn.addEventListener('click', () => {
-  localStorage.removeItem('token');
-  window.location.href = './index.html';
 });
