@@ -29,9 +29,6 @@ async function callApi() {
   catch(error) {
     console.error(error);
   }
-  finally {
-    console.log('CONPLETE!');
-  }
 }
 
 async function init() {
