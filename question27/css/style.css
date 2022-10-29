@@ -93,10 +93,12 @@ li {
     color: #fff;
     border-radius: 30px;
     cursor: pointer;
+    pointer-events: auto;
 }
 .submit_button:disabled {
     background: #ccc;
     cursor: not-allowed;
+    pointer-events: none;
 }
 .close_button {
     width: 50px;
