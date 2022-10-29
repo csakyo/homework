@@ -96,9 +96,7 @@ const userDataVerification = () => {
 
 const loginVerification = async() => {
   try {
-    const serverResponseData = await userDataVerification();
-    const token = serverResponseData.token; 
-    localStorage.setItem("token", JSON.stringify(token));
+    await userDataVerification();
     return true;
   }
   catch {
@@ -108,6 +106,8 @@ const loginVerification = async() => {
 
 const init = async () => {
   const verificationResult = await loginVerification();
+  const token = verificationResult.token;
+  localStorage.setItem("token", JSON.stringify(token));
   window.location.href = verificationResult ? "./index.html" : "./loginFailure.html"
 }
 
