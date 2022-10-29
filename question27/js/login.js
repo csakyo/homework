@@ -96,8 +96,7 @@ const userDataVerification = () => {
 
 const loginVerification = async() => {
   try {
-    await userDataVerification();
-    return true;
+    return await userDataVerification();
   }
   catch {
     return false;
