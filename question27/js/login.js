@@ -105,9 +105,13 @@ const loginVerification = async() => {
 
 const init = async () => {
   const verificationResult = await loginVerification();
-  const token = verificationResult.token;
-  localStorage.setItem("token", JSON.stringify(token));
-  window.location.href = verificationResult ? "./index.html" : "./loginFailure.html"
+  if (verificationResult) {
+    const token = verificationResult.token;
+    localStorage.setItem("token", JSON.stringify(token));
+    window.location.href = "./index.html"; 
+  } else {
+    window.location.href = "./loginFailure.html"
+  }
 }
 
 submitButton.addEventListener('click',init);
