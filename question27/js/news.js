@@ -12,9 +12,6 @@ const logoutButtonArea = document.getElementById('js-logout-button-area');
 const contentsWrapper = createElementWithClassName("div", "contentsWrapper");
 contentsWrapper.id = "js-contentsWrapper";
 
-if(!localStorage.getItem('token')) {
-  window.location.href = "./login.html"
-}
 
 //Get json data
 async function callApi() {
