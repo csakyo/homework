@@ -43,7 +43,7 @@ function renderNewsUiElement(newsData) {
   tabsGroup.appendChild(getTabListsFragment(newsData));
   newsWrapper.appendChild(renderContents(newsData));
   renderLogoutBtn();
-  setLogoutButtonEvent();
+  addEventForLogoutButton();
 }
 
 const renderLogoutBtn = () => {
@@ -53,7 +53,7 @@ const renderLogoutBtn = () => {
   logoutButtonArea.appendChild(logoutButton);
 }
 
-const setLogoutButtonEvent = () => {
+const addEventForLogoutButton = () => {
   const logoutButton = document.getElementById('js-logout-btn');
   logoutButton.addEventListener('click', () => {
     localStorage.removeItem('token');
