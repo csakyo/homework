@@ -54,11 +54,11 @@ const init = () => {
   const tokenForPasswordReset = chance.apple_token();
   const passwordResetPageUrl = "./register/password.html";
 
-  if (registeredJsonUserData == null) {
+  if (registeredJsonUserData === null) {
     window.location.href = './notautherize.html';
     return; 
   }
-  if (registeredUserData.user_email == inputMailData) {
+  if (registeredUserData.user_email === inputMailData) {
     window.location.href = `${passwordResetPageUrl}?token=${tokenForPasswordReset}`;
     return; 
   }
