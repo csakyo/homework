@@ -5,11 +5,11 @@ import { Chance } from "chance";
 const chance = new Chance();
 
 const submitButton = document.getElementById('js-submit-button');
-const userInfoInputArea = document.getElementById('name_mail');
-const inputArea = document.getElementById('name_mail');
+const userInfoInputArea = document.getElementById('mail');
+const mailInputArea = document.getElementById('mail');
 
 const isValidStatus = {
-  name_mail: false,
+  mail: false
 }
 
 const setValidationEvents = (isValid, targetForm) =>
@@ -48,7 +48,7 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 userInfoInputArea.addEventListener('blur', validateInputValue);
 
 const init = () => {
-  const inputData = inputArea.value;
+  const inputMailData = mailInputArea.value;
   const registeredJsonUserData = localStorage.getItem('userData'); 
   const registeredUserData = JSON.parse(registeredJsonUserData); 
   const tokenForPasswordReset = chance.apple_token();
@@ -58,7 +58,7 @@ const init = () => {
     window.location.href = './notautherize.html';
     return; 
   }
-  if (registeredUserData.user_name == inputData || registeredUserData.user_email == inputData) {
+  if (registeredUserData.user_email == inputMailData) {
     window.location.href = `${passwordResetPageUrl}?token=${tokenForPasswordReset}`;
     return; 
   }
