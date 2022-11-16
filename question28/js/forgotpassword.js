@@ -49,12 +49,11 @@ userInfoInputArea.addEventListener('blur', validateInputValue);
 
 const init = () => {
   const inputMailData = mailInputArea.value;
-  const registeredJsonUserData = localStorage.getItem('userData'); 
-  const registeredUserData = JSON.parse(registeredJsonUserData); 
+  const registeredUserData = JSON.parse(localStorage.getItem('userData'));
   const tokenForPasswordReset = chance.apple_token();
   const passwordResetPageUrl = "./register/password.html";
 
-  if (registeredJsonUserData === null) {
+  if (registeredUserData === null) {
     window.location.href = './notautherize.html';
     return; 
   }
