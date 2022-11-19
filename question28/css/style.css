@@ -81,6 +81,8 @@ ol ol {
 li {
     margin-bottom: 20px;
     list-style: none;
+}
+form li {
     height: 75px;
 }
 .submit_button {
