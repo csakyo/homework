@@ -1,7 +1,8 @@
 'use strict';
-import { validationInfo } from "./validation";
-import { Chance } from "chance";
-const chance = new Chance();
+import { isValidStatus } from "./validations";
+import { validateInputValue } from "./validations";
+import { checkAllValidity } from "./validations";
+import { toggleDisabledOfSubmitButton } from "./validations";
 
 const textLinkToTerms = document.getElementById('js-terms-textlink');
 const modal = document.getElementById('js-modal');
@@ -13,6 +14,7 @@ const modalContainer = document.getElementById("js-modal-container");
 const nameInputArea = document.getElementById('name');
 const mailInputArea = document.getElementById('mail');
 const passwordInputArea = document.getElementById('password');
+const pageType = 'register';
 
 
 textLinkToTerms.addEventListener('click',()=>{
@@ -36,65 +38,19 @@ const checkWhenIntersect = ([entry]) => {
   if (entry.isIntersecting) {
     checkbox.checked = true;
     checkbox.disabled = false;
-    switchSubmitButton(checkAllValidity());
+    isValidStatus.register.checkbox = true;
+    toggleDisabledOfSubmitButton(checkAllValidity('register') && checkbox.checked);
   };
 };
 
 const observer = new IntersectionObserver(checkWhenIntersect, options);
 observer.observe(modalContainer.lastElementChild);
 
-const isValidStatus = {
-  name: false,
-  mail: false,
-  password: false,
-}
-
-const setValidationEvents = (isValid, targetForm) =>
-  isValid ? validEvent(targetForm) : invalidEvent(targetForm);
-
-const validEvent = (targetForm) => {
-  targetForm.classList.add("valid");
-  targetForm.classList.remove("invalid");
-  targetForm.nextElementSibling.textContent = "";
-  isValidStatus[targetForm.id] = true;
-};
-
-const invalidEvent = (targetForm) => {
-  targetForm.classList.add("invalid");
-  targetForm.classList.remove("valid");
-  targetForm.nextElementSibling.textContent =
-    validationInfo[targetForm.id].errorMessage;
-  isValidStatus[targetForm.id] = false;
-};
-
-const validateInputValue = (e) => {
-  const targetForm = e.target;
-  const value = targetForm.value.trim();
-  const result = validationInfo[targetForm.id].validation(value);
-  setValidationEvents(result,targetForm);
-  renderRequiredFieldMessages(targetForm);  
-  switchSubmitButton(checkAllValidity());
-} 
-
-const checkAllValidity = () => {
-  return Object.values(isValidStatus).every((result) => result );
-}
-
-const switchSubmitButton = (isValid) => {
-  submitButton.disabled = isValid && checkbox.checked ? false : true;
-} 
-
-const renderRequiredFieldMessages = (targetForm) => {
-  if (targetForm.value.trim() === "") {
-    targetForm.nextElementSibling.textContent = "※入力必須項目です";
-  }
-};
-
-nameInputArea.addEventListener('blur', validateInputValue);
-mailInputArea.addEventListener('blur', validateInputValue);
-passwordInputArea.addEventListener('blur', validateInputValue);
-checkbox.addEventListener("input", () => {
-  switchSubmitButton(checkAllValidity());
+nameInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
+mailInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
+passwordInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
+checkbox.addEventListener("change", () => {
+  toggleDisabledOfSubmitButton(checkAllValidity('register') && checkbox.checked);
 });
 
 submitButton.addEventListener('click',() => {
