@@ -1,5 +1,3 @@
-'use strict';
-
 import { validateInputValue } from "./validations";
 import { Chance } from "chance";
 const chance = new Chance();

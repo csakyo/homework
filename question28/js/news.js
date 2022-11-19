@@ -1,5 +1,3 @@
-'use strict';
-
 const createElementWithClassName = (element, name) => {
   const createdElement = document.createElement(element);
   createdElement.classList.add(name);

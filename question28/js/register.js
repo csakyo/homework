@@ -1,4 +1,3 @@
-'use strict';
 import { isValidStatus } from "./validations";
 import { validateInputValue } from "./validations";
 import { checkAllValidity } from "./validations";
