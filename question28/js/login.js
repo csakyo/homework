@@ -19,8 +19,8 @@ passwordInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageTy
 
 
 const checkData = ({ name_mail, user_password }) => {
-  const userJasonDataInServer = localStorage.getItem('userData');
-  const registeredUserData = JSON.parse(userJasonDataInServer);
+  // const userJasonDataInServer = localStorage.getItem('userData');
+  const registeredUserData = JSON.parse(localStorage.getItem('userData'));
   return ((name_mail === registeredUserData.user_email || name_mail === registeredUserData.user_name) && (user_password === registeredUserData.user_password));
 }
 
