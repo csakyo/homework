@@ -7,6 +7,7 @@ const textLinkToTerms = document.getElementById('js-terms-textlink');
 const modal = document.getElementById('js-modal');
 const modalClose = document.getElementById('js-close');
 const mask = document.getElementById('js-mask');
+const form = document.getElementById('form');
 const checkbox = document.getElementById('js-checkbox');
 const submitButton = document.getElementById('js-submit-button');
 const modalContainer = document.getElementById("js-modal-container");
