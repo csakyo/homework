@@ -4,11 +4,10 @@ const createElementWithClassName = (element, name) => {
   return createdElement;
 };
 
-const newsWrapper = document.getElementById('js-newsWrapper');
+const newsWrapper = document.getElementById('js-news-wrapper');
 const tabsGroup = document.getElementById('js-tabs');
 const logoutButtonArea = document.getElementById('js-logout-button-area');
-const contentsWrapper = createElementWithClassName("div", "contentsWrapper");
-contentsWrapper.id = "js-contentsWrapper";
+const contentsWrapper = createElementWithClassName("div", "contents_wrapper");
 
 
 //Get json data
@@ -45,7 +44,7 @@ function renderNewsUiElement(newsData) {
 }
 
 const renderLogoutBtn = () => {
-  const logoutButton = createElementWithClassName('button', 'logoutButton'); 
+  const logoutButton = createElementWithClassName('button', 'logout_button'); 
   logoutButton.id = 'js-logout-btn';
   logoutButton.textContent = 'Logout';
   logoutButtonArea.appendChild(logoutButton);
@@ -63,7 +62,7 @@ const addEventForLogoutButton = () => {
 const getTabListsFragment = (newsData) => {
   const fragmentTablists = document.createDocumentFragment();
   for (let i = 0; i < newsData.length; i++) {
-    const tabList = createElementWithClassName("li", "tabList");
+    const tabList = createElementWithClassName("li", "tab_list");
     tabList.textContent = newsData[i].category;
     tabList.dataset.index = i;
     newsData[i].initialDisplay && tabList.classList.add("is-active-tab");
@@ -76,9 +75,9 @@ const getTabListsFragment = (newsData) => {
 const renderContents = (newsData) => {
   const fragmentContents = document.createDocumentFragment();
   for (let i = 0; i < newsData.length; i++) {
-    const contentsContainer = createElementWithClassName("div", "contentsContainer");
-    const tabContents = createElementWithClassName("div", "tabContents");
-    const tabContentsUl = createElementWithClassName("ul", "tabContentsUl");
+    const contentsContainer = createElementWithClassName("div", "contents_container");
+    const tabContents = createElementWithClassName("div", "tab_contents");
+    const tabContentsUl = createElementWithClassName("ul", "tab_contents_ul");
     newsData[i].initialDisplay && contentsContainer.classList.add("is-active-content");
 
     fragmentContents.appendChild(contentsContainer).appendChild(tabContents).appendChild(tabContentsUl).appendChild(createTitles(newsData[i]));
@@ -120,7 +119,7 @@ const createTitles = ({ articles }) => {
 
 //Get img data 
 const createImgElements = (newsData) => {
-  const imgWrapper = createElementWithClassName("div", "imgWrapper");
+  const imgWrapper = createElementWithClassName("div", "img_wrapper");
   const imgTag = document.createElement('img');
   imgTag.src = newsData.img;
   imgWrapper.appendChild(imgTag);
@@ -157,6 +156,6 @@ tabsGroup.addEventListener("click", (e) => {
   activeTab.classList.remove("is-active-tab");
   e.target.classList.add("is-active-tab");
   activeContent.classList.remove('is-active-content'); 
-  const contents = document.getElementsByClassName('contentsContainer');
+  const contents = document.getElementsByClassName('contents_container');
   contents[e.target.dataset.index].classList.add('is-active-content'); 
 });
