@@ -9,31 +9,33 @@
         <title>TerraceTechフロントエンドエンジニア養成所</title>
     </head>
     <body>
-        <div id="js-wrapper" class="wrapper">
-            <h1>Login</h1>
-            <form method="post" id="form" novalidate>
-                <div>
-                    <ul>
-                        <li>
-                            <label for="name_mail">ユーザー名/メールアドレス</label>
-                            <input type="text" id="name_mail" name="name_mail" required class="input"/>
-                            <span class="error"></span>
-                        </li>
-                        <li>
-                            <label for="password">パスワード</label>
-                            <input type="password" id="password" name="user_password" required class="input"/>
-                            <span class="error"></span>
-                        </li>
-                    </ul>
-                </div>
-                <button type="button" id="js-submit-button" class="submit_button" disabled>送信</button>
-            </form>
-            <div class="link">
-                <div>
-                    <a href="./forgotPassword.html">パスワードを忘れた方はこちら</a>
-                </div>
-                <div>
-                    <a href="./register.html">会員登録がまだの方はこちら</a>
+        <div class="login">
+            <div id="js-wrapper" class="wrapper">
+                <h1>Login</h1>
+                <form method="post" id="form" novalidate>
+                    <div>
+                        <ul>
+                            <li>
+                                <label for="name_mail">ユーザー名/メールアドレス</label>
+                                <input type="text" id="name_mail" name="name_mail" required class="input"/>
+                                <span class="error"></span>
+                            </li>
+                            <li>
+                                <label for="password">パスワード</label>
+                                <input type="password" id="password" name="user_password" required class="input"/>
+                                <span class="error"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" id="js-submit-button" class="submit_button" disabled>送信</button>
+                </form>
+                <div class="link">
+                    <div>
+                        <a href="./forgotPassword.html">パスワードを忘れた方はこちら</a>
+                    </div>
+                    <div>
+                        <a href="./register.html">会員登録がまだの方はこちら</a>
+                    </div>
                 </div>
             </div>
         </div>

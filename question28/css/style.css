@@ -122,6 +122,16 @@ input {
     height: 45px;
     border-radius: 3px;
 }
+input.invalid {
+    border: 2px solid red;
+}
+input.valid {
+    border: 2px solid #94c35d;
+}
+.error {
+    color: red;
+    font-size: 12px;
+}
 .checkbox {
     margin: 20px 0;
 }
@@ -167,13 +177,6 @@ input {
 .mask.hidden {
     display: none;
 }
-
-/*///////////////////////////////////
-
-register-done
-
-///////////////////////////////////*/
-
 .register-done {
     max-width: 800px;
     padding: 30px;
@@ -191,41 +194,9 @@ register-done
     color: #353030;
     margin-bottom: 2rem;
 }
-
 .register-done_txt p:first-child{
     font-size: 30px;
 }
-.register-done_link a{
-
-}
-
-
-/*///////////////////////////////////
-
-Validation
-
-///////////////////////////////////*/
-
-input.invalid {
-    border: 2px solid red;
-}
-input.valid {
-    border: 2px solid #94c35d;
-}
-
-.error {
-    color: red;
-    font-size: 12px;
-}
-
-
-/*///////////////////////////////////
-
-login
-
-///////////////////////////////////*/
-.link {
+.login .link {
     margin-top: 30px;
 }
-
-
