@@ -69,7 +69,6 @@ export const validateInputValue = (e, pagetype) => {
   setValidationEvents(result,targetForm, pagetype);
   renderRequiredFieldMessages(targetForm);  
   toggleDisabledOfSubmitButton(checkAllValidity(pagetype));
-  console.log(isValidStatus);
 } 
 
 export const toggleDisabledOfSubmitButton = (isValid) => {
