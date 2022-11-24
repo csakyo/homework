@@ -6,16 +6,29 @@ const submitButton = document.getElementById('js-submit-button');
 const userInfoInputArea = document.getElementById('name_mail');
 const passwordInputArea = document.getElementById('password');
 const form = document.getElementById('form');
-const pageType = 'login';
 
 
 if(localStorage.getItem('token')) {
   window.location.href = "./index.html";
 }
 
+const checkAllValidity = () => {
+  return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length;
+}
 
-userInfoInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
-passwordInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
+const toggleDisabledOfSubmitButton = (isValid) => {
+  submitButton.disabled = isValid ? false : true;
+}
+
+userInfoInputArea.addEventListener('blur', (e) => { 
+  validateInputValue(e);
+  toggleDisabledOfSubmitButton(checkAllValidity());
+ });
+
+passwordInputArea.addEventListener('blur', (e) => {
+   validateInputValue(e);
+   toggleDisabledOfSubmitButton(checkAllValidity());
+});
 
 
 const checkData = ({ name_mail, user_password }) => {

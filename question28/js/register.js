@@ -1,20 +1,16 @@
-import { isValidStatus } from "./validations";
 import { validateInputValue } from "./validations";
-import { checkAllValidity } from "./validations";
-import { toggleDisabledOfSubmitButton } from "./validations";
 
+export const submitButton = document.getElementById('js-submit-button');
 const textLinkToTerms = document.getElementById('js-terms-textlink');
 const modal = document.getElementById('js-modal');
 const modalClose = document.getElementById('js-close');
 const mask = document.getElementById('js-mask');
 const form = document.getElementById('form');
 const checkbox = document.getElementById('js-checkbox');
-const submitButton = document.getElementById('js-submit-button');
 const modalContainer = document.getElementById("js-modal-container");
 const nameInputArea = document.getElementById('name');
 const mailInputArea = document.getElementById('mail');
 const passwordInputArea = document.getElementById('password');
-const pageType = 'register';
 
 
 textLinkToTerms.addEventListener('click',()=>{
@@ -38,19 +34,32 @@ const checkWhenIntersect = ([entry]) => {
   if (entry.isIntersecting) {
     checkbox.checked = true;
     checkbox.disabled = false;
-    isValidStatus.register.checkbox = true;
-    toggleDisabledOfSubmitButton(checkAllValidity('register') && checkbox.checked);
+    checkbox.classList.add("valid");
+    toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
   };
 };
 
 const observer = new IntersectionObserver(checkWhenIntersect, options);
 observer.observe(modalContainer.lastElementChild);
 
-nameInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
-mailInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
-passwordInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
+
+const checkAllValidity = () => {
+  return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length;
+}
+
+const toggleDisabledOfSubmitButton = (isValid) => {
+  submitButton.disabled = isValid ? false : true;
+}
+
+for (const input of [nameInputArea, mailInputArea, passwordInputArea]) {
+  input.addEventListener("blur", (e) => {
+    validateInputValue(e);
+    toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
+  });
+}
+
 checkbox.addEventListener("change", () => {
-  toggleDisabledOfSubmitButton(checkAllValidity('register') && checkbox.checked);
+  toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
 });
 
 submitButton.addEventListener('click',() => {

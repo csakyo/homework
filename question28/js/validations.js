@@ -1,5 +1,3 @@
-const submitButton = document.getElementById('js-submit-button');
-
 const validationInfo = {
   name_mail: {
       validation: (value) => value,
@@ -22,59 +20,30 @@ const validationInfo = {
   }
 }
 
-export const isValidStatus = {
-  register: {
-    name: false,
-    mail: false,
-    password: false,
-    checkbox: false
-  },
-  login: {
-    name_mail: false,
-    password: false
-  },
-  forgotPassword: {
-    mail: false
-  }
-}
+export const setValidationEvents = (isValid, targetForm) =>
+  isValid ? validEvent(targetForm) : invalidEvent(targetForm);
 
-export const setValidationEvents = (isValid, targetForm, pagetype) =>
-  isValid ? validEvent(targetForm,pagetype) : invalidEvent(targetForm,pagetype);
-
-export const validEvent = (targetForm,pagetype) => {
+export const validEvent = (targetForm) => {
   targetForm.classList.add("valid");
   targetForm.classList.remove("invalid");
   targetForm.nextElementSibling.textContent = "";
-  isValidStatus[pagetype][targetForm.id] = true;
 };
 
-export const invalidEvent = (targetForm,pagetype) => {
-  console.log(pagetype);
+export const invalidEvent = (targetForm) => {
   targetForm.classList.add("invalid");
   targetForm.classList.remove("valid");
-  targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
-  isValidStatus[pagetype][targetForm.id] = false;
-};
 
-export const renderRequiredFieldMessages = (targetForm) => {
   if (targetForm.value.trim() === "") {
     targetForm.nextElementSibling.textContent = "※入力必須項目です";
+    return; 
   }
+
+  targetForm.nextElementSibling.textContent = validationInfo[targetForm.id].errorMessage;
 };
 
-export const validateInputValue = (e, pagetype) => {
+export const validateInputValue = (e) => {
   const targetForm = e.target;
   const value = targetForm.value.trim();
   const result = validationInfo[targetForm.id].validation(value);
-  setValidationEvents(result,targetForm, pagetype);
-  renderRequiredFieldMessages(targetForm);  
-  toggleDisabledOfSubmitButton(checkAllValidity(pagetype));
+  setValidationEvents(result,targetForm);
 } 
-
-export const toggleDisabledOfSubmitButton = (isValid) => {
-  submitButton.disabled = isValid ? false : true;
-}
-
-export const checkAllValidity = (pagetype) => {
-  return Object.values(isValidStatus[pagetype]).every((result) => result );
-}

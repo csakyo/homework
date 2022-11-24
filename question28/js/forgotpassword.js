@@ -5,10 +5,20 @@ const chance = new Chance();
 const submitButton = document.getElementById('js-submit-button');
 const userInfoInputArea = document.getElementById('mail');
 const mailInputArea = document.getElementById('mail');
-const pageType = 'forgotPassword';
 
-  
-userInfoInputArea.addEventListener('blur', (e) => { validateInputValue(e, pageType) });
+
+const checkAllValidity = () => {
+  return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length;
+}
+
+const toggleDisabledOfSubmitButton = (isValid) => {
+  submitButton.disabled = isValid ? false : true;
+}
+
+userInfoInputArea.addEventListener('blur', (e) => {
+  validateInputValue(e);
+  toggleDisabledOfSubmitButton(checkAllValidity());
+});
 
 const init = () => {
   const inputMailData = mailInputArea.value;
