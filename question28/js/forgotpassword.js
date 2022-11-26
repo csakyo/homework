@@ -3,7 +3,6 @@ import { Chance } from "chance";
 const chance = new Chance();
 
 const submitButton = document.getElementById('js-submit-button');
-const userInfoInputArea = document.getElementById('mail');
 const mailInputArea = document.getElementById('mail');
 
 
@@ -15,7 +14,7 @@ const toggleDisabledOfSubmitButton = (isValid) => {
   submitButton.disabled = isValid ? false : true;
 }
 
-userInfoInputArea.addEventListener('blur', (e) => {
+mailInputArea.addEventListener('blur', (e) => {
   validateInputValue(e);
   toggleDisabledOfSubmitButton(checkAllValidity());
 });
