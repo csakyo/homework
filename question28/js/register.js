@@ -1,4 +1,4 @@
-import { validateInputValue } from "./validations";
+import { validateInputValue } from "./modules/validations";
 
 export const submitButton = document.getElementById('js-submit-button');
 const textLinkToTerms = document.getElementById('js-terms-textlink');

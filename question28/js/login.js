@@ -1,4 +1,4 @@
-import { validateInputValue } from "./validations";
+import { validateInputValue } from "./modules/validations";
 import { Chance } from "chance";
 const chance = new Chance();
 
