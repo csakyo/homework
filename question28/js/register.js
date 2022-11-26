@@ -5,12 +5,12 @@ const textLinkToTerms = document.getElementById('js-terms-textlink');
 const modal = document.getElementById('js-modal');
 const modalClose = document.getElementById('js-close');
 const mask = document.getElementById('js-mask');
-const form = document.getElementById('form');
+const form = document.getElementById('js-form');
 const checkbox = document.getElementById('js-checkbox');
 const modalContainer = document.getElementById("js-modal-container");
-const nameInputArea = document.getElementById('name');
-const mailInputArea = document.getElementById('mail');
-const passwordInputArea = document.getElementById('password');
+const nameInputArea = document.querySelector(".js-name");
+const mailInputArea = document.querySelector(".js-email");
+const passwordInputArea = document.querySelector(".js-password");
 
 
 textLinkToTerms.addEventListener('click',()=>{

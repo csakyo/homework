@@ -3,7 +3,7 @@ import { Chance } from "chance";
 const chance = new Chance();
 
 const submitButton = document.getElementById('js-submit-button');
-const mailInputArea = document.getElementById('mail');
+const mailInputArea = document.querySelector(".js-email");
 
 
 const checkAllValidity = () => {

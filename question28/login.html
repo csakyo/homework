@@ -12,17 +12,17 @@
         <div class="login">
             <div id="js-wrapper" class="wrapper">
                 <h1>Login</h1>
-                <form method="post" id="form" novalidate>
+                <form method="post" id="js-form" novalidate>
                     <div>
                         <ul>
                             <li>
                                 <label for="name_mail">ユーザー名/メールアドレス</label>
-                                <input type="text" id="name_mail" name="name_mail" required />
+                                <input type="text" id="name_mail" name="name_mail" class="js-name_mail" required />
                                 <span class="error"></span>
                             </li>
                             <li>
                                 <label for="password">パスワード</label>
-                                <input type="password" id="password" name="user_password" required />
+                                <input type="password" id="password" name="user_password" class="js-password" required />
                                 <span class="error"></span>
                             </li>
                         </ul>

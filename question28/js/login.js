@@ -3,9 +3,9 @@ import { Chance } from "chance";
 const chance = new Chance();
 
 const submitButton = document.getElementById('js-submit-button');
-const userInfoInputArea = document.getElementById('name_mail');
-const passwordInputArea = document.getElementById('password');
-const form = document.getElementById('form');
+const userInfoInputArea = document.querySelector(".js-name_mail");
+const passwordInputArea = document.querySelector(".js-password");
+const form = document.getElementById('js-form');
 
 
 if(localStorage.getItem('token')) {
