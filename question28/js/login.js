@@ -52,8 +52,8 @@ const loginVerification = async() => {
   try {
     return await userDataVerification();
   }
-  catch {
-    return false;
+  catch (e) {
+    console.error(e);
   }
 }
 
