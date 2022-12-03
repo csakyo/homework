@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link href="./css/style.css" rel="stylesheet" />
+        <script type="module" src="./js/login.js"></script>
+        <title>TerraceTechフロントエンドエンジニア養成所</title>
+    </head>
+    <body>
+        <div class="login">
+            <div id="js-wrapper" class="wrapper">
+                <h1>Login</h1>
+                <form method="post" id="js-form" novalidate>
+                    <div>
+                        <ul>
+                            <li>
+                                <label for="name_mail">ユーザー名/メールアドレス</label>
+                                <input type="text" id="name_mail" name="name_mail" class="js-name_mail" required />
+                                <span class="error"></span>
+                            </li>
+                            <li>
+                                <label for="password">パスワード</label>
+                                <input type="password" id="password" name="user_password" class="js-password" required />
+                                <span class="error"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" id="js-submit-button" class="submit_button" disabled>送信</button>
+                </form>
+                <div class="link">
+                    <div>
+                        <a href="./forgotPassword.html">パスワードを忘れた方はこちら</a>
+                    </div>
+                    <div>
+                        <a href="./register.html">会員登録がまだの方はこちら</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
