@@ -48,7 +48,7 @@ const checkAllValidity = () => {
 }
 
 const toggleDisabledOfSubmitButton = (isValid) => {
-  submitButton.disabled = isValid ? false : true;
+  submitButton.disabled = !isValid;
 }
 
 for (const input of [nameInputArea, mailInputArea, passwordInputArea]) {

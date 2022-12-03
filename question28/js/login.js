@@ -17,7 +17,7 @@ const checkAllValidity = () => {
 }
 
 const toggleDisabledOfSubmitButton = (isValid) => {
-  submitButton.disabled = isValid ? false : true;
+  submitButton.disabled = !isValid;
 }
 
 userInfoInputArea.addEventListener('blur', (e) => { 

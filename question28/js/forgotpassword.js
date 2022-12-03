@@ -11,7 +11,7 @@ const checkAllValidity = () => {
 }
 
 const toggleDisabledOfSubmitButton = (isValid) => {
-  submitButton.disabled = isValid ? false : true;
+  submitButton.disabled = !isValid;
 }
 
 mailInputArea.addEventListener('blur', (e) => {
