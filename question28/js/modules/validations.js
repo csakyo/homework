@@ -17,6 +17,10 @@ const validationInfo = {
   password: {
     validation : (value) => /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/.test(value),
     errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。'  
+  },
+  confirmPassword: {
+    validation : (value) => /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/.test(value),
+    errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。' 
   }
 }
 

@@ -63,7 +63,15 @@ checkbox.addEventListener("change", () => {
 });
 
 submitButton.addEventListener('click',() => {
-  const userData = Object.fromEntries([...new FormData(form)]);
-  localStorage.setItem('userData', JSON.stringify(userData)); 
+  const registeredUserData = JSON.parse(localStorage.getItem('userData'));
+  const inputUserData = Object.fromEntries([...new FormData(form)]);
+
+  if (registeredUserData && registeredUserData.user_email === inputUserData.user_email) {
+    mailInputArea.nextElementSibling.textContent = "すでに登録されているメールアドレスです";
+    submitButton.disabled = true;
+    return;
+  }
+
+  localStorage.setItem('userData', JSON.stringify(inputUserData)); 
   window.location.href = './register-done.html';
 })
