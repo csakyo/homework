@@ -15,12 +15,12 @@ const validationInfo = {
     errorMessage: '※メールアドレスの形式になっていません。' 
   },
   password: {
-    validation : (value) => /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/.test(value),
+    validation : (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/.test(value),
     errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。'  
   },
   confirmPassword: {
-    validation : (value) => /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/.test(value),
-    errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。' 
+    validation : (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/.test(value),
+    errorMessage: '※8文字以上の大小の英数字を交ぜたものにしてください。'  
   }
 }
 
