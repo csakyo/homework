@@ -21,7 +21,7 @@ mailInputArea.addEventListener('blur', (e) => {
 
 const checkData = (emailAddressValue) => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
-  return ((emailAddressValue === registeredUserData.user_email));
+  return emailAddressValue === registeredUserData.user_email;
 }
 
 const userDataVerification = () => {
