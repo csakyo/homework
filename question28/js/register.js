@@ -35,7 +35,7 @@ const checkWhenIntersect = ([entry]) => {
     checkbox.checked = true;
     checkbox.disabled = false;
     checkbox.classList.add("valid");
-    toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
+    toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
   };
 };
 
@@ -43,7 +43,7 @@ const observer = new IntersectionObserver(checkWhenIntersect, options);
 observer.observe(modalContainer.lastElementChild);
 
 
-const checkAllValidity = () => {
+const isValidAllInputsValue = () => {
   return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length;
 }
 
@@ -54,12 +54,12 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 for (const input of [nameInputArea, mailInputArea, passwordInputArea]) {
   input.addEventListener("blur", (e) => {
     validateInputValue(e);
-    toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
+    toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
   });
 }
 
 checkbox.addEventListener("change", () => {
-  toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
+  toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
 });
 
 submitButton.addEventListener('click',() => {

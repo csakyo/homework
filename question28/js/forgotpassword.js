@@ -6,7 +6,7 @@ const submitButton = document.getElementById('js-submit-button');
 const mailInputArea = document.querySelector(".js-email");
 
 
-const checkAllValidity = () => {
+const isValidAllInputsValue = () => {
   return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length;
 }
 
@@ -16,7 +16,7 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 
 mailInputArea.addEventListener('blur', (e) => {
   validateInputValue(e);
-  toggleDisabledOfSubmitButton(checkAllValidity());
+  toggleDisabledOfSubmitButton(isValidAllInputsValue());
 });
 
 const checkData = (emailAddressValue) => {

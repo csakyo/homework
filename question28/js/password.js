@@ -5,7 +5,7 @@ const passwordInputArea = document.querySelector(".js-password");
 const confirmPasswordInputArea = document.querySelector(".js-confirm-password");
 
 
-const checkAllValidity = () => {
+const isValidAllInputsValue = () => {
   return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length && passwordInputArea.value === confirmPasswordInputArea.value;
 }
 
@@ -23,7 +23,7 @@ for (const input of [passwordInputArea, confirmPasswordInputArea]) {
       showErrorMessageInputValuesMismatch(); 
     }
     
-    toggleDisabledOfSubmitButton(checkAllValidity());
+    toggleDisabledOfSubmitButton(isValidAllInputsValue());
   });
 }
 
