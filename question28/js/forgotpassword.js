@@ -54,9 +54,8 @@ const init = async () => {
   }
 
   const tokenForPasswordReset = verificationResult.token;
-  const passwordResetPageUrl = "./register/password.html";
   localStorage.setItem('tokenForforgotPassword', tokenForPasswordReset);
-  window.location.href = `${passwordResetPageUrl}?token=${tokenForPasswordReset}`;
+  window.location.href = `./register/password.html?token=${tokenForPasswordReset}`;
 }
 
 submitButton.addEventListener('click',init);
