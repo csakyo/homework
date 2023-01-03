@@ -13,15 +13,17 @@ const toggleDisabledOfSubmitButton = (isValid) => {
   submitButton.disabled = !isValid;
 }
 
-const showErrorMessageInputValuesMismatch = () => confirmPasswordInputArea.nextElementSibling.textContent = passwordInputArea.value !== confirmPasswordInputArea.value ? "入力されたパスワードが一致しませんでした" : "";
-
 for (const input of [passwordInputArea, confirmPasswordInputArea]) {
   input.addEventListener("blur", (e) => {
     validateInputValue(e);
-    
-    if (passwordInputArea.value && confirmPasswordInputArea.value) {
-      showErrorMessageInputValuesMismatch(); 
+
+    if (isValidAllInputsValue()) {
+      confirmPasswordInputArea.nextElementSibling.textContent = ""; 
     }
+    
+    if (passwordInputArea.value && confirmPasswordInputArea.value && passwordInputArea.value !== confirmPasswordInputArea.value) {
+      confirmPasswordInputArea.nextElementSibling.textContent = "入力された値が一致してません";
+    } 
     
     toggleDisabledOfSubmitButton(isValidAllInputsValue());
   });
