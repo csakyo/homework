@@ -31,9 +31,9 @@ passwordInputArea.addEventListener('blur', (e) => {
 });
 
 
-const checkData = ({ name_mail, user_password }) => {
+const checkData = ({ name_mail, password }) => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
-  return ((name_mail === registeredUserData.user_email || name_mail === registeredUserData.user_name) && (user_password === registeredUserData.user_password));
+  return ((name_mail === registeredUserData.email || name_mail === registeredUserData.name) && (password === registeredUserData.password));
 }
 
 

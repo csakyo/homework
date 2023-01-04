@@ -66,7 +66,7 @@ submitButton.addEventListener('click',() => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
   const inputUserData = Object.fromEntries([...new FormData(form)]);
 
-  if (registeredUserData && registeredUserData.user_email === inputUserData.user_email) {
+  if (registeredUserData && registeredUserData.email === inputUserData.email) {
     mailInputArea.nextElementSibling.textContent = "すでに登録されているメールアドレスです";
     submitButton.disabled = true;
     return;
