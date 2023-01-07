@@ -35,7 +35,7 @@ const checkWhenIntersect = ([entry]) => {
     checkbox.checked = true;
     checkbox.disabled = false;
     checkbox.classList.add("valid");
-    toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
+    toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
   };
 };
 
@@ -43,7 +43,7 @@ const observer = new IntersectionObserver(checkWhenIntersect, options);
 observer.observe(modalContainer.lastElementChild);
 
 
-const checkAllValidity = () => {
+const isValidAllInputsValue = () => {
   return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length;
 }
 
@@ -54,16 +54,24 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 for (const input of [nameInputArea, mailInputArea, passwordInputArea]) {
   input.addEventListener("blur", (e) => {
     validateInputValue(e);
-    toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
+    toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
   });
 }
 
 checkbox.addEventListener("change", () => {
-  toggleDisabledOfSubmitButton(checkAllValidity() && checkbox.checked);
+  toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
 });
 
 submitButton.addEventListener('click',() => {
-  const userData = Object.fromEntries([...new FormData(form)]);
-  localStorage.setItem('userData', JSON.stringify(userData)); 
+  const registeredUserData = JSON.parse(localStorage.getItem('userData'));
+  const inputUserData = Object.fromEntries([...new FormData(form)]);
+
+  if (registeredUserData && registeredUserData.email === inputUserData.email) {
+    mailInputArea.nextElementSibling.textContent = "すでに登録されているメールアドレスです";
+    submitButton.disabled = true;
+    return;
+  }
+
+  localStorage.setItem('userData', JSON.stringify(inputUserData)); 
   window.location.href = './register-done.html';
 })

@@ -6,7 +6,7 @@ const submitButton = document.getElementById('js-submit-button');
 const mailInputArea = document.querySelector(".js-email");
 
 
-const checkAllValidity = () => {
+const isValidAllInputsValue = () => {
   return document.getElementsByTagName("input").length === document.getElementsByClassName("valid").length;
 }
 
@@ -16,24 +16,46 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 
 mailInputArea.addEventListener('blur', (e) => {
   validateInputValue(e);
-  toggleDisabledOfSubmitButton(checkAllValidity());
+  toggleDisabledOfSubmitButton(isValidAllInputsValue());
 });
 
-const init = () => {
-  const inputMailData = mailInputArea.value;
+const checkData = (emailAddressValue) => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
+  return emailAddressValue === registeredUserData.email;
+}
 
-  if (registeredUserData === null) {
-    window.location.href = './notautherize.html';
+const userDataVerification = () => {
+  const userData = mailInputArea.value;
+  return new Promise((resolve,reject) => {
+    if (checkData(userData)){
+      resolve({ token: chance.apple_token(), ok: true, code: 200 });
+    } else {
+      reject({ ok: false, code: 401 }); 
+    }
+  })
+}
+
+const checkExistenceOfUserdata = async() => {
+  try {
+    return await userDataVerification();
+  }
+  catch (e) {
+    console.error(e);
+  }
+}
+
+const init = async () => {
+  const verificationResult = await checkExistenceOfUserdata();
+
+  if (!verificationResult) {
+    mailInputArea.nextElementSibling.textContent = "会員登録されていないか入力値が間違っています";
+    submitButton.disabled = true;
     return; 
   }
-  if (registeredUserData.user_email === inputMailData) {
-    const tokenForPasswordReset = chance.apple_token();
-    const passwordResetPageUrl = "./register/password.html";
-    window.location.href = `${passwordResetPageUrl}?token=${tokenForPasswordReset}`;
-    return; 
-  }
-  window.location.href = './notautherize.html';
+
+  const tokenForPasswordReset = verificationResult.token;
+  localStorage.setItem('tokenForforgotPassword', tokenForPasswordReset);
+  window.location.href = `./register/password.html?token=${tokenForPasswordReset}`;
 }
 
 submitButton.addEventListener('click',init);
