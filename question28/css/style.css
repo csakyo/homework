@@ -118,7 +118,7 @@ form li {
 }
 input {
     width: 100%;
-    border: 1px solid #80808052;
+    border: 1px solid #ccc;
     height: 45px;
     border-radius: 3px;
 }
@@ -207,7 +207,7 @@ input.valid {
     color: #6a6f71;
     font-weight: bold;
     background: #f1f4f6;
-    border: 1px solid #80808052;
+    border: 1px solid #ccc;
     border-radius: 8px;
     padding: 5px 10px;
     letter-spacing: 2px;
