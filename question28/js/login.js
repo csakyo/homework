@@ -7,7 +7,7 @@ const submitButton = document.getElementById('js-submit-button');
 const userInfoInputArea = document.querySelector(".js-name_mail");
 const passwordInputArea = document.querySelector(".js-password");
 const form = document.getElementById('js-form');
-const passwordToggleButton = document.querySelector('.js-toggle-password-button');
+const passwordToggleButton = document.getElementById('js-toggle-password-button');
 
 
 if(localStorage.getItem('token')) {
