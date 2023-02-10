@@ -32,7 +32,7 @@ passwordInputArea.addEventListener('blur', (e) => {
    toggleDisabledOfSubmitButton(checkAllValidity());
 });
 
-passwordToggleButton.addEventListener('click', (e) => togglePassword(e.target)); 
+passwordToggleButton.addEventListener('click', togglePassword); 
 
 const checkData = ({ name_mail, password }) => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));

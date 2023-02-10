@@ -37,7 +37,7 @@ for (const input of [passwordInputArea, confirmPasswordInputArea]) {
 }
 
 passwordToggleButtons.forEach((passwordToggleButton) => {
-  passwordToggleButton.addEventListener('click', (e) => togglePassword (e.target)); 
+  passwordToggleButton.addEventListener('click', togglePassword); 
 });
 
 const init = () => {

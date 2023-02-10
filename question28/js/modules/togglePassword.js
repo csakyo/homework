@@ -1,11 +1,11 @@
-export const togglePassword = (target) => {
-  if (target.nextElementSibling.type === 'password') {
-    target.nextElementSibling.type = 'text';
-    target.textContent = '非表示';
-    target.setAttribute('aria-label', 'パスワードを非表示にします');
+export const togglePassword = (e) => {
+  if (e.target.nextElementSibling.type === 'password') {
+    e.target.nextElementSibling.type = 'text';
+    e.target.textContent = '非表示';
+    e.target.setAttribute('aria-label', 'パスワードを非表示にします');
   } else {
-    target.nextElementSibling.type = 'password';
-    target.textContent = '表示';
-    target.setAttribute('aria-label', 'パスワードを表示にします');
+    e.target.nextElementSibling.type = 'password';
+    e.target.textContent = '表示';
+    e.target.setAttribute('aria-label', 'パスワードを表示にします');
   }
 }
