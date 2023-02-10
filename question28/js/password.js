@@ -4,7 +4,7 @@ import { togglePassword } from "./modules/togglePassword";
 const submitButton = document.getElementById('js-submit-button');
 const passwordInputArea = document.querySelector(".js-password");
 const confirmPasswordInputArea = document.querySelector(".js-confirm-password");
-const passwordToggleButtons = document.querySelectorAll('[name="toggle-password-button"]');
+const passwordToggleButtons = document.querySelectorAll('[data-button]');
 
 const url = new URL(window.location.href);
 const params = url.searchParams;
