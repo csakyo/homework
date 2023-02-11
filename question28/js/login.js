@@ -1,4 +1,5 @@
 import { validateInputValue } from "./modules/validations";
+import { togglePassword } from "./modules/togglePassword";
 import { Chance } from "chance";
 const chance = new Chance();
 
@@ -6,6 +7,7 @@ const submitButton = document.getElementById('js-submit-button');
 const userInfoInputArea = document.querySelector(".js-name_mail");
 const passwordInputArea = document.querySelector(".js-password");
 const form = document.getElementById('js-form');
+const passwordToggleButton = document.getElementById('js-toggle-password-button');
 
 
 if(localStorage.getItem('token')) {
@@ -30,6 +32,7 @@ passwordInputArea.addEventListener('blur', (e) => {
    toggleDisabledOfSubmitButton(checkAllValidity());
 });
 
+passwordToggleButton.addEventListener('click', togglePassword); 
 
 const checkData = ({ name_mail, password }) => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));

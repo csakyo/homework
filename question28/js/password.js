@@ -1,8 +1,15 @@
 import { validateInputValue } from "./modules/validations";
+import { togglePassword } from "./modules/togglePassword";
 
 const submitButton = document.getElementById('js-submit-button');
 const passwordInputArea = document.querySelector(".js-password");
 const confirmPasswordInputArea = document.querySelector(".js-confirm-password");
+const passwordToggleButtons = document.querySelectorAll('[data-button]');
+
+const url = new URL(window.location.href);
+const params = url.searchParams;
+
+if(params.get('token') !== localStorage.getItem('tokenForforgotPassword')) window.location.href = ('../notautherize.html');
 
 
 const isValidAllInputsValue = () => {
@@ -29,6 +36,9 @@ for (const input of [passwordInputArea, confirmPasswordInputArea]) {
   });
 }
 
+passwordToggleButtons.forEach((passwordToggleButton) => {
+  passwordToggleButton.addEventListener('click', togglePassword); 
+});
 
 const init = () => {
   console.log('未実装です');
