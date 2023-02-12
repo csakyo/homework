@@ -1,4 +1,4 @@
-.form-title {
+.form_title {
     text-align: center;
     color: #000;
     font-size: 30px;
@@ -6,7 +6,7 @@
     font-family: 'Didot', sans-serif;
     letter-spacing: 2px;
 }
-.form-list {
+.form_list {
     position: relative;
     margin-bottom: 20px;
     height: 75px;
@@ -67,7 +67,7 @@ input.valid {
     vertical-align: middle;
     margin-right: 8px;
 }
-.password-toggle-button {
+.password_toggle_button {
     color: #6a6f71;
     font-weight: bold;
     background: #f1f4f6;
