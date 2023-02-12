@@ -2,8 +2,8 @@ import { validateInputValue } from "./modules/validations";
 import { togglePassword } from "./modules/togglePassword";
 
 const submitButton = document.getElementById('js-submit-button');
-const passwordInputArea = document.querySelector(".js-password");
-const confirmPasswordInputArea = document.querySelector(".js-confirm-password");
+const passwordInputArea = document.querySelector('[data-input="password"]');
+const confirmPasswordInputArea = document.querySelector('[data-input="confirm-password"]');
 const passwordToggleButtons = document.querySelectorAll('[data-button]');
 
 const url = new URL(window.location.href);
