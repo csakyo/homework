@@ -40,8 +40,18 @@ passwordToggleButtons.forEach((passwordToggleButton) => {
   passwordToggleButton.addEventListener('click', togglePassword); 
 });
 
+const setNewPassword = () => {
+  const newPasswordValue = passwordInputArea.value;
+  const registeredUserData = localStorage.getItem('userData'); 
+  const registeredUserJsonData = JSON.parse(registeredUserData);
+  registeredUserJsonData.password = newPasswordValue; 
+  const newUserData = JSON.stringify(registeredUserJsonData);
+  localStorage.setItem('userData', newUserData);
+}
+
 const init = () => {
-  console.log('未実装です');
+  setNewPassword ();
+  window.location.href = './password-done.html';
 }
 
 submitButton.addEventListener('click',init);

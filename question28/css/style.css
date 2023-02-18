@@ -70,26 +70,6 @@ body {
 .mask.hidden {
     display: none;
 }
-.register-done {
-    max-width: 800px;
-    padding: 30px;
-    border-radius: 10px;
-    background: #fff;
-    margin: 30px auto;
-    text-align: center;
-    width: 100%;
-    box-shadow: 3px 6px 10px #999;
-}
-.register-done p {
-    color: #353030;
-}
-.register-done_txt {
-    color: #353030;
-    margin-bottom: 2rem;
-}
-.register-done_txt p:first-child{
-    font-size: 30px;
-}
 .login .link {
     margin-top: 30px;
 }

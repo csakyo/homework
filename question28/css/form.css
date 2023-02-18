@@ -82,4 +82,20 @@ input.valid {
     cursor: pointer;
     font-size: 15px;
 }
-
+.done {
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 10px;
+    background: #fff;
+    margin: 30px auto;
+    text-align: center;
+    width: 100%;
+    box-shadow: 3px 6px 10px #999;
+}
+.done_txt {
+    color: #353030;
+    margin-bottom: 2rem;
+}
+.done_txt p:first-child{
+    font-size: 30px;
+}
