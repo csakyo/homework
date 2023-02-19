@@ -1,5 +1,7 @@
 import { validateInputValue } from "./modules/validations";
 import { togglePassword } from "./modules/togglePassword";
+import { Chance } from "chance";
+const chance = new Chance();
 
 const submitButton = document.getElementById('js-submit-button');
 const passwordInputArea = document.querySelector('[data-input="password"]');
@@ -51,7 +53,9 @@ const setNewPassword = () => {
 
 const init = () => {
   setNewPassword ();
-  window.location.href = './password-done.html';
+  const takenForSetNewPassword = chance.apple_token();
+  localStorage.setItem('takenForSetNewPassword', takenForSetNewPassword);
+  window.location.href = `./password-done.html?token=${takenForSetNewPassword}`;
 }
 
 submitButton.addEventListener('click',init);
