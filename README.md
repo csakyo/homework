@@ -6,7 +6,7 @@ JS課題に取り組み、gitのPRにて課題を提出、それぞれレビュ�
 課題で学んだことや、いただいたレビューなどは[ブログ](https://sakyou.net/)でアウトプットしています。
 
 
-|  課題NO.  |  内容|　ブログでのまとめ　|
+|  課題NO.  |内容|ブログでのまとめ/<br>codesandbox|
 | :----: | ---- | :----: | 
 |  1  |  【DOM構築】このDOMをhtml内のulの中に差し込んでください  ||
 |  2  |  【DOM構築】このDOMをJavaScriptでつくり、html内のulの中に差し込んでください |　|
@@ -24,9 +24,9 @@ JS課題に取り組み、gitのPRにて課題を提出、それぞれレビュ�
 |  14  |  【擬似的にAPIを扱う】13で作ったモーダル内にinput (typeはnumber)をおいて、クリックした際にinput(type number)のvalueを取得して、リクエストできるようにしてください。 |
 |  15  |  【擬似的にAPIを扱う】モーダル内に formをおいて、input(type number)値、input(type text)、を新たに作ったsubmitボタン押下でリクエスト、APIから値を取ってきてください |
 |  16  |  【ニュースUIコンポーネント作成】擬似的なAPIを使用し、Newsのデータとして画面に表示させる。 |
-|  17  |  【スライドショー作成】擬似的なAPIを使用し、画像のデータを取得し、クリックで差し代わるスライドショー |[Blog](https://sakyou.net/javascript/tast17/)|
-|  18  |  【スライドショー作成】スライドショーにドットのページネーションを追加。また、自動で画像が切り替わる機能の実装。 |[Blog](https://sakyou.net/javascript/task18/)|
-|  19  |  【コンテンツを組み合わせる】ニュースUIコンポーネントとスライドショーを合わせる|[Blog](https://sakyou.net/javascript/task19/)|
+|  17  |  【スライドショー作成】擬似的なAPIを使用し、画像のデータを取得し、クリックで差し代わるスライドショー |[Blog](https://sakyou.net/javascript/tast17/)<br>[codesandbox](https://codesandbox.io/s/red-glitter-hckl9r?file=/main.js)|
+|  18  |  【スライドショー作成】スライドショーにドットのページネーションを追加。また、自動で画像が切り替わる機能の実装。 |[Blog](https://sakyou.net/javascript/task18/)<br>[codesandbox](https://codesandbox.io/s/cool-mestorf-21gqtz?file=/main.js)|
+|  19  |  【コンテンツを組み合わせる】ニュースUIコンポーネントとスライドショーを合わせる|[Blog](https://sakyou.net/javascript/task19/)<br>[codesandbox](https://codesandbox.io/s/smoosh-cdn-fvfqlv)|
 |  20  |  【ユーザーテーブル作成】APIから情報を取得し、テーブルとしてDOM構築する|[Blog](https://sakyou.net/javascript/task20/)|
 |  21  |  【ユーザーテーブルにソート機能実装】ボタン押下でidによるソート機能の実装|[Blog](https://sakyou.net/javascript/task21/)|
 |  22  |  【ユーザーテーブルにソート機能実装】idに加え、年齢でのソートを追加|[Blog](https://sakyou.net/javascript/task22/)|
