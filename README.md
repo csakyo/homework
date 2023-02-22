@@ -1,6 +1,8 @@
 # マークアップエンジニアの方がフロントエンドエンジニアになる為の課題
+## JavaScriptの課題について
+もりけん塾ではJavaScriptの課題[マークアップエンジニアの方がフロントエンドエンジニアになる為の課題](https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md)に取り組んでいます。<br>
 ### もりけん塾について
-もりけん塾ではJavaScriptの課題[マークアップエンジニアの方がフロントエンドエンジニアになる為の課題](https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md)に取り組んでいます。<br>gitのPRにて課題提出し、それぞれレビューをし合っています。<br>
+JS課題に取り組み、gitのPRにて課題を提出、それぞれレビューをし合っています。<br>
 課題で学んだことや、いただいたレビューなどは[ブログ](https://sakyou.net/)でアウトプットしています。
 
 
