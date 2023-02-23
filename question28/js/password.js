@@ -53,7 +53,7 @@ const setNewPassword = () => {
 
 const init = () => {
   setNewPassword ();
-  const takenForSetNewPassword = chance.apple_token();
+  const takenForSetNewPassword = chance.guid();
   localStorage.setItem('takenForSetNewPassword', takenForSetNewPassword);
   localStorage.removeItem("tokenForforgotPassword");
   window.location.href = `./password-done.html?token=${takenForSetNewPassword}`;
