@@ -11,7 +11,7 @@ const passwordToggleButtons = document.querySelectorAll('[data-button]');
 const url = new URL(window.location.href);
 const params = url.searchParams;
 
-if(params.get('token') !== localStorage.getItem('tokenForforgotPassword')) window.location.href = ('../notautherize.html');
+if(params.get('token') !== localStorage.getItem('tokenForPasswordReset')) window.location.href = ('../notautherize.html');
 
 
 const isValidAllInputsValue = () => {
@@ -53,10 +53,10 @@ const setNewPassword = () => {
 
 const init = () => {
   setNewPassword ();
-  const takenForSetNewPassword = chance.guid();
-  localStorage.setItem('takenForSetNewPassword', takenForSetNewPassword);
-  localStorage.removeItem("tokenForforgotPassword");
-  window.location.href = `./password-done.html?token=${takenForSetNewPassword}`;
+  const token = chance.guid();
+  localStorage.setItem('tokenForNewPassword', token);
+  localStorage.removeItem('tokenForPasswordReset');
+  window.location.href = `./password-done.html?token=${token}`;
 }
 
 submitButton.addEventListener('click',init);

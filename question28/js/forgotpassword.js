@@ -53,9 +53,9 @@ const init = async () => {
     return; 
   }
 
-  const tokenForPasswordReset = verificationResult.token;
-  localStorage.setItem('tokenForforgotPassword', tokenForPasswordReset);
-  window.location.href = `./register/password.html?token=${tokenForPasswordReset}`;
+  const token = verificationResult.token;
+  localStorage.setItem('tokenForPasswordReset', token);
+  window.location.href = `./register/password.html?token=${token}`;
 }
 
 submitButton.addEventListener('click',init);
