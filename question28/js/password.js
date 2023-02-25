@@ -7,7 +7,6 @@ const submitButton = document.getElementById('js-submit-button');
 const passwordInputArea = document.querySelector('[data-input="password"]');
 const confirmPasswordInputArea = document.querySelector('[data-input="confirm-password"]');
 const passwordToggleButtons = document.querySelectorAll('[data-button]');
-// const newPasswordValue = passwordInputArea.value;
 
 const url = new URL(window.location.href);
 const params = url.searchParams;
