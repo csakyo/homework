@@ -7,6 +7,7 @@ const submitButton = document.getElementById('js-submit-button');
 const passwordInputArea = document.querySelector('[data-input="password"]');
 const confirmPasswordInputArea = document.querySelector('[data-input="confirm-password"]');
 const passwordToggleButtons = document.querySelectorAll('[data-button]');
+// const newPasswordValue = passwordInputArea.value;
 
 const url = new URL(window.location.href);
 const params = url.searchParams;
@@ -42,20 +43,20 @@ passwordToggleButtons.forEach((passwordToggleButton) => {
   passwordToggleButton.addEventListener('click', togglePassword); 
 });
 
-const setNewPassword = () => {
+const setNewPassword = (newPasswordValue) => {
   const registeredUserData = localStorage.getItem('userData');
   if(!registeredUserData) {
     window.location.href = "../notautherize.html";
   }
   const registeredUserJsonData = JSON.parse(registeredUserData);
-  const newPasswordValue = passwordInputArea.value;
   registeredUserJsonData.password = newPasswordValue; 
   const newUserData = JSON.stringify(registeredUserJsonData);
   localStorage.setItem('userData', newUserData);
 }
 
 const init = () => {
-  setNewPassword ();
+  const newPasswordValue = passwordInputArea.value;
+  setNewPassword(newPasswordValue);
   const token = chance.guid();
   localStorage.setItem('tokenForNewPassword', token);
   localStorage.removeItem('tokenForPasswordReset');
