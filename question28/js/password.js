@@ -43,9 +43,13 @@ passwordToggleButtons.forEach((passwordToggleButton) => {
 });
 
 const setNewPassword = () => {
-  const newPasswordValue = passwordInputArea.value;
-  const registeredUserData = localStorage.getItem('userData'); 
+  const registeredUserData = localStorage.getItem('userData');
+  if(!registeredUserData) {
+    window.location.href = "../notautherize.html";;
+    return;
+  }
   const registeredUserJsonData = JSON.parse(registeredUserData);
+  const newPasswordValue = passwordInputArea.value;
   registeredUserJsonData.password = newPasswordValue; 
   const newUserData = JSON.stringify(registeredUserJsonData);
   localStorage.setItem('userData', newUserData);
@@ -56,7 +60,7 @@ const init = () => {
   const token = chance.guid();
   localStorage.setItem('tokenForNewPassword', token);
   localStorage.removeItem('tokenForPasswordReset');
-  window.location.href = `./password-done.html?token=${token}`;
+  // window.location.href = `./password-done.html?token=${token}`;
 }
 
 submitButton.addEventListener('click',init);
