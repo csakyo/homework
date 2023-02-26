@@ -42,20 +42,20 @@ passwordToggleButtons.forEach((passwordToggleButton) => {
   passwordToggleButton.addEventListener('click', togglePassword); 
 });
 
-const setNewPassword = (newPasswordValue) => {
+const setNewPassword = (passwordValue) => {
   const registeredUserData = localStorage.getItem('userData');
   if(!registeredUserData) {
     window.location.href = "../notautherize.html";
   }
   const registeredUserJsonData = JSON.parse(registeredUserData);
-  registeredUserJsonData.password = newPasswordValue; 
+  registeredUserJsonData.password = passwordValue; 
   const newUserData = JSON.stringify(registeredUserJsonData);
   localStorage.setItem('userData', newUserData);
 }
 
 const init = () => {
-  const newPasswordValue = passwordInputArea.value;
-  setNewPassword(newPasswordValue);
+  const passwordValue = passwordInputArea.value;
+  setNewPassword(passwordValue);
   const token = chance.guid();
   localStorage.setItem('tokenForNewPassword', token);
   localStorage.removeItem('tokenForPasswordReset');
