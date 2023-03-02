@@ -23,6 +23,9 @@ input.invalid {
 input.valid {
     border: 2px solid #94c35d;
 }
+input.invalid_mismatch {
+    border: 2px solid red;
+}
 .error {
     color: red;
     font-size: 12px;

@@ -25,22 +25,24 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 for (const input of [passwordInputArea, confirmPasswordInputArea]) {
   input.addEventListener("blur", (e) => {
     validateInputValue(e);
-
+    
+    if (confirmPasswordInputArea.value && !(passwordInputArea.value === confirmPasswordInputArea.value)) {
+        confirmPasswordInputArea.nextElementSibling.textContent = "入力された値が一致してません";
+        confirmPasswordInputArea.classList.add("invalid_mismatch");
+      }
+      
     if (isValidAllInputsValue()) {
-      confirmPasswordInputArea.nextElementSibling.textContent = ""; 
+      confirmPasswordInputArea.nextElementSibling.textContent = "";
+      confirmPasswordInputArea.classList.remove("invalid_mismatch");
     }
-    
-    if (passwordInputArea.value && confirmPasswordInputArea.value && passwordInputArea.value !== confirmPasswordInputArea.value) {
-      confirmPasswordInputArea.nextElementSibling.textContent = "入力された値が一致してません";
-    } 
-    
-    toggleDisabledOfSubmitButton(isValidAllInputsValue());
-  });
-}
 
-passwordToggleButtons.forEach((passwordToggleButton) => {
-  passwordToggleButton.addEventListener('click', togglePassword); 
-});
+      toggleDisabledOfSubmitButton(isValidAllInputsValue());
+    });
+  }
+  
+  passwordToggleButtons.forEach((passwordToggleButton) => {
+    passwordToggleButton.addEventListener('click', togglePassword); 
+  });
 
 const setNewPassword = (passwordValue) => {
   const registeredUserData = localStorage.getItem('userData');
