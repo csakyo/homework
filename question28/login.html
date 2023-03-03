@@ -4,25 +4,27 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link href="./css/style.css" rel="stylesheet" />
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/common.css" rel="stylesheet" />
+        <link href="../css/form.css" rel="stylesheet" />
         <script type="module" src="./js/login.js"></script>
         <title>TerraceTechフロントエンドエンジニア養成所</title>
     </head>
     <body>
         <div class="login">
             <div id="js-wrapper" class="wrapper">
-                <h1>Login</h1>
+                <h1 class="form_title">Login</h1>
                 <form method="post" id="js-form" novalidate>
                     <div>
                         <ul>
-                            <li>
+                            <li class="form_list">
                                 <label for="name_mail">ユーザー名/メールアドレス</label>
                                 <input type="text" id="name_mail" name="name_mail" class="js-name_mail" required />
                                 <span class="error"></span>
                             </li>
-                            <li class="form-list">
+                            <li class="form_list">
                                 <label for="password">パスワード</label>
-                                <button type="button" class="password-toggle-button" id="js-toggle-password-button">表示</button>
+                                <button type="button" class="password_toggle_button" id="js-toggle-password-button">表示</button>
                                 <input type="password" autocomplete="current-password" id="current-password" name="password" class="js-password" required />
                                 <span class="error"></span>
                             </li>

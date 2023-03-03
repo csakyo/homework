@@ -1,15 +1,17 @@
 import { validateInputValue } from "./modules/validations";
 import { togglePassword } from "./modules/togglePassword";
+import { Chance } from "chance";
+const chance = new Chance();
 
 const submitButton = document.getElementById('js-submit-button');
-const passwordInputArea = document.querySelector(".js-password");
-const confirmPasswordInputArea = document.querySelector(".js-confirm-password");
+const passwordInputArea = document.querySelector('[data-input="password"]');
+const confirmPasswordInputArea = document.querySelector('[data-input="confirm-password"]');
 const passwordToggleButtons = document.querySelectorAll('[data-button]');
 
 const url = new URL(window.location.href);
 const params = url.searchParams;
 
-if(params.get('token') !== localStorage.getItem('tokenForforgotPassword')) window.location.href = ('../notautherize.html');
+if(params.get('token') !== localStorage.getItem('tokenForPasswordReset')) window.location.href = ('../notautherize.html');
 
 
 const isValidAllInputsValue = () => {
@@ -23,25 +25,43 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 for (const input of [passwordInputArea, confirmPasswordInputArea]) {
   input.addEventListener("blur", (e) => {
     validateInputValue(e);
-
+    
+    if (confirmPasswordInputArea.value && !(passwordInputArea.value === confirmPasswordInputArea.value)) {
+        confirmPasswordInputArea.nextElementSibling.textContent = "入力された値が一致してません";
+        confirmPasswordInputArea.classList.add("invalid_mismatch");
+      }
+      
     if (isValidAllInputsValue()) {
-      confirmPasswordInputArea.nextElementSibling.textContent = ""; 
+      confirmPasswordInputArea.nextElementSibling.textContent = "";
+      confirmPasswordInputArea.classList.remove("invalid_mismatch");
     }
-    
-    if (passwordInputArea.value && confirmPasswordInputArea.value && passwordInputArea.value !== confirmPasswordInputArea.value) {
-      confirmPasswordInputArea.nextElementSibling.textContent = "入力された値が一致してません";
-    } 
-    
-    toggleDisabledOfSubmitButton(isValidAllInputsValue());
+
+      toggleDisabledOfSubmitButton(isValidAllInputsValue());
+    });
+  }
+  
+  passwordToggleButtons.forEach((passwordToggleButton) => {
+    passwordToggleButton.addEventListener('click', togglePassword); 
   });
+
+const setNewPassword = (passwordValue) => {
+  const registeredUserData = localStorage.getItem('userData');
+  if(!registeredUserData) {
+    window.location.href = "../notautherize.html";
+  }
+  const registeredUserJsonData = JSON.parse(registeredUserData);
+  registeredUserJsonData.password = passwordValue; 
+  const newUserData = JSON.stringify(registeredUserJsonData);
+  localStorage.setItem('userData', newUserData);
 }
 
-passwordToggleButtons.forEach((passwordToggleButton) => {
-  passwordToggleButton.addEventListener('click', togglePassword); 
-});
-
 const init = () => {
-  console.log('未実装です');
+  const passwordValue = passwordInputArea.value;
+  setNewPassword(passwordValue);
+  const token = chance.guid();
+  localStorage.setItem('tokenForNewPassword', token);
+  localStorage.removeItem('tokenForPasswordReset');
+  window.location.href = `./password-done.html?token=${token}`;
 }
 
 submitButton.addEventListener('click',init);

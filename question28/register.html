@@ -4,27 +4,29 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link href="./css/style.css" rel="stylesheet" />
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/common.css" rel="stylesheet" />
+        <link href="../css/form.css" rel="stylesheet" />
         <script type="module" src="./js/register.js"></script>
         <title>TerraceTechフロントエンドエンジニア養成所</title>
     </head>
     <body>
         <div id="js-wrapper" class="wrapper">
-            <h1>Sign Up</h1>
+            <h1 class="form_title">Sign Up</h1>
             <form method="post" id="js-form" novalidate>
                 <div>
                     <ul>
-                        <li>
+                        <li class="form_list">
                             <label for="name">ユーザー名</label>
                             <input type="text" id="name" name="name" class="js-name" required data-maxlength="16"/>
                             <span class="error"></span>
                         </li>
-                        <li>
+                        <li class="form_list">
                             <label for="mail">メールアドレス</label>
                             <input type="email" id="mail" name="email" class="js-email" required>
                             <span class="error"></span>
                         </li>
-                        <li>
+                        <li class="form_list">
                             <label for="password">パスワード</label>
                             <input type="password" autocomplete="new-password" id="new-password" name="password" class="js-password" required>
                             <span class="error"></span>
@@ -43,15 +45,15 @@
         <div role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialogDesc" id="js-modal" class="modal hidden" >
             <button type="button" id="js-close" class="close_button">×</button>
             <div class="modal_container" id="js-modal-container">
-                <h2 id="dialogTitle">利用規約</h2>
+                <h2 id="dialogTitle" class="modal_title" >利用規約</h2>
                 <div id="dialogDesc" class="modal_content">
                     <p>
                         この利用規約（以下，「本規約」といいます。）は，＿＿＿＿＿（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。
                     </p>
                 </div>
                 <div class="modal_content">
-                    <h3>第1条（適用）</h3>
-                    <ol>
+                    <h3 class="modal_subtitle">第1条（適用）</h3>
+                    <ol class="modal_text">
                         <li>本規約は，ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</li>
                         <li>
                             当社は本サービスに関し，本規約のほか，ご利用にあたってのルール等，各種の定め（以下，「個別規定」といいます。）をすることがあります。これら個別規定はその名称のいかんに関わらず，本規約の一部を構成するものとします。
@@ -61,7 +63,7 @@
                 </div>
                 <div class="modal_content">
                     <h3>第2条（利用登録）</h3>
-                    <ol>
+                    <ol class="modal_text">
                         <li>本規約は，ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</li>
                         <li>
                             当社は本サービスに関し，本規約のほか，ご利用にあたってのルール等，各種の定め（以下，「個別規定」といいます。）をすることがあります。これら個別規定はその名称のいかんに関わらず，本規約の一部を構成するものとします。
@@ -71,7 +73,7 @@
                 </div>
                 <div class="modal_content">
                     <h3>第3条（ユーザーIDおよびパスワードの管理）</h3>
-                    <ol>
+                    <ol class="modal_text">
                         <li>ユーザーは，自己の責任において，本サービスのユーザーIDおよびパスワードを適切に管理するものとします。</li>
                         <li>
                             ユーザーは，いかなる場合にも，ユーザーIDおよびパスワードを第三者に譲渡または貸与し，もしくは第三者と共用することはできません。当社は，ユーザーIDとパスワードの組み合わせが登録情報と一致してログインされた場合には，そのユーザーIDを登録しているユーザー自身による利用とみなします。
@@ -81,7 +83,7 @@
                 </div>
                 <div class="modal_content">
                     <h3>第4条（利用料金および支払方法）</h3>
-                    <ol>
+                    <ol class="modal_text">
                         <li>ユーザーは，本サービスの有料部分の対価として，当社が別途定め，本ウェブサイトに表示する利用料金を，当社が指定する方法により支払うものとします。</li>
                         <li>ユーザーが利用料金の支払を遅滞した場合には，ユーザーは年14．6％の割合による遅延損害金を支払うものとします。</li>
                     </ol>
@@ -89,7 +91,7 @@
                 <div class="modal_content">
                     <h3>第5条（禁止事項）</h3>
                     <p>ユーザーは，本サービスの利用にあたり，以下の行為をしてはなりません。</p>
-                    <ol>
+                    <ol class="modal_text">
                         <li>法令または公序良俗に違反する行為</li>
                         <li>犯罪行為に関連する行為</li>
                         <li>本サービスの内容等，本サービスに含まれる著作権，商標権ほか知的財産権を侵害する行為</li>
@@ -124,7 +126,7 @@
                 </div>
                 <div class="modal_content">
                     <h3>第7条（利用制限および登録抹消）</h3>
-                    <ol>
+                    <ol class="modal_text">
                         <li>
                             当社は，ユーザーが以下のいずれかに該当する場合には，事前の通知なく，ユーザーに対して，本サービスの全部もしくは一部の利用を制限し，またはユーザーとしての登録を抹消することができるものとします。
                             <ol>
@@ -143,7 +145,7 @@
                     <h3>第8条（退会）</h3>
                     <p>ユーザーは，当社の定める退会手続により，本サービスから退会できるものとします。</p>
                     <h3>第9条（保証の否認および免責事項）</h3>
-                    <ol>
+                    <ol class="modal_text">
                         <li>
                             当社は，本サービスに事実上または法律上の瑕疵（安全性，信頼性，正確性，完全性，有効性，特定の目的への適合性，セキュリティなどに関する欠陥，エラーやバグ，権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。
                         </li>
