@@ -1,6 +1,4 @@
-import { validateInputValue } from "./modules/validations";
-import { validationForTargetForm } from "./modules/validations";
-import { resetValidation } from "./modules/validations";
+import { validateInputValue, validationForTargetForm, resetValidation } from "./modules/validations";
 import { togglePassword } from "./modules/togglePassword";
 import { Chance } from "chance";
 const chance = new Chance();
