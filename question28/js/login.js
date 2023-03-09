@@ -1,4 +1,4 @@
-import { validateInputValue } from "./modules/validations";
+import { validateInputValue, resetValidation, validationForTargetForm } from "./modules/validations";
 import { togglePassword } from "./modules/togglePassword";
 import { Chance } from "chance";
 const chance = new Chance();
@@ -33,6 +33,10 @@ passwordInputArea.addEventListener('blur', (e) => {
 });
 
 passwordToggleButton.addEventListener('click', togglePassword); 
+
+passwordToggleButton.addEventListener('click', resetValidation);
+passwordToggleButton.addEventListener('blur', validationForTargetForm);
+
 
 const checkData = ({ name_mail, password }) => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
