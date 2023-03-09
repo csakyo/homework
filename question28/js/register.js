@@ -1,4 +1,5 @@
-import { validateInputValue } from "./modules/validations";
+import { validateInputValue, resetValidation, validationForTargetForm } from "./modules/validations";
+import { togglePassword } from "./modules/togglePassword";
 
 export const submitButton = document.getElementById('js-submit-button');
 const textLinkToTerms = document.getElementById('js-terms-textlink');
@@ -11,7 +12,7 @@ const modalContainer = document.getElementById("js-modal-container");
 const nameInputArea = document.querySelector(".js-name");
 const mailInputArea = document.querySelector(".js-email");
 const passwordInputArea = document.querySelector(".js-password");
-
+const passwordToggleButton = document.getElementById('js-toggle-password-button');
 
 textLinkToTerms.addEventListener('click',()=>{
     modal.classList.remove('hidden');
@@ -61,6 +62,10 @@ for (const input of [nameInputArea, mailInputArea, passwordInputArea]) {
 checkbox.addEventListener("change", () => {
   toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
 });
+
+passwordToggleButton.addEventListener('click', togglePassword); 
+passwordToggleButton.addEventListener('click', resetValidation);
+passwordToggleButton.addEventListener('blur', validationForTargetForm);
 
 submitButton.addEventListener('click',() => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
