@@ -28,12 +28,13 @@ userInfoInputArea.addEventListener('blur', (e) => {
  });
 
 passwordInputArea.addEventListener('blur', (e) => {
-   validateInputValue(e);
+  if (e.relatedTarget !== passwordToggleButton) {
+    validateInputValue(e);
+  }
    toggleDisabledOfSubmitButton(checkAllValidity());
 });
 
 passwordToggleButton.addEventListener('click', togglePassword); 
-
 passwordToggleButton.addEventListener('click', resetValidation);
 passwordToggleButton.addEventListener('blur', validationForTargetForm);
 
