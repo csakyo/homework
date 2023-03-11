@@ -52,12 +52,19 @@ const toggleDisabledOfSubmitButton = (isValid) => {
   submitButton.disabled = !isValid;
 }
 
-for (const input of [nameInputArea, mailInputArea, passwordInputArea]) {
+for (const input of [nameInputArea, mailInputArea]) {
   input.addEventListener("blur", (e) => {
     validateInputValue(e);
     toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
   });
 }
+
+passwordInputArea.addEventListener("blur", (e) => {
+  if (e.relatedTarget !== passwordToggleButton) {
+    validateInputValue(e);
+  }
+  toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked); 
+})
 
 checkbox.addEventListener("change", () => {
   toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
