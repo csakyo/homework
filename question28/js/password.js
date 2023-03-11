@@ -31,7 +31,9 @@ for (const elem of toggleButtonsForPassword) {
 
 for (const input of [passwordInputArea, confirmPasswordInputArea]) {
   input.addEventListener("blur", (e) => {
+    if (e.relatedTarget !== input.parentNode.querySelector('[data-button="toggle-password-button"]')) {
       validateInputValue(e);
+    }
     
     if (confirmPasswordInputArea.value && !(passwordInputArea.value === confirmPasswordInputArea.value)) {
         confirmPasswordInputArea.nextElementSibling.textContent = "入力された値が一致してません";
