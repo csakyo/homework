@@ -67,7 +67,5 @@ export const resetValidation = (e) => {
   const errorMessage = e.target.parentNode.querySelector('[data-error="error"]');
   const inputOfPassword = e.target.parentNode.querySelector('[data-input="password"]');
   errorMessage.textContent = ""; 
-  inputOfPassword.classList.remove("invalid");
-  inputOfPassword.classList.remove("valid");
-  inputOfPassword.classList.remove("invalid_mismatch");
+  inputOfPassword.classList.remove("invalid", "valid", "invalid_mismatch");
 }
