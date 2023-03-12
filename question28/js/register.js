@@ -72,7 +72,10 @@ checkbox.addEventListener("change", () => {
 
 passwordToggleButton.addEventListener('click', togglePassword); 
 passwordToggleButton.addEventListener('click', resetValidation);
-passwordToggleButton.addEventListener('blur', validationForTargetForm);
+passwordToggleButton.addEventListener('blur', (e) => {
+  validationForTargetForm(e);
+  toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked); 
+});
 
 submitButton.addEventListener('click',() => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
