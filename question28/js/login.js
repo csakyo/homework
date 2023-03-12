@@ -36,7 +36,10 @@ passwordInputArea.addEventListener('blur', (e) => {
 
 passwordToggleButton.addEventListener('click', togglePassword); 
 passwordToggleButton.addEventListener('click', resetValidation);
-passwordToggleButton.addEventListener('blur', validationForTargetForm);
+passwordToggleButton.addEventListener('blur', (e) => {
+  validationForTargetForm(e);
+  toggleDisabledOfSubmitButton(checkAllValidity());
+});
 
 
 const checkData = ({ name_mail, password }) => {
