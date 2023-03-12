@@ -26,7 +26,10 @@ const toggleDisabledOfSubmitButton = (isValid) => {
 
 for (const elem of toggleButtonsForPassword) {
   elem.addEventListener('click', resetValidation);
-  elem.addEventListener('blur', validationForTargetForm);
+  elem.addEventListener('blur', (e) => {
+    validationForTargetForm(e);
+    toggleDisabledOfSubmitButton(isValidAllInputsValue()); 
+  });
 }
 
 for (const input of [passwordInputArea, confirmPasswordInputArea]) {
