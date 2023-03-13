@@ -19,17 +19,18 @@
                         <li class="form_list">
                             <label for="name">ユーザー名</label>
                             <input type="text" id="name" name="name" class="js-name" required data-maxlength="16"/>
-                            <span class="error"></span>
+                            <span class="error" data-error="error"></span>
                         </li>
                         <li class="form_list">
                             <label for="mail">メールアドレス</label>
                             <input type="email" id="mail" name="email" class="js-email" required>
-                            <span class="error"></span>
+                            <span class="error" data-error="error"></span>
                         </li>
                         <li class="form_list">
                             <label for="password">パスワード</label>
-                            <input type="password" autocomplete="new-password" id="new-password" name="password" class="js-password" required>
-                            <span class="error"></span>
+                            <button type="button" class="password_toggle_button" id="js-toggle-password-button" data-button="toggle-password-button">表示</button>
+                            <input type="password" autocomplete="new-password" id="new-password" name="password" class="js-password" data-input="password" required>
+                            <span class="error" data-error="error"></span>
                         </li>
                     </ul>
                 </div>

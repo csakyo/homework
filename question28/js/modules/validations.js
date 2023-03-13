@@ -51,3 +51,21 @@ export const validateInputValue = (e) => {
   const result = validationInfo[targetForm.name].validation(value);
   setValidationEvents(result,targetForm);
 } 
+
+export const validateInputValueForButton = (targetForm) => {
+  const value = targetForm.value.trim();
+  const result = validationInfo[targetForm.name].validation(value);
+  setValidationEvents(result,targetForm);
+} 
+
+export const validationForTargetForm = (e) => {
+  if (e.relatedTarget === e.target.parentNode.querySelector('input')) return;
+  validateInputValueForButton(e.target.parentNode.querySelector('[data-input="password"]')); 
+}
+
+export const resetValidation = (e) => {
+  const errorMessage = e.target.parentNode.querySelector('[data-error="error"]');
+  const inputOfPassword = e.target.parentNode.querySelector('[data-input="password"]');
+  errorMessage.textContent = ""; 
+  inputOfPassword.classList.remove("invalid", "valid", "invalid_mismatch");
+}

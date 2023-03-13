@@ -1,4 +1,5 @@
-import { validateInputValue } from "./modules/validations";
+import { validateInputValue, resetValidation, validationForTargetForm } from "./modules/validations";
+import { togglePassword } from "./modules/togglePassword";
 
 export const submitButton = document.getElementById('js-submit-button');
 const textLinkToTerms = document.getElementById('js-terms-textlink');
@@ -11,7 +12,7 @@ const modalContainer = document.getElementById("js-modal-container");
 const nameInputArea = document.querySelector(".js-name");
 const mailInputArea = document.querySelector(".js-email");
 const passwordInputArea = document.querySelector(".js-password");
-
+const passwordToggleButton = document.getElementById('js-toggle-password-button');
 
 textLinkToTerms.addEventListener('click',()=>{
     modal.classList.remove('hidden');
@@ -51,15 +52,29 @@ const toggleDisabledOfSubmitButton = (isValid) => {
   submitButton.disabled = !isValid;
 }
 
-for (const input of [nameInputArea, mailInputArea, passwordInputArea]) {
+for (const input of [nameInputArea, mailInputArea]) {
   input.addEventListener("blur", (e) => {
     validateInputValue(e);
     toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
   });
 }
 
+passwordInputArea.addEventListener("blur", (e) => {
+  if (e.relatedTarget !== passwordToggleButton) {
+    validateInputValue(e);
+  }
+  toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked); 
+})
+
 checkbox.addEventListener("change", () => {
   toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked);
+});
+
+passwordToggleButton.addEventListener('click', togglePassword); 
+passwordToggleButton.addEventListener('click', resetValidation);
+passwordToggleButton.addEventListener('blur', (e) => {
+  validationForTargetForm(e);
+  toggleDisabledOfSubmitButton(isValidAllInputsValue() && checkbox.checked); 
 });
 
 submitButton.addEventListener('click',() => {

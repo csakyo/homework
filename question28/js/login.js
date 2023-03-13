@@ -1,4 +1,4 @@
-import { validateInputValue } from "./modules/validations";
+import { validateInputValue, resetValidation, validationForTargetForm } from "./modules/validations";
 import { togglePassword } from "./modules/togglePassword";
 import { Chance } from "chance";
 const chance = new Chance();
@@ -28,11 +28,19 @@ userInfoInputArea.addEventListener('blur', (e) => {
  });
 
 passwordInputArea.addEventListener('blur', (e) => {
-   validateInputValue(e);
+  if (e.relatedTarget !== passwordToggleButton) {
+    validateInputValue(e);
+  }
    toggleDisabledOfSubmitButton(checkAllValidity());
 });
 
 passwordToggleButton.addEventListener('click', togglePassword); 
+passwordToggleButton.addEventListener('click', resetValidation);
+passwordToggleButton.addEventListener('blur', (e) => {
+  validationForTargetForm(e);
+  toggleDisabledOfSubmitButton(checkAllValidity());
+});
+
 
 const checkData = ({ name_mail, password }) => {
   const registeredUserData = JSON.parse(localStorage.getItem('userData'));
