@@ -1,0 +1,104 @@
+.form_title {
+    text-align: center;
+    color: #000;
+    font-size: 30px;
+    margin-bottom: 30px;
+    font-family: 'Didot', sans-serif;
+    letter-spacing: 2px;
+}
+.form_list {
+    position: relative;
+    margin-bottom: 20px;
+    height: 75px;
+}
+input {
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 45px;
+    border-radius: 3px;
+}
+input.invalid {
+    border: 2px solid red;
+}
+input.valid {
+    border: 2px solid #94c35d;
+}
+input.invalid_mismatch {
+    border: 2px solid red;
+}
+.error {
+    color: red;
+    font-size: 12px;
+}
+.submit_button {
+    width: 100%;
+    background: #000;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 300;
+    height: 60px;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+.submit_button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.close_button {
+    width: 50px;
+    height: 50px;
+    background: #000;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 300;
+    color: #fff;
+    border-radius: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.checkbox {
+    margin: 20px 0;
+}
+.checkbox input {
+    height: 25px;
+    width: 25px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+.password_toggle_button {
+    color: #6a6f71;
+    font-weight: bold;
+    background: #f1f4f6;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px 10px;
+    letter-spacing: 2px;
+    position: absolute;
+    right: 1%;
+    top: 38%;
+    display: block;
+    cursor: pointer;
+    font-size: 15px;
+}
+.done {
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 10px;
+    background: #fff;
+    margin: 30px auto;
+    text-align: center;
+    width: 100%;
+    box-shadow: 3px 6px 10px #999;
+}
+.done_txt {
+    color: #353030;
+    margin-bottom: 2rem;
+}
+.done_txt p:first-child{
+    font-size: 30px;
+}
