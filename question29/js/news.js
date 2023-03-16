@@ -39,15 +39,7 @@ init();
 function renderNewsUiElement(newsData) {
   tabsGroup.appendChild(getTabListsFragment(newsData));
   newsWrapper.appendChild(renderContents(newsData));
-  renderLogoutBtn();
   addEventForLogoutButton();
-}
-
-const renderLogoutBtn = () => {
-  const logoutButton = createElementWithClassName('button', 'logout_button'); 
-  logoutButton.id = 'js-logout-btn';
-  logoutButton.textContent = 'Logout';
-  logoutButtonArea.appendChild(logoutButton);
 }
 
 const addEventForLogoutButton = () => {
