@@ -70,6 +70,23 @@ header {
     display: block;
     padding: 15px 20px;
 }
+.logout_button {
+    border: none;
+    background: #fff;
+    display: block;
+    color: #4F4F4F;
+    position: relative;
+    display: block;
+    padding: 15px 20px;
+    font-size: 17px;
+    width: 100%;
+    text-align: initial;
+    border-radius: 5px;
+}
+.logout_button:hover {
+    background-color: #f7f7f5;
+    color: #ec652b; 
+}
 .loading {
     width: 100px;
     position: absolute;
