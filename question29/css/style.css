@@ -82,6 +82,7 @@ header {
     width: 100%;
     text-align: initial;
     border-radius: 5px;
+    cursor: pointer;
 }
 .logout_button:hover {
     background-color: #f7f7f5;
