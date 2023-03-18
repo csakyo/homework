@@ -90,7 +90,7 @@ const createArrowBtnsElements = () => {
   const btnDirections = ["next", "prev"];
   btnDirections.forEach((direction) => {
     const btn = document.createElement("button");
-    btn.classList.add(`${direction}`, "arrowbutton");
+    btn.classList.add(`${direction}`, "js-arrowbutton");
     btn.id = direction === "prev" ? "js-prevbtn" : "js-nextbtn";
     btn.textContent = direction === "prev" ? "◀︎" : "▶︎";
     btn.value = direction;
@@ -100,7 +100,7 @@ const createArrowBtnsElements = () => {
 };
 
 const arrowBtnsClickEvent = (imgData) => {
-  const arrowButtons = document.querySelectorAll(".arrowbutton");
+  const arrowButtons = document.querySelectorAll(".js-arrowbutton");
   arrowButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.currentTarget.value === "prev" ? (imgNum.count -= 1) : (imgNum.count += 1);
