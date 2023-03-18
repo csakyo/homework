@@ -88,14 +88,14 @@ const imgList = document.getElementsByClassName("imgList");
 
 const createArrowBtnsElements = () => {
   const btnDirections = ["next", "prev"];
-  btnDirections.forEach((btnDirections) => {
+  btnDirections.forEach((direction) => {
     const btn = document.createElement("button");
-    btn.classList.add(`${btnDirections}`, "arrowbutton");
-    btn.id = btnDirections === "prev" ? "js-prevbtn" : "js-nextbtn";
-    btn.textContent = btnDirections === "prev" ? "◀︎" : "▶︎";
-    btn.value = btnDirections;
+    btn.classList.add(`${direction}`, "arrowbutton");
+    btn.id = direction === "prev" ? "js-prevbtn" : "js-nextbtn";
+    btn.textContent = direction === "prev" ? "◀︎" : "▶︎";
+    btn.value = direction;
     imgListsWrapper.appendChild(btn);
-    btn.disabled = btnDirections === "prev";
+    btn.disabled = direction === "prev";
   });
 };
 
