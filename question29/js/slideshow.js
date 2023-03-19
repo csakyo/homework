@@ -167,9 +167,9 @@ const switchPagenation = (indexOfCurrentImg) => {
 };
 
 const clickedPagenation = (dataLength) => {
+  const arrayPagenationItems = Array.from(pagenationItems);
   for (const pagenationItem of pagenationItems) {
     pagenationItem.addEventListener("click", function () {
-      const arrayPagenationItems = Array.from(pagenationItems);
       slide.currentIndex = arrayPagenationItems.indexOf(this);
 
       document.querySelector(".is-active").classList.remove("is-active");
