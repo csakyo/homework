@@ -84,7 +84,6 @@ const getFragmentImglists = (imgData) => {
 };
 
 let slide = {currentIndex: 0}
-const imgList = document.getElementsByClassName("imgList");
 
 const createArrowBtnsElements = () => {
   const btnDirections = ["next", "prev"];
@@ -105,7 +104,7 @@ const arrowBtnsClickEvent = (imgData) => {
     button.addEventListener("click", (e) => {
       e.currentTarget.value === "prev" ? (slide.currentIndex -= 1) : (slide.currentIndex  += 1);
       document.querySelector(".is-show").classList.remove("is-show");
-      imgList[slide.currentIndex].classList.add("is-show");
+      imgLists.querySelector(`[data-index="${slide.currentIndex}"]`).classList.add("is-show");
       switchPagenation(slide.currentIndex);
       switchDisableForBtn(imgData);
       setNumberOfPage(imgData);
@@ -135,7 +134,7 @@ const autoImgSwitch = (imgData) => {
       slide.currentIndex = 0;
     }
     document.querySelector(".is-show").classList.remove("is-show");
-    imgList[slide.currentIndex].classList.add("is-show");
+    imgLists.querySelector(`[data-index="${slide.currentIndex}"]`).classList.add("is-show");
     switchPagenation(slide.currentIndex);
     switchDisableForBtn(imgData);
     setNumberOfPage(imgData);
@@ -176,7 +175,7 @@ const clickedPagenation = (imgData) => {
       arrayPagenationItems[slide.currentIndex].classList.add("is-active");
 
       document.querySelector(".is-show").classList.remove("is-show");
-      imgList[slide.currentIndex].classList.add("is-show");
+      imgLists.querySelector(`[data-index="${slide.currentIndex}"]`).classList.add("is-show");
       switchDisableForBtn(imgData);
       setNumberOfPage(imgData);
       resetAutoPlay(imgData);
