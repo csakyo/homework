@@ -4,8 +4,8 @@ import { Chance } from "chance";
 const chance = new Chance();
 
 const submitButton = document.getElementById('js-submit-button');
-const userInfoInputArea = document.querySelector(".js-name_mail");
-const passwordInputArea = document.querySelector(".js-password");
+const userInfoInputArea = document.querySelector('[data-input="name_mail"]');
+const passwordInputArea = document.querySelector('[data-input="password"]');
 const form = document.getElementById('js-form');
 const passwordToggleButton = document.getElementById('js-toggle-password-button');
 
