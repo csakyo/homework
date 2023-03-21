@@ -6,7 +6,6 @@ const createElementWithClassName = (element, name) => {
 
 const newsWrapper = document.getElementById('js-news-wrapper');
 const tabsGroup = document.getElementById('js-tabs');
-const logoutButtonArea = document.getElementById('js-logout-button-area');
 const contentsWrapper = createElementWithClassName("div", "contents_wrapper");
 
 
