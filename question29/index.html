@@ -4,18 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="./css/common.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" />
     <link href="./css/news.css" rel="stylesheet" />
     <script>
       if (!localStorage.getItem("token")) window.location.href = "./login.html";
     </script>
-    <script src="./js/news.js" defer></script>
+    <script type="module" src="./js/news.js"></script>
+    <script type="module" src="./js/slideshow.js"></script>
     <title>TerraceTechフロントエンドエンジニア養成所</title>
   </head>
   <body>
-    <div class="container">
-      <div class="logout_btn" id="js-logout-button-area">
+    <header>
+      <div class="header_container">
+        <ul class="header_nav">
+          <li class="header_nav_list">
+            <a href="#"><img src="./img/account_icon.png" alt="アカウントアイコン画像"></a>
+            <div class="header_nav_list_menu">
+              <ul>
+                <li class="menu"><a href="./reset-email.html">メールアドレス変更</a></li>
+                <li class="menu"><a href="./forgotPassword.html">パスワード変更</a></li>
+                <li class="menu"><button id="js-logout-btn" class="logout_button">ログアウト</button></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="news_wrapper" id="js-news-wrapper">
+    </header>
+    <div class="container">
+      <div id="js-imgListsWrapper" class="img_lists_wrapper">
+        <ul id="js-imgLists" class="img_lists"></ul>
+      </div>
+      <div id="js-news-wrapper" class="news_wrapper">
         <ul id="js-tabs" class="news_tabs"></ul>
       </div>
     </div>

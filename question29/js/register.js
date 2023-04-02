@@ -8,10 +8,10 @@ const modalClose = document.getElementById('js-close');
 const mask = document.getElementById('js-mask');
 const form = document.getElementById('js-form');
 const checkbox = document.getElementById('js-checkbox');
-const modalContainer = document.getElementById("js-modal-container");
-const nameInputArea = document.querySelector(".js-name");
-const mailInputArea = document.querySelector(".js-email");
-const passwordInputArea = document.querySelector(".js-password");
+const modalContainer = document.getElementById('js-modal-container');
+const nameInputArea = document.querySelector('[data-input="name"]');
+const mailInputArea = document.querySelector('[data-input="email"]');
+const passwordInputArea = document.querySelector('[data-input="password"]');
 const passwordToggleButton = document.getElementById('js-toggle-password-button');
 
 textLinkToTerms.addEventListener('click',()=>{

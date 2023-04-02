@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link href="../css/style.css" rel="stylesheet" />
+        <link href="../css/common.css" rel="stylesheet" />
+        <link href="../css/form.css" rel="stylesheet" />
+        <script>
+            if (!localStorage.getItem("token")) window.location.href = "./login.html";
+          </script>
+        <title>TerraceTechフロントエンドエンジニア養成所</title>
+    </head>
+    <body>
+        <header>
+            <div class="header_container">
+               <ul class="header_nav">
+                  <li class="header_nav_list">
+                     <a href="#"><img src="./img/account_icon.png" alt="アカウントアイコン画像" /></a>
+                     <div class="header_nav_list_menu">
+                        <ul>
+                           <li class="menu"><a href="./reset-email.html">メールアドレス変更</a></li>
+                           <li class="menu"><a href="./forgotPassword.html">パスワード変更</a></li>
+                           <li class="menu"><button id="js-logout-btn" class="logout_button">ログアウト</button></li>
+                        </ul>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+        </header>
+        <div id="js-wrapper" class="wrapper">
+            <h1 class="form_title">e-mail address Reset</h1>
+            <form method="post" id="form" novalidate>
+                <div>
+                    <ul>
+                        <li class="form_list">
+                            <label for="mail">新しいメールアドレス</label>
+                            <input type="email" id="mail" name="email" class="js-email" required>
+                            <span class="error" data-error="error"></span>
+                        </li>
+                        <li class="form_list">
+                            <label for="confirmMail">新しいメールアドレス(確認用)</label>
+                            <input type="email" id="confirmMail" name="email" class="js-email" required>
+                            <span class="error" data-error="error"></span>
+                        </li>
+                        <li class="form_list">
+                            <label for="password">パスワード</label>
+                            <button type="button" class="password_toggle_button" id="js-toggle-password-button" data-button="toggle-password-button">表示</button>
+                            <input type="password" autocomplete="current-password" id="password" name="password" data-input="password" required>
+                            <span class="error" data-error="error"></span>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" id="js-submit-button" class="submit_button" disabled>送信</button>
+            </form>
+        </div>
+    </body>
+</html>

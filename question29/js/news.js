@@ -6,7 +6,6 @@ const createElementWithClassName = (element, name) => {
 
 const newsWrapper = document.getElementById('js-news-wrapper');
 const tabsGroup = document.getElementById('js-tabs');
-const logoutButtonArea = document.getElementById('js-logout-button-area');
 const contentsWrapper = createElementWithClassName("div", "contents_wrapper");
 
 
@@ -39,15 +38,7 @@ init();
 function renderNewsUiElement(newsData) {
   tabsGroup.appendChild(getTabListsFragment(newsData));
   newsWrapper.appendChild(renderContents(newsData));
-  renderLogoutBtn();
   addEventForLogoutButton();
-}
-
-const renderLogoutBtn = () => {
-  const logoutButton = createElementWithClassName('button', 'logout_button'); 
-  logoutButton.id = 'js-logout-btn';
-  logoutButton.textContent = 'Logout';
-  logoutButtonArea.appendChild(logoutButton);
 }
 
 const addEventForLogoutButton = () => {
